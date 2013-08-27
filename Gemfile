@@ -16,6 +16,8 @@ gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
                               :branch => '3.0.0'
 
 gem 'devise'
+gem 'simple_form'
+gem 'country_select'
 
 group :doc do
   gem 'sdoc', :require => false

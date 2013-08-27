@@ -26,7 +26,22 @@ gem 'puma'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
+  gem 'sdoc', :require => false
+end
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
+  gem 'mailcatcher', :require => false
+end
+
+group :development, :test do
+  gem 'rspec-rails', '~> 2.0'
+  gem 'factory_girl_rails', :require => false
+  gem "shoulda-matchers", "1.4.2"
+  gem 'pry'
+  gem 'pry-debugger'
 end
 
 # Use ActiveModel has_secure_password

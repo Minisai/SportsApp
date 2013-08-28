@@ -1,0 +1,48 @@
+<div class="row">
+  <%= simple_form_for @user, :url => user_registration_path, :html => { :class => 'form-horizontal',
+                                                                        'ng-controller' => 'RegistrationController'} do |f| %>
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= f.input :role_type, :input_html => {:class => "form-control"} %>
+      </div>
+      <div class="form-group">
+        <%= f.input :name, :input_html => {:class => "form-control"} %>
+      </div>
+      <div class="form-group">
+        <%= f.input :email, :input_html => {:class => "form-control"} %>
+      </div>
+      <div class="form-group">
+        <%= f.input :username, :input_html => {:class => "form-control"} %>
+      </div>
+      <div class="form-group">
+        <%= f.input :password, :input_html => {:class => "form-control"} %>
+      </div>
+      <div class="form-group">
+        <%= f.input :password_confirmation, :input_html => {:class => "form-control"} %>
+      </div>
+      <div class="form-group">
+        <%= text_field_tag :program_code %>
+      </div>
+      <div class="form-group">
+        <%= f.input :male, :input_html => {:class => "form-control"} %>
+      </div>
+      <div class="form-group">
+
+        <input class="input-small" type="text" ng-model="datepicker.date" data-date-format="dd/mm/yyyy" bs-datepicker>
+        <%#= f.input :birthday, :as => :string, :input_html => { :class => "form-control",
+                                                              'ng-model' => 'datepicker.date',
+                                                              'data-date-format' => "dd/mm/yyyy",
+                                                              'bs-datepicker' => nil
+                                                              } %>
+        <button type="button" class="btn" data-toggle="datepicker"><span class="glyphicon glyphicon-calendar"></span></button>
+      </div>
+      <div class="form-group">
+        <%= f.input :country, :input_html => {:class => "form-control"} %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <p> <%= link_to "Connect with Facebook", "#", :class => "btn btn-default" %> </p>
+      <div><%= f.submit "Create account >", :class => "btn btn-default" %></div>
+    </div>
+  <% end %>
+</div>

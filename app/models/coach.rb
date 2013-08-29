@@ -1,4 +1,5 @@
 class Coach < ActiveRecord::Base
-  has_one :user, :as => :role
+  include RoleConcern
+
   has_many :players
 end

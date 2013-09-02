@@ -12,6 +12,12 @@ class User < ActiveRecord::Base
 
   ROLE_TYPES = ['Player', 'Coach', 'Parent']
 
+  ROLE_TYPES.each do |role_name|
+    define_method "#{role_name.downcase}?" do
+      role_type == role_name.to_s.classify
+    end
+  end
+
   def gender=(value)
     if ['male', 'female'].include?(value.downcase)
       self.male = value.downcase == 'male'

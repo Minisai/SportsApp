@@ -1,11 +1,11 @@
 <nav class="navbar navbar-default" role="navigation">
   <div class="navbar-header">
-    <a class="navbar-brand" href="#">Sports App</a>
+    <%= link_to "Sports App", root_path, :class =>"navbar-brand" %>
   </div>
   <div class="collapse navbar-collapse navbar-ex1-collapse pull-right">
     <ul class="nav navbar-nav">
       <% unless user_signed_in? %>
-        <li class="active">
+        <li class="<%= 'active' if params[:controller] == 'registrations' %>">
           <%= link_to "Sign up", new_user_registration_path %>
         </li>
       <% end %>
@@ -16,7 +16,7 @@
         <%= link_to "Blog" %>
       </li>
 
-      <li>
+      <li class="<%= 'active' if params[:controller] == 'sessions' %>">
         <% if user_signed_in? %>
           <%= link_to "Log out", destroy_user_session_path, :method => :delete %>
         <% else %>

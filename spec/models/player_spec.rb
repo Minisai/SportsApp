@@ -6,6 +6,7 @@ describe Player do
   it { should have_one(:user) }
   it { should belong_to(:coach) }
   it { should belong_to(:parent) }
+  it { should belong_to(:team) }
 
   context :add_program_code_error_to_user do
     let(:invalid_player) { build(:player, :coach => nil) }

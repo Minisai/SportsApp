@@ -4,6 +4,7 @@ class Player < ActiveRecord::Base
   validates :coach, :presence => true
 
   belongs_to :coach
+  belongs_to :team
   belongs_to :parent
 
   after_validation :add_program_code_error_to_user

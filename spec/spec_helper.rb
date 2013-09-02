@@ -43,4 +43,14 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include Devise::TestHelpers, :type => :controller
   config.include Rails.application.routes.url_helpers
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :deletion
+  end
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 end

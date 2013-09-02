@@ -1,0 +1,33 @@
+<nav class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="#">Sports App</a>
+  </div>
+  <div class="collapse navbar-collapse navbar-ex1-collapse pull-right">
+    <ul class="nav navbar-nav">
+      <% unless user_signed_in? %>
+        <li class="active">
+          <%= link_to "Sign up", new_user_registration_path %>
+        </li>
+      <% end %>
+      <li>
+        <%= link_to "Company" %>
+      </li>
+      <li>
+        <%= link_to "Blog" %>
+      </li>
+
+      <li>
+        <% if user_signed_in? %>
+          <%= link_to "Log out", destroy_user_session_path, :method => :delete %>
+        <% else %>
+          <%= link_to "Log in", new_user_session_path %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div id="header-image">
+  <%= link_to root_path do %>
+    <%= image_tag "https://s3.amazonaws.com/jetstrap-site/images/website/index/what_icon.png" %>
+  <% end %>
+</div>

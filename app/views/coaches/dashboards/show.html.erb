@@ -1,0 +1,15 @@
+<nav class="navbar navbar-default subnav" role="navigation">
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
+      <li class="<%= 'active' if params[:controller] == 'coaches/dashboards' %>">
+        <%= link_to "Dashboard" %>
+      </li>
+      <li>
+        <%= link_to "Manage teams" %>
+      </li>
+      <li>
+        <%= link_to "Profile" %>
+      </li>
+    </ul>
+  </div>
+</nav>

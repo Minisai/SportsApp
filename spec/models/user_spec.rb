@@ -12,6 +12,15 @@ describe User do
 
   it { should belong_to(:role) }
 
+  describe "role methods" do
+    context "question methods" do
+      subject { create(:coach_user) }
+      it { should respond_to(:coach?) }
+      it { should respond_to(:parent?) }
+      it { should respond_to(:player?) }
+    end
+  end
+
   describe "gender virtual attribute" do
 
     context "when male field is true" do

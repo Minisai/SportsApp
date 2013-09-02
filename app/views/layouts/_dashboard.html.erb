@@ -1,0 +1,26 @@
+<% if user_signed_in? %>
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+      <ul class="nav navbar-nav">
+        <% if coach_signed_in? %>
+          <li>
+            <%= link_to "Coach's corner", coaches_dashboard_path %>
+          </li>
+        <% elsif player_signed_in? %>
+          <li>
+            <%= link_to "Player's corner" %>
+          </li>
+        <% end %>
+        <li>
+          <%= link_to "Development plan" %>
+        </li>
+        <li>
+          <%= link_to "Skills" %>
+        </li>
+        <li>
+          <%= link_to "Videos" %>
+        </li>
+      </ul>
+    </div>
+  </nav>
+<% end %>

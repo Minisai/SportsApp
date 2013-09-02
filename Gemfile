@@ -16,7 +16,7 @@ gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
                               :github => 'anjlab/bootstrap-rails',
                               :branch => '3.0.0'
 gem 'devise'
-gem 'simple_form'
+gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
 gem 'country_select'
 
 group :doc do

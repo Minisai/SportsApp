@@ -1,3 +1,6 @@
 @app.controller "DashboardController", ($scope, PlayersFactory) ->
+  $scope.lol = "LOL"
   $scope.playerSelection = (id) ->
-    $scope.player = PlayersFactory.get({id: id})
+    PlayersFactory.get {id: id}, (data)->
+      $scope.player = data["player"]
+      $scope.showPlayerProfile = true

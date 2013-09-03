@@ -21,6 +21,7 @@ gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git'
 gem 'country_select'
 gem 'will_paginate', '~> 3.0.0'
 gem 'will_paginate-bootstrap'
+gem 'rabl'
 
 group :doc do
   gem 'sdoc', :require => false

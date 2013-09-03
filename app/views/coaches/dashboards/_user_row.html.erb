@@ -1,4 +1,4 @@
-<tr ng-click='playerSelection(<%= player.id %>)'>
+<tr ng-click='playerSelection(<%= player.id %>)' ng-class="{highlight:player.id == <%= player.id %>}">
   <td><%= player.name %></td>
   <td></td>
   <td></td>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130902145910) do
+ActiveRecord::Schema.define(version: 20130903162900) do
 
   create_table "coaches", force: true do |t|
     t.string   "program_code"
@@ -57,6 +57,11 @@ ActiveRecord::Schema.define(version: 20130902145910) do
     t.boolean  "paid",                   default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "sign_in_count",          default: 0
+    t.time     "current_sign_in_at"
+    t.time     "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

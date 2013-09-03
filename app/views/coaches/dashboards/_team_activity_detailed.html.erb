@@ -1,0 +1,21 @@
+<p>Team activity - detailed</p>
+<h1><%= team.name %></h1>
+<p>
+  Active plan: @team.plan
+  <%= link_to "Manage development plan" %>
+</p>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Player Name</th>
+    <th>Last Login</th>
+    <th>Last Day Completed</th>
+    <th>5 Days Inactive</th>
+  </tr>
+  </thead>
+  <tbody>
+  <%= render :partial => 'user_row', :collection => players, :as => :player %>
+  </tbody>
+</table>
+<%= will_paginate_bootstrap players %>
+<%= link_to "Manage-team", nil, :class => 'btn btn-warning pull-right' %>

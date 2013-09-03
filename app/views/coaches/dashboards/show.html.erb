@@ -1,12 +1,10 @@
 <%= render 'coaches/navigation' %>
 <div class='row'>
   <div class='col-md-6'>
-    <p>Team activity - detailed</p>
-
-
+    <%= render 'team_activity_detailed', :team => @team, :players => @players %>
   </div>
   <div class='col-md-6'>
-    <p>Team activity - today</p>
-
+    <%= render 'team_activity_today', :team => @team %>
+    <%= render 'player_profile', :player => @team.players.last %>
   </div>
 </div>

@@ -9,6 +9,10 @@ class Player < ActiveRecord::Base
 
   after_validation :add_program_code_error_to_user
 
+  delegate :name, :to => :user
+
+  self.per_page = 10
+
   private
   def add_program_code_error_to_user
     if self.errors[:coach].present? && self.user.present?

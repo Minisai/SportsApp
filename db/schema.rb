@@ -11,13 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130827135428) do
+ActiveRecord::Schema.define(version: 20130903162900) do
 
   create_table "coaches", force: true do |t|
     t.string   "program_code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "coaches", ["program_code"], name: "index_coaches_on_program_code", using: :btree
 
   create_table "parents", force: true do |t|
     t.datetime "created_at"
@@ -28,6 +30,14 @@ ActiveRecord::Schema.define(version: 20130827135428) do
     t.string   "token"
     t.integer  "coach_id"
     t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "team_id"
+  end
+
+  create_table "teams", force: true do |t|
+    t.string   "name"
+    t.integer  "coach_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -47,6 +57,11 @@ ActiveRecord::Schema.define(version: 20130827135428) do
     t.boolean  "paid",                   default: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "sign_in_count",          default: 0
+    t.time     "current_sign_in_at"
+    t.time     "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

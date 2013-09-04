@@ -1,0 +1,22 @@
+<div class="player-profile" ng-show='player'>
+  <p>Player Profile</p>
+  <div class="brd">
+    <p> {{player.name}} </p>
+    <p ng-show='player.last_sign_in_at'>
+      Last login: {{player.last_sign_in_at}}
+      Days inactive: player.days_inactive
+    </p>
+    <!--TODO: insert data when functionality will be implemented-->
+    <p>
+      Last activity: player.last_activity
+    </p>
+    <p>
+      Position: player.position
+      Player points: player.points
+    </p>
+
+    <%= link_to 'Motivate', nil, :class => 'btn btn-success' %>
+    <%= link_to 'Send message', nil, :class => 'btn btn-info' %>
+  </div>
+</div>
+

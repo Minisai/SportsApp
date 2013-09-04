@@ -4,6 +4,7 @@ SportsApp::Application.routes.draw do
 
   namespace :coaches do
     resource :dashboard, :only => [:show]
+    resources :players, :only => [:index, :show]
   end
 
   root :to => "home#index"

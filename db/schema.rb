@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130903162900) do
+ActiveRecord::Schema.define(version: 20130904094724) do
 
   create_table "coaches", force: true do |t|
     t.string   "program_code"
@@ -20,6 +20,23 @@ ActiveRecord::Schema.define(version: 20130903162900) do
   end
 
   add_index "coaches", ["program_code"], name: "index_coaches_on_program_code", using: :btree
+
+  create_table "motivations", force: true do |t|
+    t.text     "message"
+    t.integer  "coach_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "motivations", ["coach_id"], name: "index_motivations_on_coach_id", using: :btree
+
+  create_table "motivations_players", force: true do |t|
+    t.integer "player_id"
+    t.integer "motivation_id"
+  end
+
+  add_index "motivations_players", ["player_id", "motivation_id"], name: "index_motivations_players_on_player_id_and_motivation_id", using: :btree
+  add_index "motivations_players", ["player_id"], name: "index_motivations_players_on_player_id", using: :btree
 
   create_table "parents", force: true do |t|
     t.datetime "created_at"

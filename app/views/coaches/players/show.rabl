@@ -1,2 +1,2 @@
 object @player
-attributes :id, :name, :last_sign_in_at
+attributes :id, :name, :last_sign_in_at, :email

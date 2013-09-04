@@ -6,10 +6,11 @@ class Player < ActiveRecord::Base
   belongs_to :coach
   belongs_to :team
   belongs_to :parent
+  has_and_belongs_to_many :motivations
 
   after_validation :add_program_code_error_to_user
 
-  delegate :name, :last_sign_in_at, :to => :user
+  delegate :name, :email, :last_sign_in_at, :to => :user
 
   self.per_page = 10
 

@@ -23,7 +23,7 @@ describe Coaches::PlayersController do
       let(:parsed_body) { JSON.parse(response.body) }
 
       it "should get json with keys" do
-        expect(parsed_body.first['player'].keys.sort).to eq %w(id name last_sign_in_at).sort
+        expect(parsed_body.first['player'].keys.sort).to eq %w(id name last_sign_in_at email).sort
       end
     end
     context "player signed in" do
@@ -59,7 +59,7 @@ describe Coaches::PlayersController do
         let(:parsed_body) { JSON.parse(response.body) }
 
         it "should get json with keys" do
-          expect(parsed_body['player'].keys.sort).to eq %w(id name last_sign_in_at).sort
+          expect(parsed_body['player'].keys.sort).to eq %w(id name last_sign_in_at email).sort
         end
       end
       context "wrong coach" do

@@ -4,7 +4,12 @@ SportsApp::Application.routes.draw do
 
   namespace :coaches do
     resource :dashboard, :only => [:show]
-    resources :players, :only => [:index, :show]
+    resources :players, :only => [:index, :show] do
+      member do
+        post :motivate
+        post :send_message
+      end
+    end
   end
 
   root :to => "home#index"

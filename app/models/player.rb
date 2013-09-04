@@ -10,7 +10,7 @@ class Player < ActiveRecord::Base
 
   after_validation :add_program_code_error_to_user
 
-  delegate :name, :email, :last_sign_in_at, :to => :user
+  delegate :last_sign_in_at, :to => :user
 
   self.per_page = 10
 

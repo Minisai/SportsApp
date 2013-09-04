@@ -44,3 +44,10 @@ end
     }
   end
 end
+
+20.times do |i|
+  Motivation.create do |motivation|
+    motivation.coach = default_coach
+    motivation.message = "Motivation message #{i}"
+  end
+end

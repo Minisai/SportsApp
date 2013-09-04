@@ -15,8 +15,11 @@
       Player points: player.points
     </p>
 
-    <%= link_to 'Motivate', nil, :class => 'btn btn-success' %>
-    <%= link_to 'Send message', nil, :class => 'btn btn-info' %>
+    <%= link_to 'Motivate', '#motivation-modal', :class => 'btn btn-success', 'data-toggle' => 'modal' %>
+    <%= link_to 'Send message', '#send-message-modal', :class => 'btn btn-info', 'data-toggle' => 'modal' %>
+
+    <%= render 'motivation_modal' %>
+    <%= render 'send_message_modal' %>
   </div>
 </div>
 

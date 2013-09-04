@@ -4,9 +4,14 @@ class Player < ActiveRecord::Base
   validates :coach, :presence => true
 
   belongs_to :coach
+  belongs_to :team
   belongs_to :parent
 
   after_validation :add_program_code_error_to_user
+
+  delegate :name, :last_sign_in_at, :to => :user
+
+  self.per_page = 10
 
   private
   def add_program_code_error_to_user

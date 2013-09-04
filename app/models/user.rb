@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
-         :recoverable, :validatable
+         :recoverable, :validatable, :trackable
 
   validates :username, :name, :birthday, :country, :role, :presence => true
   validates :male, :inclusion => {:in => [true, false]}

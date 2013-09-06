@@ -14,9 +14,8 @@
       Position: player.position
       Player points: player.points
     </p>
-
-    <%= link_to 'Motivate', nil, :class => 'btn btn-success' %>
-    <%= link_to 'Send message', nil, :class => 'btn btn-info' %>
+    <%= link_to 'Motivate', '', :class => 'btn btn-success', 'ng-click' => "showMotivationModal()" %>
+    <%= link_to 'Send message', '', :class => 'btn btn-info', 'ng-click' => "showMessageModal()" %>
   </div>
 </div>
 

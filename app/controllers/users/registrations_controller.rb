@@ -6,7 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    role = build_role_from_params(find_coach_if_student)
+    role = build_role_from_params(find_coach_if_player)
     if role.save
       sign_in(:user, role.user)
       redirect_to :root
@@ -26,7 +26,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     role_params[:role_type].classify.constantize.new({:user_attributes => role_params[:user]}.merge(extra_params))
   end
 
-  def find_coach_if_student
+  def find_coach_if_player
     if role_params[:role_type].classify == "Player"
       {:coach => Coach.find_by_program_code(role_params[:program_code])}
     else

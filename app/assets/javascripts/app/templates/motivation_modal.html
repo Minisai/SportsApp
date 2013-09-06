@@ -1,0 +1,24 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h4 class="modal-title">Motivate {{player.name}}</h4>
+    </div>
+    <form ng-submit="sendMotivation()">
+      <div class="modal-body">
+        <p>Select motivation:</p>
+        <select ng-model="motivation.id" class="form-control" ng-init="motivation.id = 'new'">
+          <option value="new">--Add new--</option>
+          <option ng-repeat="m in motivations" value="{{m.id}}">{{m.message}}</option>
+        </select>
+        <div ng-show="motivation.id == 'new'">
+          <p>or write new:</p>
+          <textarea class="form-control" ng-model="motivation.message" cols="30" rows="3"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <input class="btn btn-primary" name="commit" type="submit" value="Send motivation">
+      </div>
+    </form>
+  </div>
+</div>

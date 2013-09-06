@@ -1,5 +1,5 @@
 class Coaches::PlayersController < ApplicationController
-  respond_to :html, :json, :xml
+  respond_to :html, :json
   load_and_authorize_resource
   before_filter :load_coach
   before_filter :load_player, :only => [:show, :motivate, :send_message]

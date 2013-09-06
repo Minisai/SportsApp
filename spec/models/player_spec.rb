@@ -7,9 +7,7 @@ describe Player do
   it { should belong_to(:coach) }
   it { should belong_to(:parent) }
   it { should belong_to(:team) }
-
-  it { should delegate_method(:name).to(:user).as(:name) }
-  it { should delegate_method(:last_sign_in_at).to(:user).as(:last_sign_in_at) }
+  it { should have_and_belong_to_many(:motivations) }
 
   context :add_program_code_error_to_user do
     let(:invalid_player) { build(:player, :coach => nil) }

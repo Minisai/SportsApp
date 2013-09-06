@@ -6,6 +6,7 @@ describe Motivation do
   it { should validate_presence_of(:message) }
   it { should validate_uniqueness_of(:coach).scoped_to(:message) }
 
-  it { should have_and_belong_to_many(:players) }
+  it { should have_many(:motivation_players) }
+  it { should have_many(:players).through(:motivation_players) }
   it { should belong_to(:coach) }
 end

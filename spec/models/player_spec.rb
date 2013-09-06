@@ -7,7 +7,9 @@ describe Player do
   it { should belong_to(:coach) }
   it { should belong_to(:parent) }
   it { should belong_to(:team) }
-  it { should have_and_belong_to_many(:motivations) }
+
+  it { should have_many(:motivation_players) }
+  it { should have_many(:motivations).through(:motivation_players) }
 
   context :add_program_code_error_to_user do
     let(:invalid_player) { build(:player, :coach => nil) }

@@ -5,10 +5,9 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title">Send message to {{player.name}}</h4>
       </div>
-      <form accept-charset="UTF-8" action="/coaches/players/{{player.id}}/send_message" method="post">
-        <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+      <form ng-submit="sendMessage()">
         <div class="modal-body">
-          <%= text_area_tag :message, nil, :class => 'form-control' %>
+          <%= text_area_tag :message, nil, :class => 'form-control', 'ng-model' => 'message' %>
         </div>
         <div class="modal-footer">
           <%= submit_tag 'Send message', :class => 'btn btn-primary' %>

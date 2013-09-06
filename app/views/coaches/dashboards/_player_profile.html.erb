@@ -14,9 +14,8 @@
       Position: player.position
       Player points: player.points
     </p>
-
-    <%= link_to 'Motivate', '#motivation-modal', :class => 'btn btn-success', 'data-toggle' => 'modal' %>
-    <%= link_to 'Send message', '#send-message-modal', :class => 'btn btn-info', 'data-toggle' => 'modal' %>
+    <%= link_to 'Motivate', '', :class => 'btn btn-success', 'ng-click' => "showModal('motivation_modal')" %>
+    <%= link_to 'Send message', '', :class => 'btn btn-info', 'ng-click' => "showModal('send_message_modal')" %>
 
     <%= render 'motivation_modal' %>
     <%= render 'send_message_modal' %>

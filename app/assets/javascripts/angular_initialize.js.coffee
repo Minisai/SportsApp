@@ -1,1 +1,1 @@
-@app = angular.module('sports-app', ['$strap.directives', 'ngResource'])
+@app = angular.module('sports-app', ['$strap.directives', 'ngResource', 'notifications'])

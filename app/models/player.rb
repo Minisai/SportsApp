@@ -6,7 +6,9 @@ class Player < ActiveRecord::Base
   belongs_to :coach
   belongs_to :team
   belongs_to :parent
-  has_and_belongs_to_many :motivations
+
+  has_many :motivation_players
+  has_many :motivations, :through => :motivation_players
 
   after_validation :add_program_code_error_to_user
 

@@ -3,5 +3,6 @@ class Motivation < ActiveRecord::Base
   validates :coach, :uniqueness => { :scope => :message }
 
   belongs_to :coach
-  has_and_belongs_to_many :players
+  has_many :motivation_players
+  has_many :players, :through => :motivation_players
 end

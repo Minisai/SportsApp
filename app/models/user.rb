@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates :username, :uniqueness => true
 
   belongs_to :role, :polymorphic => true, :inverse_of => :user
+  has_many :payments
 
   attr_accessor :gender
 

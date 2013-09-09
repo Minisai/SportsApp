@@ -11,6 +11,7 @@ describe User do
   it { should validate_uniqueness_of(:username) }
 
   it { should belong_to(:role) }
+  it { should have_many(:payments) }
 
   describe "role methods" do
     context "question methods" do

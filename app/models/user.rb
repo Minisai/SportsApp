@@ -10,10 +10,10 @@ class User < ActiveRecord::Base
 
   attr_accessor :gender
 
-  ROLE_TYPES = ['Player', 'Coach', 'Parent']
+  ROLE_TYPES = RoleTypeEnum.role_type.values.map(&:to_s)
 
   ROLE_TYPES.each do |role_name|
-    define_method "#{role_name.downcase}?" do
+    define_method "#{role_name}?" do
       role_type == role_name.to_s.classify
     end
   end

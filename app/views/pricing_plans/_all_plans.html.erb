@@ -1,0 +1,12 @@
+<h1>Plans for coaches:</h1>
+<div class="row-fluid">
+  <%= render :partial => 'pricing_plan', :collection => @pricing_plans.with_role_type(:coach) %>
+</div>
+<h1>Plans for players:</h1>
+<div class="row-fluid">
+  <%= render :partial => 'pricing_plan', :collection => @pricing_plans.with_role_type(:player) %>
+</div>
+<h1>Plans for parents:</h1>
+<div class="row-fluid">
+  <%= render :partial => 'pricing_plan', :collection => @pricing_plans.with_role_type(:parent) %>
+</div>

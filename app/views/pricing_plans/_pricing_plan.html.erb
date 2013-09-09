@@ -1,0 +1,11 @@
+<div class="col-md-3">
+  <div class="thumbnail">
+    <div class="caption">
+      <h4><%= pricing_plan.name %></h4>
+      <h4><%= pricing_plan.cost %> $</h4>
+      <% if user_signed_in? %>
+        <%= link_to "Purchase now!", nil, :class => 'btn btn-success' %>
+      <% end %>
+    </div>
+  </div>
+</div>

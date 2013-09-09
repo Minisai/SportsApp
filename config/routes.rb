@@ -13,5 +13,7 @@ SportsApp::Application.routes.draw do
     end
   end
 
+  resources :pricing_plans, :only => [:index]
+
   root :to => "home#index"
 end

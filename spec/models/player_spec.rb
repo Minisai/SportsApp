@@ -11,7 +11,7 @@ describe Player do
   it { should have_many(:motivation_players) }
   it { should have_many(:motivations).through(:motivation_players) }
 
-  context :add_program_code_error_to_user do
+  describe :add_program_code_error_to_user do
     let(:invalid_player) { build(:player, :coach => nil) }
 
     context "when player has user" do

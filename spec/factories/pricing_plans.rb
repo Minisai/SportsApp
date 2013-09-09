@@ -5,7 +5,7 @@ FactoryGirl.define do
     cost 10
     duration 1
 
-    factory(:pricing_plan_for_coach) { role_type :player }
+    factory(:pricing_plan_for_coach) { role_type :coach }
     factory(:pricing_plan_for_player) { role_type :player }
     factory(:pricing_plan_for_parent) { role_type :parent }
   end

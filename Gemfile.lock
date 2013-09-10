@@ -80,6 +80,8 @@ GEM
       railties (>= 3.2.6, < 5)
       warden (~> 1.2.3)
     diff-lcs (1.2.4)
+    enumerize (0.7.0)
+      activesupport (>= 3.2)
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.0.1)
@@ -127,6 +129,7 @@ GEM
     minitest (4.7.5)
     multi_json (1.7.9)
     orm_adapter (0.4.0)
+    paypal-recurring (1.1.0)
     pg (0.16.0)
     polyglot (0.3.3)
     pry (0.9.12.2)
@@ -242,12 +245,14 @@ DEPENDENCIES
   country_select
   database_cleaner
   devise
+  enumerize
   factory_girl_rails
   jbuilder (~> 1.2)
   jquery-rails
   less-rails
   mailcatcher
   meta_request
+  paypal-recurring
   pg
   pry
   pry-debugger

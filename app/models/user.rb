@@ -7,13 +7,14 @@ class User < ActiveRecord::Base
   validates :username, :uniqueness => true
 
   belongs_to :role, :polymorphic => true, :inverse_of => :user
+  has_many :payments
 
   attr_accessor :gender
 
-  ROLE_TYPES = ['Player', 'Coach', 'Parent']
+  ROLE_TYPES = RoleTypeEnum.role_type.values.map(&:to_s)
 
   ROLE_TYPES.each do |role_name|
-    define_method "#{role_name.downcase}?" do
+    define_method "#{role_name}?" do
       role_type == role_name.to_s.classify
     end
   end
@@ -26,5 +27,9 @@ class User < ActiveRecord::Base
 
   def gender
     self.male ? 'Male' : "Female"
+  end
+
+  def paid?
+    self.expired_at.present? && self.expired_at >= Date.today
   end
 end

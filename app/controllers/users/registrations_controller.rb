@@ -27,7 +27,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def find_coach_if_player
-    if role_params[:role_type].classify == "Player"
+    if role_params[:role_type].downcase == "player"
       {:coach => Coach.find_by_program_code(role_params[:program_code])}
     else
       {}
@@ -35,7 +35,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def prevent_invalid_role_type
-    unless User::ROLE_TYPES.include?(role_params[:role_type].try(:classify))
+    unless User::ROLE_TYPES.include?(role_params[:role_type].try(:downcase))
       @user = User.new(role_params[:user])
       flash[:alert] = 'Invalid account type'
       render 'new'

@@ -1,0 +1,8 @@
+<% if user_signed_in? %>
+  <h1>Available plans:</h1>
+  <div class="row-fluid">
+    <%= render :partial => 'pricing_plan', :collection => @pricing_plans %>
+  </div>
+<% else %>
+  <%= render 'all_plans' %>
+<% end %>

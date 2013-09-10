@@ -1,4 +1,7 @@
 <% if user_signed_in? %>
+  <% if current_user.paid? %>
+    Your account expired at: <%= current_user.expired_at.strftime("%d/%m/%Y") %>
+  <% end %>
   <h1>Available plans:</h1>
   <div class="row-fluid">
     <%= render :partial => 'pricing_plan', :collection => @pricing_plans %>

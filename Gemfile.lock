@@ -129,6 +129,7 @@ GEM
     minitest (4.7.5)
     multi_json (1.7.9)
     orm_adapter (0.4.0)
+    paypal-recurring (1.1.0)
     pg (0.16.0)
     polyglot (0.3.3)
     pry (0.9.12.2)
@@ -251,6 +252,7 @@ DEPENDENCIES
   less-rails
   mailcatcher
   meta_request
+  paypal-recurring
   pg
   pry
   pry-debugger

@@ -15,5 +15,12 @@ SportsApp::Application.routes.draw do
 
   resources :pricing_plans, :only => [:index]
 
+  resources :payments do
+    collection do
+      get :paypal_checkout
+      get :paypal_callback
+    end
+  end
+
   root :to => "home#index"
 end

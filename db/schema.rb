@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130909091708) do
+ActiveRecord::Schema.define(version: 20130910101830) do
 
   create_table "coaches", force: true do |t|
     t.string   "program_code"
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 20130909091708) do
   create_table "payments", force: true do |t|
     t.integer  "user_id"
     t.integer  "pricing_plan_id"
+    t.string   "paypal_customer_token"
+    t.boolean  "completed",             default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -81,9 +83,9 @@ ActiveRecord::Schema.define(version: 20130909091708) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "",    null: false
-    t.string   "username",               default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "email",                  default: "",   null: false
+    t.string   "username",               default: "",   null: false
+    t.string   "encrypted_password",     default: "",   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.string   "name"
@@ -92,7 +94,6 @@ ActiveRecord::Schema.define(version: 20130909091708) do
     t.integer  "role_id"
     t.string   "role_type"
     t.boolean  "male",                   default: true
-    t.boolean  "paid",                   default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "sign_in_count",          default: 0
@@ -100,6 +101,7 @@ ActiveRecord::Schema.define(version: 20130909091708) do
     t.time     "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.datetime "expired_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

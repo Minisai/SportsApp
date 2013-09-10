@@ -23,6 +23,7 @@ gem 'will_paginate', '~> 3.0.0'
 gem 'will_paginate-bootstrap'
 gem 'rabl'
 gem 'enumerize'
+gem 'paypal-recurring'
 
 group :doc do
   gem 'sdoc', :require => false

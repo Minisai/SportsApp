@@ -28,4 +28,8 @@ class User < ActiveRecord::Base
   def gender
     self.male ? 'Male' : "Female"
   end
+
+  def paid?
+    self.expired_at.present? && self.expired_at >= Date.today
+  end
 end

@@ -3,6 +3,8 @@ class CreatePayments < ActiveRecord::Migration
     create_table :payments do |t|
       t.integer :user_id
       t.integer :pricing_plan_id
+      t.string :paypal_customer_token
+      t.boolean :completed, :default => false
 
       t.timestamps
     end

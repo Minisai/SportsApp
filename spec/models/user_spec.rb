@@ -68,4 +68,29 @@ describe User do
       end
     end
   end
+
+  describe :paid? do
+    context "when user's expired_at date >= today" do
+      let(:user) { create(:player_user, :expired_at => 1.month.since)}
+
+      it "should return true" do
+        expect(user.paid?).to be_true
+      end
+    end
+    context "when user's expired_at date == today" do
+      let(:user) { create(:player_user, :expired_at => Date.today)}
+
+      it "should return true" do
+        expect(user.paid?).to be_true
+      end
+    end
+    context "when user's expired_at date <= today" do
+      let(:user) { create(:player_user, :expired_at => 1.day.ago)}
+
+      it "should return true" do
+        expect(user.paid?).to be_false
+      end
+    end
+  end
+
 end

@@ -1,4 +1,4 @@
-default_coach = Coach.create do |coach|
+default_coach = User.find_by_email("coach@mail.com").try(:role) || Coach.create do |coach|
   coach.program_code = "PROG123"
   coach.user_attributes = {
     :email => "coach@mail.com",
@@ -11,12 +11,12 @@ default_coach = Coach.create do |coach|
   }
 end
 
-default_team = Team.create do |team|
+default_team = Team.find_by_name('Garden City Panthers') || Team.create do |team|
   team.coach = default_coach
   team.name = 'Garden City Panthers'
 end
 
-default_parent = Parent.create do |coach|
+default_parent = User.find_by_email("parent@mail.com").try(:role) || Parent.create do |coach|
   coach.user_attributes = {
     :email => "parent@mail.com",
     :name => "parent",
@@ -51,3 +51,5 @@ end
     motivation.coach = default_coach
   end
 end
+
+Dir[Rails.root.join('db/seeds/*.rb')].each {|f| load f }

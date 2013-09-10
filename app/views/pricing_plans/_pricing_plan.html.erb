@@ -1,0 +1,11 @@
+<div class="col-md-3">
+  <div class="thumbnail">
+    <div class="caption">
+      <h4><%= pricing_plan.name %></h4>
+      <h4><%= pricing_plan.cost %> $</h4>
+      <% if user_signed_in? && !current_user.paid?%>
+        <%= link_to "Purchase now!", paypal_checkout_payments_path(:plan_id => pricing_plan.id), :class => 'btn btn-success' %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,29 @@
 class Coaches::TeamsController < ApplicationController
+  before_filter :load_coach
   def index
-    @players = current_user.role.players
-    @teams = current_user.role.teams
+    @players = @coach.players
+    @teams = @coach.teams
+  end
+
+  def show
+    render :json => Team.find_by_id(params[:id])
+  end
+
+  def create
+    team = @coach.teams.build(team_params)
+    if team.save
+      render :json => {:message => "Team was successfully created"}, :status => :ok
+    else
+      render :json => {:message => team.errors.full_messages.join("")}, :status => :bad_request
+    end
+  end
+
+  def team_params
+    params.permit(:name, :description)
+  end
+
+  private
+  def load_coach
+    @coach = current_user.role
   end
 end

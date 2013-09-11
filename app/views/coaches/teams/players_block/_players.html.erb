@@ -2,7 +2,7 @@
   <div class="search-players">
     <p>Search players</p>
     <div class="brd">
-      <%= render 'search_form' %>
+      <%= render 'coaches/teams/players_block/search_form' %>
     </div>
   </div>
   <div class="players-list">
@@ -11,7 +11,7 @@
       Click here to invite player <%= link_to "Add player", nil, :class => 'btn btn-success' %>
       <div class='brd players-table'>
         <table class="table">
-          <%= render :partial => 'player_row', :collection => players, :as => :player %>
+          <%= render :partial => 'coaches/teams/players_block/player_row', :collection => players, :as => :player %>
         </table>
       </div>
     </div>

@@ -1,0 +1,16 @@
+<div class="team-management">
+  <p> Team Management </p>
+  <div class="brd">
+    <div class="selected-team">
+      <%= render "coaches/teams/teams_block/selected_team" %>
+    </div>
+    <div class="teams-table">
+      <table>
+        <%= render :partial => "coaches/teams/teams_block/team_row", :collection => @teams, :as => :team %>
+        <tr class="brd add-new-team" ng-click="addNewTeamClick()">
+          <td>Add Team <span class='glyphicon glyphicon-plus plus-minus'></span></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

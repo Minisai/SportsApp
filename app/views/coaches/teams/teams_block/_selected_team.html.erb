@@ -1,0 +1,32 @@
+<div class="select-team-default" ng-hide="team || addNewTeamClicked">
+  Select or add team first
+</div>
+<div class="team-description" ng-show="team">
+  <p> Team ID: {{team.id}} </p>
+  <p> Program code: {{team.program_code}} </p>
+  <p> Team Name: {{team.name}} </p>
+  <p> Team Description: {{team.description}} </p>
+</div>
+<div class="add-new-team" ng-show="addNewTeamClicked">
+  <div class="row">
+    <form class='form-horizontal' ng-submit="createTeam()">
+      <div class="col-md-9">
+        <div class="form-group">
+          <%= label_tag 'Name', nil, :class => 'control-label col-lg-2' %>
+          <div class='controls col-lg-10'>
+            <%= text_field_tag :name, nil, :class => "form-control", 'ng-model' => 'new_team.name' %>
+          </div>
+        </div>
+        <div class="form-group ">
+          <%= label_tag 'Description', nil, :class => 'control-label col-lg-2' %>
+          <div class='controls col-lg-10'>
+            <%= text_area_tag :description, nil, :class => "form-control", 'ng-model' => 'new_team.description' %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <%= submit_tag "Add", :class => "btn btn-default" %>
+      </div>
+    </form>
+  </div>
+</div>

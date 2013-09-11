@@ -56,3 +56,22 @@
 .modal {
   top: 20%;
 }
+
+.players-table {
+  height: 250px;
+  overflow-y: auto;
+}
+.selected-team {
+  height: 150px
+}
+.teams-table {
+  height: 350px;
+  overflow-y: auto;
+}
+.teams-table table {
+  width: 100%;
+}
+
+.teams-table table .add-new-team {
+  background-color: darkgrey;
+}

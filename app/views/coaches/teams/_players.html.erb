@@ -1,0 +1,19 @@
+<div class="players">
+  <div class="search-players">
+    <p>Search players</p>
+    <div class="brd">
+      <%= render 'search_form' %>
+    </div>
+  </div>
+  <div class="players-list">
+    <p>Players</p>
+    <div class="brd">
+      Click here to invite player <%= link_to "Add player", nil, :class => 'btn btn-success' %>
+      <div class='brd players-table'>
+        <table class="table">
+          <%= render :partial => 'player_row', :collection => players, :as => :player %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

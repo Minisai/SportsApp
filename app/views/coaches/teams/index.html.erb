@@ -1,0 +1,11 @@
+<%= render 'coaches/navigation' %>
+<div class="manage-teams" ng-controller='TeamsController'>
+  <div class='row'>
+    <div class='col-md-5'>
+      <%= render 'players', :players => @players %>
+    </div>
+    <div class='col-md-7'>
+      <%= render 'teams' %>
+    </div>
+  </div>
+</div>

@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   belongs_to :role, :polymorphic => true, :inverse_of => :user
   has_many :payments
 
+  after_create :generate_program_code_if_coach
+
   attr_accessor :gender
 
   ROLE_TYPES = RoleTypeEnum.role_type.values.map(&:to_s)
@@ -31,5 +33,12 @@ class User < ActiveRecord::Base
 
   def paid?
     self.expired_at.present? && self.expired_at >= Date.today
+  end
+
+  private
+  def generate_program_code_if_coach
+    if self.coach?
+      self.role.generate_program_code
+    end
   end
 end

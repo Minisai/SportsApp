@@ -11,7 +11,7 @@
 
   getTeamAndPlayers = (id) ->
     $scope.team = TeamsFactory.get {id: id}
-    $scope.players = PlayersFactory.query()
+    $scope.players = PlayersFactory.query( {team_id: id})
 
   $scope.addNewTeamClick = ->
     $scope.addNewTeamClicked = true
@@ -19,8 +19,7 @@
 
   $scope.createTeam = ->
     TeamsFactory.save(@new_team,
-      (data) ->
-        $notification.success("Success", data['message'])
-      , (data) ->
-        alert(data['message'])
-        $notification.error("Error", data['message']))
+      (success_data) ->
+        $notification.success("Success", success_data['message'])
+      , (error_result) ->
+        $notification.error("Error", error_result['data']['message']))

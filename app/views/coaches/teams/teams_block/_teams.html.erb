@@ -5,8 +5,21 @@
       <%= render "coaches/teams/teams_block/selected_team" %>
     </div>
     <div class="teams-table">
-      <table>
-        <%= render :partial => "coaches/teams/teams_block/team_row", :collection => @teams, :as => :team %>
+      <table ng-init="teams = <%= @teams.to_json %>">
+        <tbody ng-repeat='team in teams'>
+          <tr class='brd' ng-click='teamSelection(team.id)'>
+            <td>
+              {{team.name}}
+              <span class='glyphicon plus-minus glyphicon-plus' ng-show="selected_team.id != team.id"></span>
+              <span class='glyphicon plus-minus glyphicon-minus' ng-show="selected_team.id == team.id "></span>
+            </td>
+          </tr>
+          <td ng-show="selected_team.id == team.id ">
+            <div class="players-for-team-table">
+              <%= render "coaches/teams/teams_block/players_for_team" %>
+            </div>
+          </td>
+        </tbody>
         <tr class="brd add-new-team" ng-click="addNewTeamClick()">
           <td>Add Team <span class='glyphicon glyphicon-plus plus-minus'></span></td>
         </tr>

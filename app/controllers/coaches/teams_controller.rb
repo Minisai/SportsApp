@@ -12,7 +12,7 @@ class Coaches::TeamsController < ApplicationController
   def create
     team = @coach.teams.build(team_params)
     if team.save
-      render :json => {:message => "Team was successfully created"}, :status => :ok
+      render :json => {:teams => @coach.teams, :message => "Team was successfully created"}, :status => :ok
     else
       render :json => {:message => team.errors.full_messages.join("")}, :status => :bad_request
     end

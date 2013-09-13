@@ -38,7 +38,7 @@ class PaymentsController < ApplicationController
 
   def prevent_payment_for_paid_user
     if current_user.paid?
-      redirect_to :root, :error => "You have already paid"
+      redirect_to :root, :flash => {:alert => "You have already paid"}
     end
   end
 end

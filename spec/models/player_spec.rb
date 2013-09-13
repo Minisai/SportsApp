@@ -23,4 +23,14 @@ describe Player do
       end
     end
   end
+
+  describe :with_team do
+    before { create_list(:player, 10) }
+    let!(:team) { create(:team) }
+    let!(:players_with_one_team) { create_list(:player, 10, :team => team) }
+
+    it "should return players scoped to specified team_id" do
+      expect(Player.with_team(players_with_one_team.last.team_id)).to match_array(players_with_one_team)
+    end
+  end
 end

@@ -1,2 +1,2 @@
 @app.factory "PlayersFactory", ($resource) ->
-  $resource("players//:id.json", {id: "@id"}, {update: {method: 'PUT'}})
+  $resource("players/:id", {id: "@id"}, {update: {method: 'PUT'}})

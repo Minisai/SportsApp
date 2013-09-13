@@ -1,7 +1,7 @@
 @app.service "BootstrapModalService", ($q, $modal) ->
   modalPromise = (scope, modalName) ->
     $modal(
-            template: "/assets/app/templates/#{modalName}.html",
+            template: "/assets/app/templates/dashboard/#{modalName}.html",
             persist: true,
             show: false,
             backdrop: 'static',

@@ -25,7 +25,7 @@ describe Coaches::PlayersController do
       it { expect(assigns(:players)).to match_array players }
 
       it "should get json with keys" do
-        expect(parsed_body.first['player'].keys.sort).to eq %w(id name last_sign_in_at email).sort
+        expect(parsed_body.first.keys.sort).to eq %w(id name last_sign_in_at email).sort
       end
     end
     context "player signed in" do

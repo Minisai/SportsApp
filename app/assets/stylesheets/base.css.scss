@@ -49,10 +49,56 @@
   padding: 0px 10px 10px 10px;
 }
 
+.brd-white {
+  border: 2px solid lightgrey;
+  padding: 0px 10px 10px 10px;
+  color: lightgrey;
+}
+
 .highlight {
   background-color: darkgrey;
 }
 
 .modal {
   top: 20%;
+}
+
+.players-table {
+  height: 250px;
+  overflow-y: auto;
+}
+.selected-team {
+  height: 150px
+}
+.teams-table {
+  height: 350px;
+  overflow-y: auto;
+}
+
+.teams-table > table:first-child {
+  width: 100%;
+}
+
+.teams-table table .add-new-team {
+  background-color: darkgrey;
+}
+span.plus-minus {
+  float:right
+}
+
+.players-for-team {
+  margin-left: 5%;
+  width: 95%
+}
+
+.players-for-team-table {
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.add-new-team input[type='text'] {
+  width: 250px;
+}
+.add-new-team textarea {
+  width: 250px;
 }

@@ -23,6 +23,9 @@ SportsApp::Application.routes.draw do
       get :paypal_callback
     end
   end
+  namespace :angular do
+    resources :templates, :only => [:show]
+  end
 
   root :to => "home#index"
 end

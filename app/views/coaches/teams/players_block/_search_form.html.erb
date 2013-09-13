@@ -1,0 +1,33 @@
+<%= form_tag nil, :class => 'form-inline' do %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="control-group">
+        <%= label_tag 'Player ID', nil, :class => 'control-label col-lg-4' %>
+        <div class='controls col-lg-8'>
+          <%= text_field_tag :player_id, nil, :class => "form-control" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <%= submit_tag 'Search', :class => 'btn btn-success' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="control-group">
+        <%= label_tag 'Last Name', nil, :class => 'control-label col-lg-4' %>
+        <div class='controls col-lg-8'>
+          <%= text_field_tag :last_name, nil, :class => "form-control" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="control-group">
+        <%= label_tag 'City', nil, :class => 'control-label col-lg-4' %>
+        <div class='controls col-lg-8'>
+          <%= text_field_tag :city, nil, :maxlength => 15, :class => "form-control" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

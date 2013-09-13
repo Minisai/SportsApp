@@ -5,7 +5,7 @@ class Coaches::PlayersController < ApplicationController
   before_filter :load_player, :only => [:show, :motivate, :send_message]
 
   def index
-    @players = @coach.players
+    @players = @coach.players.with_team(params[:team_id])
   end
 
   def motivate

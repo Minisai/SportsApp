@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :team do
+    coach
     sequence(:name) {|n| "team#{n}"}
   end
 end

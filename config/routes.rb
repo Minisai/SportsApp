@@ -4,6 +4,8 @@ SportsApp::Application.routes.draw do
 
   namespace :coaches do
     resource :dashboard, :only => [:show]
+    resources :teams, :only => [:show, :index, :create]
+
     resources :motivations, :only => [:index]
     resources :players, :only => [:index, :show] do
       member do

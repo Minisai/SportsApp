@@ -14,6 +14,8 @@ class Player < ActiveRecord::Base
 
   delegate :last_sign_in_at, :to => :user
 
+  scope :with_team, -> (team_id) { where(:team_id => team_id) }
+
   self.per_page = 10
 
   private

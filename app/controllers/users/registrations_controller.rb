@@ -1,5 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  before_filter :prevent_invalid_role_type
+  before_filter :prevent_invalid_role_type, :only => [:create]
 
   def new
     @user = User.new
@@ -9,7 +9,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     role = build_role_from_params(find_coach_if_player)
     if role.save
       sign_in(:user, role.user)
-      redirect_to :root
+      redirect_to :root, :flash => {:success => "You was successfully registered!"}
     else
       @user = role.user
       render 'new'

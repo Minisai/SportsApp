@@ -1,0 +1,12 @@
+<tr class='brd' ng-click='teamSelection(<%= team.id %>)'>
+  <td>
+    <%= team.name %>
+    <span class='glyphicon plus-minus glyphicon-plus' ng-show="team.id != <%= team.id %>"></span>
+    <span class='glyphicon plus-minus glyphicon-minus' ng-show="team.id == <%= team.id %>"></span>
+  </td>
+</tr>
+<td ng-show="team.id == <%= team.id %>">
+  <div class="players-for-team-table">
+    <%= render "coaches/teams/teams_block/players_for_team" %>
+  </div>
+</td>

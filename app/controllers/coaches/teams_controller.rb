@@ -18,11 +18,11 @@ class Coaches::TeamsController < ApplicationController
     end
   end
 
+  private
   def team_params
     params.permit(:name, :description)
   end
 
-  private
   def load_coach
     @coach = current_user.role
   end

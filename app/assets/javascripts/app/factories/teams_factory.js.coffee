@@ -1,2 +1,3 @@
-@app.factory "TeamsFactory", ($resource) ->
+@app.factory "TeamsFactory", ["$resource", ($resource) ->
   $resource("teams//:id", {id: "@id"}, {update: {method: 'PUT'}})
+]

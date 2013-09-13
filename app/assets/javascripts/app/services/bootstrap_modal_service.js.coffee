@@ -1,4 +1,4 @@
-@app.service "BootstrapModalService", ($q, $modal) ->
+@app.service "BootstrapModalService", ["$q", "$modal", ($q, $modal) ->
   modalPromise = (scope, modalName) ->
     $modal(
             template: "/assets/app/templates/dashboard/#{modalName}.html",
@@ -11,3 +11,4 @@
     $q.when(modalPromise(scope, modalName)).then (modalEl) ->
       eval("scope.#{modalName} = modalEl")
       modalEl.modal("show")
+]

@@ -1,4 +1,5 @@
 class Coaches::TeamsController < ApplicationController
+  authorize_resource
   before_filter :load_coach
   def index
     @players = @coach.players

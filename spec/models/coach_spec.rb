@@ -15,7 +15,6 @@ describe Coach do
     end
 
     it "should send email" do
-      binding.pry
       expect(ActionMailer::Base.deliveries.count - initial_mails_count).to eq 1
     end
   end

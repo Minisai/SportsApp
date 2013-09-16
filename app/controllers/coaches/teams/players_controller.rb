@@ -1,10 +1,11 @@
 class Coaches::Teams::PlayersController < ApplicationController
+  authorize_resource
   before_filter :load_coach
   before_filter :load_team
 
   def create
     player = @coach.players.find(params[:player_id])
-    if player.update_attribute(:team, @team)
+    if player.update_attributes(:team => @team)
       render :json => @team.players
     else
       render :json => {:message => "Can't add player to team"}, :status => :bad_request
@@ -12,8 +13,8 @@ class Coaches::Teams::PlayersController < ApplicationController
   end
 
   def destroy
-    player = @coach.players.find(params[:id])
-    if player.update_attribute(:team, nil)
+    player = @team.players.find(params[:id])
+    if player.update_attributes(:team => nil)
       render :json => @team.players
     else
       render :json => {:message => "Can't remove player from team"}, :status => :bad_request

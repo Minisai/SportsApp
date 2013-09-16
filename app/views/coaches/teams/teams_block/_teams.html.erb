@@ -15,7 +15,7 @@
             </td>
           </tr>
           <td ng-show="selected_team.id == team.id ">
-            <div class="players-for-team-table">
+            <div class="players-for-team-table" data-drop="true" data-jqyoui-options ng-model="droppedPlayer" jqyoui-droppable="{onDrop: 'dropPlayerHandler'}">
               <%= render "coaches/teams/teams_block/players_for_team" %>
             </div>
           </td>

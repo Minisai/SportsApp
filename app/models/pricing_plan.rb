@@ -6,7 +6,7 @@ class PricingPlan < ActiveRecord::Base
 
   has_many :payments
 
-  default_scope order('duration ASC')
+  default_scope { order('duration ASC') }
 
   class << self
     def with_role_type_for(user)

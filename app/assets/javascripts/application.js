@@ -10,8 +10,10 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require 'jquery'
-//= require 'jquery_ujs'
+//= require jquery
+//= require jquery.ui.draggable
+//= require jquery.ui.droppable
+//= require jquery_ujs
 //= require twitter/bootstrap/modal
 //= require angular
 //= require angular-resource

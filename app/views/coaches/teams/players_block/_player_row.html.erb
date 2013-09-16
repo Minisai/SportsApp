@@ -1,4 +1,4 @@
-<tr>
-  <td> <%= player.name %> </td>
-  <td> <%= player.country %> </td>
+<tr ng-repeat="player in players" data-drag="true" data-jqyoui-options="{revert: 'invalid', appendTo: 'body', helper: 'clone'}" ng-model="droppedPlayer" jqyoui-draggable="{animate:true, onStart: 'dragPlayerHandler({{player}})' }">
+  <td> {{player.name}} </td>
+  <td> {{player.country}} </td>
 </tr>

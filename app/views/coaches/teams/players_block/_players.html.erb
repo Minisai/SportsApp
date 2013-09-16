@@ -9,9 +9,9 @@
     <p>Players</p>
     <div class="brd">
       Click here to invite player <%= link_to "Add player", nil, :class => 'btn btn-success' %>
-      <div class='brd players-table'>
+      <div class='brd players-table' ng-init="players = <%= json_for(players) %>">
         <table class="table">
-          <%= render :partial => 'coaches/teams/players_block/player_row', :collection => players, :as => :player %>
+          <%= render 'coaches/teams/players_block/player_row' %>
         </table>
       </div>
     </div>

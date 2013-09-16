@@ -27,6 +27,8 @@ GEM
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
+    active_model_serializers (0.8.1)
+      activemodel (>= 3.0)
     activemodel (4.0.0)
       activesupport (= 4.0.0)
       builder (~> 3.1.0)
@@ -100,6 +102,9 @@ GEM
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (4.0.4)
+      jquery-rails
+      railties (>= 3.1.0)
     json (1.8.0)
     less (2.3.3)
       commonjs (~> 0.2.6)
@@ -245,6 +250,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers
   angularjs-rails
   anjlab-bootstrap-rails!
   better_errors
@@ -258,6 +264,7 @@ DEPENDENCIES
   factory_girl_rails
   jbuilder (~> 1.2)
   jquery-rails
+  jquery-ui-rails
   less-rails
   mailcatcher
   meta_request

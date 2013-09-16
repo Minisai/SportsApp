@@ -1,5 +1,5 @@
-@app.controller "TeamsController", ["$scope", "$notification", "TeamsFactory", "PlayersFactory",
-  ($scope, $notification, TeamsFactory, PlayersFactory) ->
+@app.controller "TeamsController", ["$scope", "$notification", "TeamsFactory", "PlayersFactory", "TeamsPlayersFactory",
+  ($scope, $notification, TeamsFactory, PlayersFactory, TeamsPlayersFactory) ->
     $scope.teamSelection = (id) ->
       $scope.addNewTeamClicked = false
 
@@ -26,8 +26,19 @@
         , (error_result) ->
           $notification.error("Error", error_result['data']['message']))
 
+    $scope.teamPlayerRemoveClick = (selected_team_player) ->
+      TeamsPlayersFactory.delete({team_id: @selected_team.id, id: selected_team_player.id},
+        (success_data) ->
+          $scope.team_players = success_data['players']
+        , (error_result) ->
+          $notification.error("Error", error_result['data']['message']))
+
     $scope.dropPlayerHandler = (event, ui) ->
-      console.log($scope.draggedPlayer.id)
+      TeamsPlayersFactory.save({team_id: @selected_team.id, player_id: @draggedPlayer.id},
+        (success_data) ->
+          $scope.team_players = success_data['players']
+        , (error_result) ->
+          $notification.error("Error", error_result['data']['message']))
 
     $scope.dragPlayerHandler = (event, ui, player) ->
       $scope.draggedPlayer = player

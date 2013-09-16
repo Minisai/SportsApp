@@ -2,6 +2,7 @@
   <tr ng-repeat="player in team_players" class='brd'>
     <td>
       {{player.name}}
+      <span class='glyphicon plus-minus glyphicon-minus' ng-click="teamPlayerRemoveClick(player)"></span>
     </td>
   </tr>
   <tr class='brd-white'>

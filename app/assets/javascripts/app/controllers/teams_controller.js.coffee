@@ -25,4 +25,10 @@
           $notification.success("Success", success_data['message'])
         , (error_result) ->
           $notification.error("Error", error_result['data']['message']))
+
+    $scope.dropPlayerHandler = (event, ui) ->
+      console.log($scope.draggedPlayer.id)
+
+    $scope.dragPlayerHandler = (event, ui, player) ->
+      $scope.draggedPlayer = player
 ]

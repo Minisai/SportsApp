@@ -12,7 +12,7 @@
 
     getTeamAndPlayers = (id) ->
       $scope.selected_team = TeamsFactory.get {id: id}
-      $scope.players = PlayersFactory.query( {team_id: id})
+      $scope.team_players = PlayersFactory.query( {team_id: id})
 
     $scope.addNewTeamClick = ->
       $scope.addNewTeamClicked = true

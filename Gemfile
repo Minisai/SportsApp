@@ -27,6 +27,7 @@ gem 'will_paginate-bootstrap'
 gem 'rabl'
 gem 'enumerize'
 gem 'paypal-recurring'
+gem "active_model_serializers"
 
 group :doc do
   gem 'sdoc', :require => false

@@ -5,7 +5,7 @@ class Coaches::PlayersController < ApplicationController
   before_filter :load_player, :only => [:show, :motivate, :send_message]
 
   def index
-    @players = params[:team_id].present? ? @coach.players.with_team(params[:team_id]) : @coach.players
+    @players = params[:team_id].present? ? @coach.players.with_team(params[:team_id]) : @coach.players.search(filter_params)
   end
 
   def motivate
@@ -34,6 +34,10 @@ class Coaches::PlayersController < ApplicationController
 
   def load_player
     @player = @coach.players.find(params[:id])
+  end
+
+  def filter_params
+    params.permit(:player_id, :country, :name)
   end
 
   def motivation_params

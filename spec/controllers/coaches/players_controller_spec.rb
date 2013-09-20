@@ -9,23 +9,40 @@ describe Coaches::PlayersController do
   let!(:player) { create(:player_user).role }
   let!(:another_coach) { create(:coach_user).role }
 
-
   let(:player) { players.first }
   let(:parsed_body) { JSON.parse(response.body) }
 
   describe "GET 'index'" do
     context "coach singed in" do
-      before do
-        controller.stub(:current_user => coach.user)
-        get :index
+
+      before { controller.stub(:current_user => coach.user) }
+
+      context "no any extra params" do
+        before { get :index }
+
+        it { expect(response).to be_success }
+        it { expect(assigns(:coach)).to eq coach }
+        it { expect(assigns(:players)).to match_array players }
+
+        it "should get json with keys" do
+          expect(parsed_body.first.keys.sort).to eq %w(id name country last_sign_in_at email).sort
+        end
       end
 
-      it { expect(response).to be_success }
-      it { expect(assigns(:coach)).to eq coach }
-      it { expect(assigns(:players)).to match_array players }
+      context "team id provided" do
+        before { get :index, :team_id => player.team.id }
 
-      it "should get json with keys" do
-        expect(parsed_body.first.keys.sort).to eq %w(id name country last_sign_in_at email).sort
+        it { expect(response).to be_success }
+        it { expect(assigns(:coach)).to eq coach }
+        it { expect(assigns(:players)).to match_array [player] }
+      end
+
+      context "search params provided" do
+        before { get :index, :player_id => player.id }
+
+        it { expect(response).to be_success }
+        it { expect(assigns(:coach)).to eq coach }
+        it { expect(assigns(:players)).to match_array [player] }
       end
     end
     context "player signed in" do

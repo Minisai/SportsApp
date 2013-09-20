@@ -1,5 +1,14 @@
 @app.controller "TeamsController", ["$scope", "$notification", "TeamsFactory", "PlayersFactory", "TeamsPlayersFactory",
   ($scope, $notification, TeamsFactory, PlayersFactory, TeamsPlayersFactory) ->
+    $scope.filter = {}
+
+    $scope.playersSearch= ->
+      filter_params = {}
+      filter_params['player_id'] = @filter.player_id unless typeof @filter.player_id  == "undefined"
+      filter_params['name'] = @filter.name unless typeof @filter.name  == "undefined"
+      filter_params['country'] = @filter.country unless typeof @filter.country  == "undefined"
+      $scope.players = PlayersFactory.query(filter_params)
+
     $scope.teamSelection = (id) ->
       $scope.addNewTeamClicked = false
 

@@ -18,6 +18,16 @@ class Player < ActiveRecord::Base
 
   self.per_page = 10
 
+  class << self
+    def search(filter_params = {})
+      players = all
+      players = players.where(:id => filter_params[:player_id]) if filter_params[:player_id].present?
+      players = players.joins(:user).where("users.name like ?", "%#{filter_params[:name]}%") if filter_params[:name].present?
+      players = players.joins(:user).where("users.country like ?", "%#{filter_params[:country]}%") if filter_params[:country].present?
+      players
+    end
+  end
+
   private
   def add_program_code_error_to_user
     if self.errors[:coach].present? && self.user.present?

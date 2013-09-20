@@ -1,5 +1,5 @@
-@app.controller "TeamsController", ["$scope", "$notification", "TeamsFactory", "PlayersFactory", "TeamsPlayersFactory",
-  ($scope, $notification, TeamsFactory, PlayersFactory, TeamsPlayersFactory) ->
+@app.controller "TeamsController", ["$scope", "$notification", "TeamsFactory", "PlayersFactory", "TeamsPlayersFactory", "BootstrapModalService"
+  ($scope, $notification, TeamsFactory, PlayersFactory, TeamsPlayersFactory, BootstrapModalService) ->
     $scope.filter = {}
 
     $scope.playersSearch= ->
@@ -51,4 +51,9 @@
 
     $scope.dragPlayerHandler = (event, ui, player) ->
       $scope.draggedPlayer = player
+
+    $scope.showAddPlayerModal = ->
+      BootstrapModalService.showModal($scope, 'add_player_modal')
+
+    $scope.createPlayer = ->
 ]

@@ -8,6 +8,10 @@ class Coaches::PlayersController < ApplicationController
     @players = params[:team_id].present? ? @coach.players.with_team(params[:team_id]) : @coach.players.search(filter_params)
   end
 
+  def create
+
+  end
+
   def motivate
     motivation = @coach.find_or_create_motivation(motivation_params[:motivation]) #if motivation_params.present?
     if motivation.try(:persisted?)

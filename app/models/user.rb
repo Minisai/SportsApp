@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :validatable, :trackable
 
-  validates :username, :name, :birthday, :country, :role, :presence => true
+  validates :username, :first_name, :last_name, :birthday, :country, :role, :presence => true
   validates :male, :inclusion => {:in => [true, false]}
   validates :username, :uniqueness => true
 
@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   after_create :generate_program_code_if_coach
 
   attr_accessor :gender
+  attr_reader :name
 
   ROLE_TYPES = RoleTypeEnum.role_type.values.map(&:to_s)
 
@@ -33,6 +34,10 @@ class User < ActiveRecord::Base
 
   def paid?
     self.expired_at.present? && self.expired_at >= Date.today
+  end
+
+  def name
+    "#{first_name} #{last_name}"
   end
 
   private

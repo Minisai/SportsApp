@@ -18,7 +18,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
   def role_params
-    params.permit(:role_type, :program_code, :user => [:name, :email, :username,
+    params.permit(:role_type, :program_code, :user => [:first_name, :last_name, :email, :username,
                   :password, :password_confirmation, :gender, :birthday, :country])
   end
 

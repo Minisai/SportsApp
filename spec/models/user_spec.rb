@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe User do
   it { should validate_presence_of(:username) }
-  it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:first_name) }
+  it { should validate_presence_of(:last_name) }
   it { should_not allow_value(nil).for(:male) }
   it { should validate_presence_of(:birthday) }
   it { should validate_presence_of(:country) }
@@ -93,4 +94,11 @@ describe User do
     end
   end
 
+  describe :name do
+    let!(:user) { create(:player_user) }
+
+    it "should return first_name + last_name" do
+      expect(user.name).to eq "#{user.first_name} #{user.last_name}"
+    end
+  end
 end

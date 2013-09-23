@@ -10,6 +10,8 @@ class Player < ActiveRecord::Base
   has_many :motivation_players
   has_many :motivations, :through => :motivation_players
 
+  has_and_belongs_to_many :coaches
+
   after_validation :add_program_code_error_to_user
 
   delegate :last_sign_in_at, :to => :user

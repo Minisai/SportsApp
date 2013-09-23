@@ -7,6 +7,8 @@ class Coach < ActiveRecord::Base
   has_many :teams
   has_many :motivations, :dependent => :destroy
 
+  has_and_belongs_to_many :players
+
   def find_or_create_motivation(motivation_params)
     if motivation_params[:id] == 'new'
       motivations.find_or_create_by(:message => motivation_params[:message])

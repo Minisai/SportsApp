@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="page-header">
+      <h1>Sportive Kid - your road to healthy future!</h1>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-8">
+    <h2>Join us!</h2>
+    <p>
+      Register <%= link_to 'yourself', new_user_registration_path(:role_type => "parent") %> and you <%= link_to 'children', new_user_registration_path(:role_type => "player") %>.
+      Follow their training experience, stay in touch with their achievements!
+    </p>
+  </div>
+  <div class="col-lg-4">
+    <h2>Current & Prospective Coaches</h2>
+    <p>
+      All our coaches are sertificated trainers with great experience. Also we are opened for <%= link_to 'new talents', new_user_registration_path(:role_type => "coach") %>.
+    </p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6">
+    <blockquote>
+      <p>I hated every minute of training, but I said, "Don't quit. Suffer now and live the rest of your life as a champion."</p>
+      <small><cite title="Muhammad Ali">Muhammad Ali</cite></small>
+    </blockquote>
+    <blockquote>
+      <p>Confidence comes from discipline and training."</p>
+      <small><cite title="Robert Kiyosaki">Robert Kiyosaki </cite></small>
+    </blockquote>
+  </div>
+</div>

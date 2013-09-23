@@ -8,7 +8,9 @@
   <div class="players-list">
     <p>Players</p>
     <div class="brd">
-      Click here to invite player <%= link_to "Add player", '', :class => 'btn btn-success', 'ng-click' => "showAddPlayerModal()" %>
+      <div class="invite-player-block">
+        Click here to invite player <%= link_to "Add player", '', :class => 'btn btn-success', 'ng-click' => "showAddPlayerModal()" %>
+      </div>
       <div class='brd players-table' ng-init="players = <%= json_for(players) %>">
         <table class="table">
           <%= render 'coaches/teams/players_block/player_row' %>

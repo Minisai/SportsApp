@@ -71,7 +71,7 @@
   height: 150px
 }
 .teams-table {
-  height: 350px;
+  height: 265px;
   overflow-y: auto;
 }
 
@@ -101,4 +101,31 @@ span.plus-minus {
 }
 .add-new-team textarea {
   width: 250px;
+}
+
+.footer {
+  background-image: none !important;
+  background-color: white !important;
+  border-bottom: none !important;
+  margin-bottom: 0px !important;
+}
+
+.team-management .brd {
+  max-height: 430px;
+}
+
+.add-new-team {
+  margin-top: 10px;
+}
+
+form.search-player {
+  margin-top: 10px
+}
+
+.invite-player-block {
+  margin: 10px 0 10px 10px
+}
+
+.container .row:first-child {
+  margin-bottom: 20px;
 }

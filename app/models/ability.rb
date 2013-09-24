@@ -11,6 +11,7 @@ class Ability
         can :manage, Player do |player|
           player.coach_ids.include?(user.role.id)
         end
+        can :invite, Player
         can :manage, :dashboard
         can :manage, Team, :coach_id => user.role.id
     end

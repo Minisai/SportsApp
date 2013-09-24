@@ -4,7 +4,7 @@
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
       <h4 class="modal-title">Add Player</h4>
     </div>
-    <form class='form-horizontal' ng-submit="createPlayer()">
+    <form class='form-horizontal' ng-submit="invitePlayer()">
       <div class="modal-body">
         <div class="form-group">
           <%= label_tag 'First Name', nil, :class => 'control-label col-lg-3' %>
@@ -21,7 +21,7 @@
         <div class="form-group ">
           <%= label_tag 'Email', nil, :class => 'control-label col-lg-3' %>
           <div class='controls col-lg-6'>
-            <%= text_field_tag :email, nil, :class => "form-control", 'ng-model' => 'new_player.email' %>
+            <%= email_field_tag :email, nil, :class => "form-control", 'ng-model' => 'new_player.email', 'required' => '' %>
           </div>
         </div>
       </div>

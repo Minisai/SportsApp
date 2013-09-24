@@ -1,5 +1,5 @@
-@app.controller "TeamsController", ["$scope", "$notification", "TeamsFactory", "PlayersFactory", "TeamsPlayersFactory", "BootstrapModalService"
-  ($scope, $notification, TeamsFactory, PlayersFactory, TeamsPlayersFactory, BootstrapModalService) ->
+@app.controller "TeamsController", ["$scope", "$http", "$notification", "TeamsFactory", "PlayersFactory", "TeamsPlayersFactory", "BootstrapModalService"
+  ($scope, $http, $notification, TeamsFactory, PlayersFactory, TeamsPlayersFactory, BootstrapModalService) ->
     $scope.filter = {}
 
     $scope.playersSearch= ->
@@ -55,5 +55,11 @@
     $scope.showAddPlayerModal = ->
       BootstrapModalService.showModal($scope, 'add_player_modal')
 
-    $scope.createPlayer = ->
+    $scope.invitePlayer = ->
+      $http.post("/coaches/players/invite", {player: @new_player}
+      ).success((data)->
+        $scope.add_player_modal.modal('hide')
+        $notification.success("Success", data['message'])
+      ).error (data) ->
+        $notification.error("Error", data['message'])
 ]

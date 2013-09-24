@@ -8,8 +8,8 @@ class Coaches::PlayersController < ApplicationController
     @players = params[:team_id].present? ? @coach.players.with_team(params[:team_id]) : @coach.players.search(filter_params)
   end
 
-  def create
-
+  def invite
+    @coach.invite_player_with(invitation_params)
   end
 
   def motivate
@@ -46,5 +46,9 @@ class Coaches::PlayersController < ApplicationController
 
   def motivation_params
     params.permit(:motivation => [:id, :message])
+  end
+
+  def invitation_params
+    params[:player].permit(:first_name, :last_name, :email)
   end
 end

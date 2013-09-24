@@ -26,4 +26,8 @@ class Coach < ActiveRecord::Base
       end
     end
   end
+
+  def invite_player(invitation_params)
+
+  end
 end

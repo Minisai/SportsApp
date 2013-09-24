@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Coaches::Teams::PlayersController do
   let!(:coach) { create(:coach_user).role }
   let!(:team) { create(:team, :coach => coach) }
-  let!(:players) { create_list(:player, 10, :coach => coach) }
+  let!(:players) { create_list(:player, 10, :program_code => coach.program_code) }
   let!(:player) { players.last }
 
 

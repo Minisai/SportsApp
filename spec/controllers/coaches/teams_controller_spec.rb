@@ -5,7 +5,7 @@ describe Coaches::TeamsController do
 
   describe "GET index" do
     let!(:coach) { create(:coach_user).role }
-    let!(:coach_players) { create_list(:player, 10, :coach => coach) }
+    let!(:coach_players) { create_list(:player, 10, :program_code => coach.program_code) }
     let!(:coach_teams) { create_list(:team, 3, :coach => coach)}
 
     context "coach signed in" do

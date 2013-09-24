@@ -1,24 +1,23 @@
 require 'spec_helper'
 
 describe Player do
-  it { should validate_presence_of(:coach) }
-
   it { should have_one(:user) }
-  it { should belong_to(:coach) }
   it { should belong_to(:parent) }
   it { should belong_to(:team) }
 
   it { should have_many(:motivation_players) }
   it { should have_many(:motivations).through(:motivation_players) }
 
+  it { should have_and_belong_to_many(:coaches) }
+
   describe :add_program_code_error_to_user do
-    let(:invalid_player) { build(:player, :coach => nil) }
+    let(:invalid_player) { build(:player, :program_code => nil) }
 
     context "when player has user" do
       let!(:user) { build(:user, :role => invalid_player) }
 
       it "should add error on program_code to user" do
-        invalid_player.valid?
+        invalid_player.save
         expect(user.errors[:program_code]).to be_present
       end
     end

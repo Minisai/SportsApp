@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :player do
-    coach
+    program_code { create(:coach).program_code }
     team
     after(:create) do |player|
       create(:user, :role => player)

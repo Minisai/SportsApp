@@ -1,9 +1,6 @@
 class Player < ActiveRecord::Base
   include RoleConcern
 
-  validates :coach, :presence => true
-
-  belongs_to :coach
   belongs_to :team
   belongs_to :parent
 
@@ -12,13 +9,19 @@ class Player < ActiveRecord::Base
 
   has_and_belongs_to_many :coaches
 
-  after_validation :add_program_code_error_to_user
-
   delegate :last_sign_in_at, :to => :user
 
   scope :with_team, -> (team_id) { where(:team_id => team_id) }
 
   self.per_page = 10
+
+  attr_reader :program_code
+
+  before_save :add_coach_from_program_code
+
+  def program_code=(new_program_code)
+    @program_code = new_program_code.present? ? new_program_code : 'blank'
+  end
 
   class << self
     def search(filter_params = {})
@@ -31,9 +34,14 @@ class Player < ActiveRecord::Base
   end
 
   private
-  def add_program_code_error_to_user
-    if self.errors[:coach].present? && self.user.present?
-      self.user.errors.add(:program_code, "Invalid program code")
+  def add_coach_from_program_code
+    return if self.program_code.blank?
+    new_coach = Coach.find_by_program_code(self.program_code) unless self.program_code == 'blank'
+    if new_coach.present?
+      coaches << new_coach
+    elsif user.present?
+      user.errors.add(:program_code, "Invalid program code")
+      false
     end
   end
 end

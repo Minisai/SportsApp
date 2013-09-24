@@ -24,7 +24,7 @@ class Coaches::PlayersController < ApplicationController
 
   def send_message
     if params[:message].present?
-      PlayerMailer.email_message(@player, params[:message]).deliver
+      PlayerMailer.email_message(@player, @coach, params[:message]).deliver
       render :json => {:message => "Message was sent successfully"}, :status => :ok
     else
       render :json => {:message => "Message required"}, :status => :bad_request

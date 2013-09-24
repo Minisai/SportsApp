@@ -6,7 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    role = build_role_from_params(find_coach_if_player)
+    role = build_role_from_params
     if role.save
       sign_in(:user, role.user)
       redirect_to :root, :flash => {:success => "You was successfully registered!"}
@@ -22,16 +22,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
                   :password, :password_confirmation, :gender, :birthday, :country])
   end
 
-  def build_role_from_params(extra_params={})
-    role_params[:role_type].classify.constantize.new({:user_attributes => role_params[:user]}.merge(extra_params))
-  end
+  def build_role_from_params
+    params = {:user_attributes => role_params[:user]}
+    params.merge!({:program_code => role_params[:program_code]}) if role_params[:role_type].downcase == "player"
 
-  def find_coach_if_player
-    if role_params[:role_type].downcase == "player"
-      {:coach => Coach.find_by_program_code(role_params[:program_code])}
-    else
-      {}
-    end
+    role_params[:role_type].classify.constantize.new(params)
   end
 
   def prevent_invalid_role_type

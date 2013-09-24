@@ -2,9 +2,10 @@ require 'spec_helper'
 
 describe Coach do
   it { should have_one(:user) }
-  it { should have_many(:players) }
   it { should have_many(:teams) }
   it { should have_many(:motivations) }
+
+  it { should have_and_belong_to_many(:players) }
 
   describe :generate_program_code do
     let!(:initial_mails_count) { ActionMailer::Base.deliveries.count }

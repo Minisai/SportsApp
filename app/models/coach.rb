@@ -3,7 +3,6 @@ class Coach < ActiveRecord::Base
 
   validates :program_code, :uniqueness => true, :allow_blank => true
 
-  has_many :players
   has_many :teams
   has_many :motivations, :dependent => :destroy
 

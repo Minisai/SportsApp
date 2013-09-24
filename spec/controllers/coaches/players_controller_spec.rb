@@ -4,7 +4,7 @@ describe Coaches::PlayersController do
   render_views
 
   let!(:coach) { create(:coach_user).role }
-  let!(:players) { create_list(:player, 10, :coach => coach) }
+  let!(:players) { create_list(:player, 10, :program_code => coach.program_code) }
   let!(:parent) { create(:parent_user).role }
   let!(:player) { create(:player_user).role }
   let!(:another_coach) { create(:coach_user).role }

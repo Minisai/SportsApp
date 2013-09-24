@@ -5,7 +5,7 @@
     $scope.playersSearch= ->
       filter_params = {}
       filter_params['player_id'] = @filter.player_id unless typeof @filter.player_id  == "undefined"
-      filter_params['name'] = @filter.name unless typeof @filter.name  == "undefined"
+      filter_params['last_name'] = @filter.last_name unless typeof @filter.last_name  == "undefined"
       filter_params['country'] = @filter.country unless typeof @filter.country  == "undefined"
       $scope.players = PlayersFactory.query(filter_params)
 

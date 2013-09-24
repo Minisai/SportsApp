@@ -13,7 +13,7 @@ class Coaches::PlayersController < ApplicationController
   end
 
   def motivate
-    motivation = @coach.find_or_create_motivation(motivation_params[:motivation]) #if motivation_params.present?
+    motivation = @coach.find_or_create_motivation(motivation_params[:motivation])
     if motivation.try(:persisted?)
       @player.motivations << motivation
       render :json => {:message => "Motivation was sent successfully", :motivations => @coach.motivations}, :status => :ok
@@ -41,7 +41,7 @@ class Coaches::PlayersController < ApplicationController
   end
 
   def filter_params
-    params.permit(:player_id, :country, :name)
+    params.permit(:player_id, :country, :last_name)
   end
 
   def motivation_params

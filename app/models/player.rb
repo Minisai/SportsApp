@@ -27,7 +27,7 @@ class Player < ActiveRecord::Base
     def search(filter_params = {})
       players = all
       players = players.where(:id => filter_params[:player_id]) if filter_params[:player_id].present?
-      players = players.joins(:user).where("users.name like ?", "%#{filter_params[:name]}%") if filter_params[:name].present?
+      players = players.joins(:user).where("users.last_name like ?", "%#{filter_params[:last_name]}%") if filter_params[:last_name].present?
       players = players.joins(:user).where("users.country like ?", "%#{filter_params[:country]}%") if filter_params[:country].present?
       players
     end

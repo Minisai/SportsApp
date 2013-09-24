@@ -8,6 +8,7 @@ class Player < ActiveRecord::Base
   has_many :motivations, :through => :motivation_players
 
   has_and_belongs_to_many :coaches
+  has_and_belongs_to_many :teams
 
   delegate :last_sign_in_at, :to => :user
 

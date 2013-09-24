@@ -4,4 +4,6 @@ class Team < ActiveRecord::Base
 
   has_many :players
   belongs_to :coach
+
+  has_and_belongs_to_many :players
 end

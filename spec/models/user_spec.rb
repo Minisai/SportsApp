@@ -11,6 +11,18 @@ describe User do
 
   it { should validate_uniqueness_of(:username) }
 
+  context "invited player" do
+    before { User.any_instance.stub(:invited_player? => true) }
+
+    it { should allow_value(nil).for(:username) }
+    it { should allow_value(nil).for(:first_name) }
+    it { should allow_value(nil).for(:last_name) }
+    it { should allow_value(nil).for(:male) }
+    it { should allow_value(nil).for(:birthday) }
+    it { should allow_value(nil).for(:country) }
+    it { should allow_value(nil).for(:role) }
+  end
+
   it { should belong_to(:role) }
   it { should have_many(:payments) }
 

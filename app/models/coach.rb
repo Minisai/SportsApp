@@ -5,6 +5,7 @@ class Coach < ActiveRecord::Base
 
   has_many :teams
   has_many :motivations, :dependent => :destroy
+  has_many :invitations, :dependent => :destroy
 
   has_and_belongs_to_many :players, -> { uniq }
 
@@ -27,7 +28,25 @@ class Coach < ActiveRecord::Base
     end
   end
 
-  def invite_player(invitation_params)
 
+  #RRREFACTOR THIS SHIT!!!
+  def invite_player_with(invitation_params)
+    user_with_provided_email = User.find_by_email(invitation_params[:email])
+    if user_with_provided_email.try(:coach?) || user_with_provided_email.try(:parent?)
+      return {:success => false, :message => "Coach or parent has been already registered with this email"}
+    end
+
+    invited_player = user_with_provided_email.try(:role) || self.players.create(:user_attributes => invitation_params, :invited => true)
+
+    if invited_player.persisted?
+      invitation = self.invitations.create(:player => invited_player)
+      if invitation.persisted?
+        {:success => true}
+      else
+        {:success => false, :message => invitation.errors.full_messages.join(' ')}
+      end
+    else
+      {:success => false, :message => invited_player.errors.full_messages.join(' ')}
+    end
   end
 end

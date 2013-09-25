@@ -25,7 +25,7 @@ describe Coaches::PlayersController do
         it { expect(assigns(:players)).to match_array players }
 
         it "should get json with keys" do
-          expect(parsed_body.first.keys.sort).to eq %w(id name country last_sign_in_at email).sort
+          expect(parsed_body.first.keys.sort).to eq %w(id name country last_sign_in_at email invited).sort
         end
       end
 
@@ -78,7 +78,7 @@ describe Coaches::PlayersController do
         it { expect(assigns(:player)).to eq player }
 
         it "should get json with keys" do
-          expect(parsed_body['player'].keys.sort).to eq %w(id name country last_sign_in_at email).sort
+          expect(parsed_body['player'].keys.sort).to eq %w(id name country last_sign_in_at email invited).sort
         end
       end
       context "wrong coach" do

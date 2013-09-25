@@ -3,7 +3,8 @@ require 'spec_helper'
 describe Coaches::DashboardsController do
   let!(:coach) { create(:coach_user).role }
   let!(:team) { create(:team, :coach => coach) }
-  let!(:players) { create_list(:player, 10, :coach => coach, :team => team) }
+  let!(:players) { create_list(:player, 10, :program_code => coach.program_code) }
+  before { team.players << players }
   let!(:parent) { create(:parent_user).role }
   let!(:player) { create(:player_user).role }
 
@@ -15,7 +16,7 @@ describe Coaches::DashboardsController do
       end
 
       it { expect(response).to be_success }
-      it { expect(assigns(:team)).to eq team }
+      it { expect(assigns(:team).id).to eq team.id }
       it { expect(assigns(:players)).to match_array players }
     end
     context "player signed in" do

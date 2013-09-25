@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130911133601) do
+ActiveRecord::Schema.define(version: 20130925080813) do
 
   create_table "coaches", force: true do |t|
     t.string   "program_code"
@@ -20,6 +20,23 @@ ActiveRecord::Schema.define(version: 20130911133601) do
   end
 
   add_index "coaches", ["program_code"], name: "index_coaches_on_program_code", using: :btree
+
+  create_table "coaches_players", force: true do |t|
+    t.integer "coach_id"
+    t.integer "player_id"
+  end
+
+  add_index "coaches_players", ["coach_id", "player_id"], name: "index_coaches_players_on_coach_id_and_player_id", using: :btree
+  add_index "coaches_players", ["coach_id"], name: "index_coaches_players_on_coach_id", using: :btree
+  add_index "coaches_players", ["player_id"], name: "index_coaches_players_on_player_id", using: :btree
+
+  create_table "invitations", force: true do |t|
+    t.integer  "player_id"
+    t.integer  "coach_id"
+    t.integer  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "motivation_players", force: true do |t|
     t.integer "player_id"
@@ -57,12 +74,20 @@ ActiveRecord::Schema.define(version: 20130911133601) do
 
   create_table "players", force: true do |t|
     t.string   "token"
-    t.integer  "coach_id"
     t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "team_id"
+    t.boolean  "invited",    default: false
   end
+
+  create_table "players_teams", force: true do |t|
+    t.integer "team_id"
+    t.integer "player_id"
+  end
+
+  add_index "players_teams", ["player_id", "team_id"], name: "index_players_teams_on_player_id_and_team_id", using: :btree
+  add_index "players_teams", ["player_id"], name: "index_players_teams_on_player_id", using: :btree
+  add_index "players_teams", ["team_id"], name: "index_players_teams_on_team_id", using: :btree
 
   create_table "pricing_plans", force: true do |t|
     t.string   "name"
@@ -90,7 +115,6 @@ ActiveRecord::Schema.define(version: 20130911133601) do
     t.string   "encrypted_password",     default: "",   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
-    t.string   "name"
     t.datetime "birthday"
     t.string   "country"
     t.integer  "role_id"
@@ -104,6 +128,8 @@ ActiveRecord::Schema.define(version: 20130911133601) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.datetime "expired_at"
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

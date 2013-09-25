@@ -27,7 +27,8 @@ describe Users::RegistrationsController do
     let(:params) do
       {
           :user => {
-              :name => "Name",
+              :first_name => "first_name",
+              :last_name => 'last_name',
               :email => "user@mail.com",
               :username => "Username",
               :password => '123456789',

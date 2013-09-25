@@ -3,9 +3,11 @@ class Coach < ActiveRecord::Base
 
   validates :program_code, :uniqueness => true, :allow_blank => true
 
-  has_many :players
   has_many :teams
   has_many :motivations, :dependent => :destroy
+  has_many :invitations, :dependent => :destroy
+
+  has_and_belongs_to_many :players, -> { uniq }
 
   def find_or_create_motivation(motivation_params)
     if motivation_params[:id] == 'new'
@@ -15,6 +17,7 @@ class Coach < ActiveRecord::Base
     end
   end
 
+  #TODO: Potential problem for the app, need more reasonable solution
   def generate_program_code
     while true do
       generated_code = "PROGR_#{SecureRandom.hex(3)}"
@@ -23,6 +26,27 @@ class Coach < ActiveRecord::Base
         CoachMailer.program_code(self).deliver
         break
       end
+    end
+  end
+
+  #TODO: Refactor this fat method
+  def invite_player_with(invitation_params)
+    user_with_provided_email = User.find_by_email(invitation_params[:email])
+    if user_with_provided_email.try(:coach?) || user_with_provided_email.try(:parent?)
+      return {:success => false, :message => "Coach or parent has been already registered with this email"}
+    end
+
+    invited_player = user_with_provided_email.try(:role) || self.players.create(:user_attributes => invitation_params, :invited => true)
+
+    if invited_player.persisted?
+      invitation = self.invitations.create(:player => invited_player)
+      if invitation.persisted?
+        {:success => true}
+      else
+        {:success => false, :message => invitation.errors.full_messages.join(' ')}
+      end
+    else
+      {:success => false, :message => invited_player.errors.full_messages.join(' ')}
     end
   end
 end

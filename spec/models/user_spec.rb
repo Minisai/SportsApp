@@ -2,13 +2,26 @@ require 'spec_helper'
 
 describe User do
   it { should validate_presence_of(:username) }
-  it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:first_name) }
+  it { should validate_presence_of(:last_name) }
   it { should_not allow_value(nil).for(:male) }
   it { should validate_presence_of(:birthday) }
   it { should validate_presence_of(:country) }
   it { should validate_presence_of(:role) }
 
   it { should validate_uniqueness_of(:username) }
+
+  context "invited player" do
+    before { User.any_instance.stub(:invited_player? => true) }
+
+    it { should allow_value(nil).for(:username) }
+    it { should allow_value(nil).for(:first_name) }
+    it { should allow_value(nil).for(:last_name) }
+    it { should allow_value(nil).for(:male) }
+    it { should allow_value(nil).for(:birthday) }
+    it { should allow_value(nil).for(:country) }
+    it { should allow_value(nil).for(:role) }
+  end
 
   it { should belong_to(:role) }
   it { should have_many(:payments) }
@@ -93,4 +106,11 @@ describe User do
     end
   end
 
+  describe :name do
+    let!(:user) { create(:player_user) }
+
+    it "should return first_name + last_name" do
+      expect(user.name).to eq "#{user.first_name} #{user.last_name}"
+    end
+  end
 end

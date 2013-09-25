@@ -3,7 +3,8 @@ FactoryGirl.define do
     sequence(:email) {|n| "user#{n}@mail.com"}
     sequence(:username) {|n| "user#{n}"}
     password "password1234"
-    name "user"
+    first_name "first_name"
+    last_name "last_name"
     birthday Date.today
     country "Belarus"
     male true

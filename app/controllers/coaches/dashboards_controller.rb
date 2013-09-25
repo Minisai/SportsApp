@@ -1,7 +1,8 @@
 class Coaches::DashboardsController < ApplicationController
   authorize_resource :class => false
   def show
-    @team = current_user.role.teams.first
-    @players = @team.players.paginate(:page => params[:page]) if @team.present?
+    @teams = current_user.role.teams.paginate(:page => params[:page])
+    @team = @teams.first
+    @players = @team.players.paginate(:page => params[:players_page]) if @team.present?
   end
 end

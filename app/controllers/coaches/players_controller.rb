@@ -8,11 +8,20 @@ class Coaches::PlayersController < ApplicationController
     @players = params[:team_id].present? ? @coach.players.with_team(params[:team_id]) : @coach.players.search(filter_params)
   end
 
+  def invite
+    result = @coach.invite_player_with(invitation_params)
+    if result[:success]
+      render :json => {:message => "Invitation was sent successfully" }
+    else
+      render :json => {:message => result[:message]}, :status => :bad_request
+    end
+  end
+
   def motivate
-    motivation = @coach.find_or_create_motivation(motivation_params[:motivation]) #if motivation_params.present?
+    motivation = @coach.find_or_create_motivation(motivation_params[:motivation])
     if motivation.try(:persisted?)
       @player.motivations << motivation
-      render :json => {:message => "Motivation was sent successfully", :motivations => @coach.motivations}, :status => :ok
+      render :json => {:message => "Motivation was sent successfully", :motivations => @coach.motivations}
     else
       render :json => {:message => "Select motivation or provide message"}, :status => :bad_request
     end
@@ -20,8 +29,8 @@ class Coaches::PlayersController < ApplicationController
 
   def send_message
     if params[:message].present?
-      PlayerMailer.email_message(@player, params[:message]).deliver
-      render :json => {:message => "Message was sent successfully"}, :status => :ok
+      PlayerMailer.email_message(@player, @coach, params[:message]).deliver
+      render :json => {:message => "Message was sent successfully"}
     else
       render :json => {:message => "Message required"}, :status => :bad_request
     end
@@ -37,10 +46,14 @@ class Coaches::PlayersController < ApplicationController
   end
 
   def filter_params
-    params.permit(:player_id, :country, :name)
+    params.permit(:player_id, :country, :last_name)
   end
 
   def motivation_params
     params.permit(:motivation => [:id, :message])
+  end
+
+  def invitation_params
+    params[:player].permit(:first_name, :last_name, :email)
   end
 end

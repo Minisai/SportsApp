@@ -5,7 +5,7 @@ class Coaches::Teams::PlayersController < ApplicationController
 
   def create
     player = @coach.players.find(params[:player_id])
-    if player.update_attributes(:team => @team)
+    if !player.invited && player.teams << @team
       render :json => @team.players
     else
       render :json => {:message => "Can't add player to team"}, :status => :bad_request
@@ -14,7 +14,7 @@ class Coaches::Teams::PlayersController < ApplicationController
 
   def destroy
     player = @team.players.find(params[:id])
-    if player.update_attributes(:team => nil)
+    if player.teams.delete(@team)
       render :json => @team.players
     else
       render :json => {:message => "Can't remove player from team"}, :status => :bad_request

@@ -11,7 +11,7 @@
       <%= link_to "Parents >", new_user_registration_path(:role_type => "parent"), :class => "btn btn-default" %>
     </p>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-5">
     <h3> iLax Login </h3>
 
     <%= simple_form_for @user, :url => user_session_path, :class => "form-horizontal" do |f| %>
@@ -22,9 +22,9 @@
         <%= f.input :password, :input_html => {:class => "form-control"} %>
       </div>
 
-      <div><%= f.submit "Log in", :class => "btn btn-default" %></div>
+      <div><%= f.submit "Log in", :class => "btn btn-primary" %></div>
     <% end %>
 
-    <p> <%= link_to "Connect with Facebook", "#", :class => "btn btn-default" %> </p>
+    <!--<p> <%#= link_to "Connect with Facebook", "#", :class => "btn btn-default" %> </p>-->
   </div>
 </div>

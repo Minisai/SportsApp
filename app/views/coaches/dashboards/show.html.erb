@@ -8,10 +8,11 @@
       </div>
       <div class='col-md-6'>
         <%= render 'team_activity_today', :team => @team %>
-        <%= render 'player_profile', :player => @team.players.last %>
+        <%= render 'player_profile' %>
       </div>
     </div>
   </div>
+  <%= will_paginate_bootstrap @teams, :page_links => false, :params => {:players_page => 1} %>
 <% else %>
   <h1>You have no teams</h1>
 <% end %>

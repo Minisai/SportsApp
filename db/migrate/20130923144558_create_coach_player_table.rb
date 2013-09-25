@@ -5,8 +5,10 @@ class CreateCoachPlayerTable < ActiveRecord::Migration
       t.belongs_to :player
     end
 
-    Player.find_each do |player|
-      player.coaches << player.coach
+    if Player.method_defined? :coach
+      Player.find_each do |player|
+        player.coaches << player.coach
+      end
     end
 
     remove_column :players, :coach_id
@@ -14,9 +16,11 @@ class CreateCoachPlayerTable < ActiveRecord::Migration
   def down
     add_column :players, :coach_id, :integer
 
-    Player.find_each do |player|
-      player.coach = player.coaches.first
-      player.save
+    if Player.method_defined? :coaches
+      Player.find_each do |player|
+        player.coach = player.coaches.first
+        player.save
+      end
     end
 
     drop_table :coaches_players

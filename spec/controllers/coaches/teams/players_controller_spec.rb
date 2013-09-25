@@ -6,7 +6,6 @@ describe Coaches::Teams::PlayersController do
   let!(:players) { create_list(:player, 10, :program_code => coach.program_code) }
   let!(:player) { players.last }
 
-
   describe "POST 'create'" do
     context "coach signed in" do
       before { controller.stub(:current_user => coach.user) }
@@ -29,6 +28,15 @@ describe Coaches::Teams::PlayersController do
       end
 
       context "invalid params" do
+        context "coach trying to add invited user to team" do
+          let!(:invited_player) { create(:player, :program_code => coach.program_code, :invited => true) }
+          before { controller.stub(:current_user => coach.user) }
+
+          it "should raise error" do
+            expect { post :create, :team_id => team, :player_id => invited_player.id }.not_to change { team.players.count }
+          end
+        end
+
         context "coach trying to gain access to another coach's team" do
           before { controller.stub(:current_user => create(:coach_user)) }
 

@@ -5,7 +5,7 @@ class Coaches::Teams::PlayersController < ApplicationController
 
   def create
     player = @coach.players.find(params[:player_id])
-    if player.teams << @team
+    if !player.invited && player.teams << @team
       render :json => @team.players
     else
       render :json => {:message => "Can't add player to team"}, :status => :bad_request

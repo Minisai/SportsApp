@@ -58,6 +58,7 @@
     $scope.invitePlayer = ->
       $http.post("/coaches/players/invite", {player: @new_player}
       ).success((data)->
+        $scope.players = PlayersFactory.query()
         $scope.add_player_modal.modal('hide')
         $notification.success("Success", data['message'])
       ).error (data) ->

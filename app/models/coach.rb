@@ -17,6 +17,7 @@ class Coach < ActiveRecord::Base
     end
   end
 
+  #TODO: Potential problem for the app, need more reasonable solution
   def generate_program_code
     while true do
       generated_code = "PROGR_#{SecureRandom.hex(3)}"
@@ -28,8 +29,7 @@ class Coach < ActiveRecord::Base
     end
   end
 
-
-  #RRREFACTOR THIS SHIT!!!
+  #TODO: Refactor this fat method
   def invite_player_with(invitation_params)
     user_with_provided_email = User.find_by_email(invitation_params[:email])
     if user_with_provided_email.try(:coach?) || user_with_provided_email.try(:parent?)

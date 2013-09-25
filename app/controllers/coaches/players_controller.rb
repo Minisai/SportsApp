@@ -9,14 +9,19 @@ class Coaches::PlayersController < ApplicationController
   end
 
   def invite
-    @coach.invite_player_with(invitation_params)
+    result = @coach.invite_player_with(invitation_params)
+    if result[:success]
+      render :json => {:message => "Invitation was sent successfully" }
+    else
+      render :json => {:message => result[:message]}, :status => :bad_request
+    end
   end
 
   def motivate
     motivation = @coach.find_or_create_motivation(motivation_params[:motivation])
     if motivation.try(:persisted?)
       @player.motivations << motivation
-      render :json => {:message => "Motivation was sent successfully", :motivations => @coach.motivations}, :status => :ok
+      render :json => {:message => "Motivation was sent successfully", :motivations => @coach.motivations}
     else
       render :json => {:message => "Select motivation or provide message"}, :status => :bad_request
     end
@@ -25,7 +30,7 @@ class Coaches::PlayersController < ApplicationController
   def send_message
     if params[:message].present?
       PlayerMailer.email_message(@player, @coach, params[:message]).deliver
-      render :json => {:message => "Message was sent successfully"}, :status => :ok
+      render :json => {:message => "Message was sent successfully"}
     else
       render :json => {:message => "Message required"}, :status => :bad_request
     end

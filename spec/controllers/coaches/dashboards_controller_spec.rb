@@ -16,7 +16,7 @@ describe Coaches::DashboardsController do
       end
 
       it { expect(response).to be_success }
-      it { expect(assigns(:team)).to eq team }
+      it { expect(assigns(:team).id).to eq team.id }
       it { expect(assigns(:players)).to match_array players }
     end
     context "player signed in" do

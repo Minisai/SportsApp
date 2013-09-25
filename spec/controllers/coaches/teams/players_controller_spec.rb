@@ -13,19 +13,17 @@ describe Coaches::Teams::PlayersController do
 
       context "valid params" do
         context "player was unassigned" do
-          before { player.update_attributes(:team => nil) }
-
           it "should assign player to team" do
-            expect { post :create, :team_id => team.id, :player_id => player.id }.to change { player.reload.team }.from(nil).to(team)
+            expect { post :create, :team_id => team.id, :player_id => player.id }.to change { team.players.count }.by(1)
           end
         end
 
         context "player was assigned to another team" do
           let(:another_team) { create(:team, :coach => coach) }
-          before { player.update_attributes(:team => another_team) }
+          before { another_team.players << player }
 
           it "should reassign player to passed team" do
-            expect { post :create, :team_id => team.id, :player_id => player.id }.to change { player.reload.team }.from(another_team).to(team)
+            expect { post :create, :team_id => team.id, :player_id => player.id }.to change { team.players.count }.by(1)
           end
         end
       end
@@ -75,10 +73,10 @@ describe Coaches::Teams::PlayersController do
       before { controller.stub(:current_user => coach.user) }
 
       context "valid params" do
-        before { player.update_attributes(:team => team) }
+        before { team.players << player}
 
         it "should unassign player from team" do
-          expect { delete :destroy, :team_id => team, :id => player.id }.to change { player.reload.team }.from(team).to(nil)
+          expect { delete :destroy, :team_id => team, :id => player.id }.to change { team.players.count }.by(-1)
         end
       end
 

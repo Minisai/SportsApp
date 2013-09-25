@@ -30,7 +30,11 @@ describe Coaches::PlayersController do
       end
 
       context "team id provided" do
-        before { get :index, :team_id => player.team.id }
+        let!(:team) { create(:team) }
+        before do
+          team.players << player
+          get :index, :team_id => team.id
+        end
 
         it { expect(response).to be_success }
         it { expect(assigns(:coach)).to eq coach }

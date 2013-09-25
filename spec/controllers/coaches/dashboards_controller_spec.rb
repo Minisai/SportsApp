@@ -3,7 +3,8 @@ require 'spec_helper'
 describe Coaches::DashboardsController do
   let!(:coach) { create(:coach_user).role }
   let!(:team) { create(:team, :coach => coach) }
-  let!(:players) { create_list(:player, 10, :program_code => coach.program_code, :team => team) }
+  let!(:players) { create_list(:player, 10, :program_code => coach.program_code) }
+  before { team.players << players }
   let!(:parent) { create(:parent_user).role }
   let!(:player) { create(:player_user).role }
 

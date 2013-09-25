@@ -1,18 +1,17 @@
 class Player < ActiveRecord::Base
   include RoleConcern
 
-  belongs_to :team
   belongs_to :parent
 
   has_many :motivation_players
   has_many :motivations, :through => :motivation_players
 
-  has_and_belongs_to_many :coaches
-  has_and_belongs_to_many :teams
+  has_and_belongs_to_many :coaches, -> { uniq }
+  has_and_belongs_to_many :teams, -> { uniq }
 
   delegate :last_sign_in_at, :to => :user
 
-  scope :with_team, -> (team_id) { where(:team_id => team_id) }
+  scope :with_team, -> (team_id) { joins('left join players_teams on players.id = players_teams.player_id').where('players_teams.team_id = ?', team_id) }
 
   self.per_page = 10
 

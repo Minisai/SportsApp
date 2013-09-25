@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130924140220) do
+ActiveRecord::Schema.define(version: 20130924144138) do
 
   create_table "coaches", force: true do |t|
     t.string   "program_code"
@@ -25,6 +25,10 @@ ActiveRecord::Schema.define(version: 20130924140220) do
     t.integer "coach_id"
     t.integer "player_id"
   end
+
+  add_index "coaches_players", ["coach_id", "player_id"], name: "index_coaches_players_on_coach_id_and_player_id", using: :btree
+  add_index "coaches_players", ["coach_id"], name: "index_coaches_players_on_coach_id", using: :btree
+  add_index "coaches_players", ["player_id"], name: "index_coaches_players_on_player_id", using: :btree
 
   create_table "motivation_players", force: true do |t|
     t.integer "player_id"
@@ -71,6 +75,10 @@ ActiveRecord::Schema.define(version: 20130924140220) do
     t.integer "team_id"
     t.integer "player_id"
   end
+
+  add_index "players_teams", ["player_id", "team_id"], name: "index_players_teams_on_player_id_and_team_id", using: :btree
+  add_index "players_teams", ["player_id"], name: "index_players_teams_on_player_id", using: :btree
+  add_index "players_teams", ["team_id"], name: "index_players_teams_on_team_id", using: :btree
 
   create_table "pricing_plans", force: true do |t|
     t.string   "name"

@@ -2,7 +2,8 @@ default_coach = User.find_by_email("coach@mail.com").try(:role) || Coach.create 
   coach.program_code = "PROG123"
   coach.user_attributes = {
     :email => "coach@mail.com",
-    :name => "coach",
+    :first_name => "first_name",
+    :last_name => 'last_name',
     :username => "coachuser",
     :password => "coach@mail.com",
     :birthday => 20.years.ago,
@@ -19,7 +20,8 @@ end
 default_parent = User.find_by_email("parent@mail.com").try(:role) || Parent.create do |coach|
   coach.user_attributes = {
     :email => "parent@mail.com",
-    :name => "parent",
+    :first_name => "first_name",
+    :last_name => 'last_name',
     :username => "parentuser",
     :password => "parent@mail.com",
     :birthday => 40.years.ago,
@@ -29,13 +31,12 @@ default_parent = User.find_by_email("parent@mail.com").try(:role) || Parent.crea
 end
 
 20.times do |i|
-  Player.create do |player|
-    player.coach = default_coach
-    player.team = default_team
+  new_player = Player.create do |player|
     player.parent = default_parent
     player.user_attributes = {
       :email => "player#{i}@mail.com",
-      :name => "player#{i}",
+      :first_name => "first#{i}",
+      :last_name => "last#{i}",
       :username => "playeruser#{i}",
       :password => "player#{i}@mail.com",
       :birthday => 10.years.ago,
@@ -43,6 +44,9 @@ end
       :male => true
     }
   end
+
+  default_coach.players << new_player
+  default_team.players << new_player
 end
 
 20.times do |i|

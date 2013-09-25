@@ -1,36 +1,38 @@
-<nav class="navbar navbar-default" role="navigation">
-  <div class="navbar-header">
-    <%= link_to "Sports App", root_path, :class =>"navbar-brand" %>
-  </div>
-  <div class="collapse navbar-collapse navbar-ex1-collapse pull-right">
-    <ul class="nav navbar-nav">
-      <% unless user_signed_in? %>
-        <li class="<%= 'active' if params[:controller] == 'registrations' %>">
-          <%= link_to "Sign up", new_user_registration_path %>
-        </li>
-      <% end %>
-      <li>
-        <%= link_to "Pricing", pricing_plans_path %>
-      </li>
-      <li>
-        <%= link_to "Company" %>
-      </li>
-      <li>
-        <%= link_to "Blog" %>
-      </li>
-
-      <li class="<%= 'active' if params[:controller] == 'sessions' %>">
-        <% if user_signed_in? %>
-          <%= link_to "Log out", destroy_user_session_path, :method => :delete %>
-        <% else %>
-          <%= link_to "Log in", new_user_session_path %>
+<nav class="navbar navbar-inverse" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <%= link_to "Sportive Kid", root_path, :class =>"navbar-brand" %>
+    </div>
+    <div class="collapse navbar-collapse navbar-ex1-collapse pull-right">
+      <ul class="nav navbar-nav">
+        <% unless user_signed_in? %>
+          <li class="<%= 'active' if params[:controller] == 'registrations' %>">
+            <%= link_to "Sign up", new_user_registration_path %>
+          </li>
         <% end %>
-      </li>
-    </ul>
+        <li>
+          <%= link_to "Pricing", pricing_plans_path %>
+        </li>
+        <li>
+          <%= link_to "Company" %>
+        </li>
+        <li>
+          <%= link_to "Blog" %>
+        </li>
+
+        <li class="<%= 'active' if params[:controller] == 'sessions' %>">
+          <% if user_signed_in? %>
+            <%= link_to "Log out", destroy_user_session_path, :method => :delete %>
+          <% else %>
+            <%= link_to "Log in", new_user_session_path %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
 <div id="header-image">
   <%= link_to root_path do %>
-    <%= image_tag "https://s3.amazonaws.com/jetstrap-site/images/website/index/what_icon.png" %>
+    <%= image_tag "logo.png" %>
   <% end %>
 </div>

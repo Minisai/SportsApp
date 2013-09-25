@@ -5,6 +5,6 @@ class MotivationPlayer < ActiveRecord::Base
   after_create :send_motivation_message
 
   def send_motivation_message
-    PlayerMailer.motivation(player, self.motivation).deliver
+    PlayerMailer.motivation(player, motivation.coach, motivation).deliver
   end
 end

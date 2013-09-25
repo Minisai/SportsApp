@@ -1,11 +1,11 @@
-@app.controller "TeamsController", ["$scope", "$notification", "TeamsFactory", "PlayersFactory", "TeamsPlayersFactory",
-  ($scope, $notification, TeamsFactory, PlayersFactory, TeamsPlayersFactory) ->
+@app.controller "TeamsController", ["$scope", "$http", "$notification", "TeamsFactory", "PlayersFactory", "TeamsPlayersFactory", "BootstrapModalService"
+  ($scope, $http, $notification, TeamsFactory, PlayersFactory, TeamsPlayersFactory, BootstrapModalService) ->
     $scope.filter = {}
 
     $scope.playersSearch= ->
       filter_params = {}
       filter_params['player_id'] = @filter.player_id unless typeof @filter.player_id  == "undefined"
-      filter_params['name'] = @filter.name unless typeof @filter.name  == "undefined"
+      filter_params['last_name'] = @filter.last_name unless typeof @filter.last_name  == "undefined"
       filter_params['country'] = @filter.country unless typeof @filter.country  == "undefined"
       $scope.players = PlayersFactory.query(filter_params)
 
@@ -51,4 +51,16 @@
 
     $scope.dragPlayerHandler = (event, ui, player) ->
       $scope.draggedPlayer = player
+
+    $scope.showAddPlayerModal = ->
+      BootstrapModalService.showModal($scope, 'add_player_modal')
+
+    $scope.invitePlayer = ->
+      $http.post("/coaches/players/invite", {player: @new_player}
+      ).success((data)->
+        $scope.players = PlayersFactory.query()
+        $scope.add_player_modal.modal('hide')
+        $notification.success("Success", data['message'])
+      ).error (data) ->
+        $notification.error("Error", data['message'])
 ]

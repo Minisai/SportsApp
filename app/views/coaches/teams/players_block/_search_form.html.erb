@@ -1,4 +1,4 @@
-<form class='form-horizontal' ng-submit="playersSearch()">
+<form class='form-horizontal search-player' ng-submit="playersSearch()">
   <div class="row">
     <div class="col-md-6">
       <div class="control-group">
@@ -15,9 +15,9 @@
   <div class="row">
     <div class="col-md-6">
       <div class="control-group">
-        <%= label_tag 'Name', nil, :class => 'control-label col-lg-4' %>
+        <%= label_tag 'Last Name', nil, :class => 'control-label col-lg-4' %>
         <div class='controls col-lg-8'>
-          <%= text_field_tag 'filter.name', nil, :class => "form-control", 'ng-model' => 'filter.name' %>
+          <%= text_field_tag 'filter.last_name', nil, :class => "form-control", 'ng-model' => 'filter.last_name' %>
         </div>
       </div>
     </div>

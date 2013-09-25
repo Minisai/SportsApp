@@ -9,7 +9,7 @@
 </div>
 <div class="add-new-team" ng-show="addNewTeamClicked">
   <div class="row">
-    <form class='form-horizontal' ng-submit="createTeam()">
+    <form class='form-horizontal add-team' ng-submit="createTeam()">
       <div class="col-md-9">
         <div class="form-group">
           <%= label_tag 'Name', nil, :class => 'control-label col-lg-2' %>
@@ -25,7 +25,7 @@
         </div>
       </div>
       <div class="col-md-3">
-        <%= submit_tag "Add", :class => "btn btn-default" %>
+        <%= submit_tag "Add", :class => "btn btn-success" %>
       </div>
     </form>
   </div>

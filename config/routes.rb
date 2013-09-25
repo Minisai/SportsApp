@@ -14,6 +14,9 @@ SportsApp::Application.routes.draw do
         post :motivate
         post :send_message
       end
+      collection do
+        post :invite
+      end
     end
   end
 

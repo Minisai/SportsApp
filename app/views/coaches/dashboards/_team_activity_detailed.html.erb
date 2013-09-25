@@ -11,15 +11,17 @@
       <tr>
         <th>Player Name</th>
         <th>Last Login</th>
-        <th>Last Day Completed</th>
-        <th>5 Days Inactive</th>
+        <!--<th>Last Day Completed</th>-->
+        <!--<th>5 Days Inactive</th>-->
       </tr>
       </thead>
       <tbody>
       <%= render :partial => 'user_row', :collection => players, :as => :player %>
       </tbody>
     </table>
-    <%= will_paginate_bootstrap players %>
-    <%= link_to "Manage team", coaches_teams_path, :class => 'btn btn-warning pull-right' %>
+    <%= will_paginate_bootstrap players, :param_name => 'players_page' %>
+    <div class="manage-team">
+      <%= link_to "Manage team", coaches_teams_path, :class => 'btn btn-warning pull-right' %>
+    </div>
   </div>
 </div>

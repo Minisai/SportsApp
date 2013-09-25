@@ -4,7 +4,7 @@ describe Coaches::PlayersController do
   render_views
 
   let!(:coach) { create(:coach_user).role }
-  let!(:players) { create_list(:player, 10, :coach => coach) }
+  let!(:players) { create_list(:player, 10, :program_code => coach.program_code) }
   let!(:parent) { create(:parent_user).role }
   let!(:player) { create(:player_user).role }
   let!(:another_coach) { create(:coach_user).role }
@@ -25,12 +25,16 @@ describe Coaches::PlayersController do
         it { expect(assigns(:players)).to match_array players }
 
         it "should get json with keys" do
-          expect(parsed_body.first.keys.sort).to eq %w(id name country last_sign_in_at email).sort
+          expect(parsed_body.first.keys.sort).to eq %w(id name country last_sign_in_at email invited).sort
         end
       end
 
       context "team id provided" do
-        before { get :index, :team_id => player.team.id }
+        let!(:team) { create(:team) }
+        before do
+          team.players << player
+          get :index, :team_id => team.id
+        end
 
         it { expect(response).to be_success }
         it { expect(assigns(:coach)).to eq coach }
@@ -74,7 +78,7 @@ describe Coaches::PlayersController do
         it { expect(assigns(:player)).to eq player }
 
         it "should get json with keys" do
-          expect(parsed_body['player'].keys.sort).to eq %w(id name country last_sign_in_at email).sort
+          expect(parsed_body['player'].keys.sort).to eq %w(id name country last_sign_in_at email invited).sort
         end
       end
       context "wrong coach" do
@@ -324,6 +328,111 @@ describe Coaches::PlayersController do
 
       it "should raise error" do
         expect { xhr :post, :motivate, :id => player.id }.to raise_error
+      end
+    end
+  end
+
+  describe "POST invite" do
+    let!(:coach) { create(:coach_user).role }
+    let!(:player) { create(:player_user).role }
+    before { controller.stub(:current_user => coach.user) }
+
+    let(:params) do {
+        :player => {
+            :email => 'player@mail.com',
+            :first_name => 'first_name',
+            :last_name => 'last_name'
+        }
+      }
+    end
+
+    context "user is already in the system" do
+      context "and he is player" do
+        context "first invitation from this coach" do
+          subject { -> { xhr :post, :invite, :player => {:email => player.email} } }
+
+          it "should send email to existed player" do
+            should change { ActionMailer::Base.deliveries.count }.by(1)
+          end
+          it "should not create new user record" do
+            should_not change { User.count }
+          end
+          it "should not create new player record" do
+            should_not change { Player.count }
+          end
+        end
+        context "duplicate invitation from this coach" do
+          before { xhr :post, :invite, :player => {:email => player.email} }
+
+          subject { -> { xhr :post, :invite, :player => {:email => player.email} } }
+
+          it "should send email to existed player" do
+            should_not change { ActionMailer::Base.deliveries.count }.by(1)
+          end
+          it "should not create new user record" do
+            should_not change { User.count }
+          end
+          it "should not create new player record" do
+            should_not change { Player.count }
+          end
+        end
+      end
+      context "and he is coach" do
+        let!(:coach_email) { create(:coach_user).email }
+        subject { -> { xhr :post, :invite, :player => {:email => coach_email} } }
+
+        it "should send email to existed player" do
+          should_not change { ActionMailer::Base.deliveries.count }.by(1)
+        end
+        it "should not create new user record" do
+          should_not change { User.count }
+        end
+        it "should not create new player record" do
+          should_not change { Player.count }
+        end
+      end
+      context "and he is parent" do
+        let!(:parent_email) { create(:parent_user).email }
+        subject { -> { xhr :post, :invite, :player => {:email => parent_email}  }}
+
+        it "should send email to existed player" do
+          should_not change { ActionMailer::Base.deliveries.count }.by(1)
+        end
+        it "should not create new user record" do
+          should_not change { User.count }
+        end
+        it "should not create new player record" do
+          should_not change { Player.count }
+        end
+      end
+    end
+
+    context "user is not in the system" do
+      context "and valid params are provided" do
+        subject { -> { xhr :post, :invite, params } }
+
+        it "should send email to existed player" do
+          should change { ActionMailer::Base.deliveries.count }.by(1)
+        end
+        it "should not create new user record" do
+          should change { User.count }
+        end
+        it "should not create new player record" do
+          should change { Player.count }
+        end
+      end
+      context "and invalid params are provided" do
+        subject { -> { xhr :post, :invite, :player => {:email => "invalid"} } }
+
+        it "should send email to existed player" do
+          should_not change { ActionMailer::Base.deliveries.count }.by(1)
+        end
+        it "should not create new user record" do
+          should_not change { User.count }
+        end
+        it "should not create new player record" do
+          should_not change { Player.count }
+        end
       end
     end
   end

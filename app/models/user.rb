@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
 
   def invited_player?
     if role_type == 'Player'
-      role.invited?
+      role.try(:invited?)
     end
   end
 end

@@ -60,10 +60,11 @@ SportsApp::Application.configure do
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
   # config.assets.precompile += %w( search.js )svg .eot .woff .ttf )
+  config.assets.paths << Rails.root.join('app', 'assets', 'twitter')
   config.assets.precompile << Proc.new do |path|
     if path =~ /\.(woff|svg|eot|ttf)\z/
       full_path = Rails.application.assets.resolve(path).to_path
-      app_assets_path = Rails.root.join('app', 'assets').to_path
+      app_assets_path = Rails.root.join('app', 'assets', 'twitter').to_path
       if full_path.starts_with? app_assets_path
         puts "including asset: " + full_path
         true

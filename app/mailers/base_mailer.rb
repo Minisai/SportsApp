@@ -1,3 +1,3 @@
 class BaseMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "noreply@sportivekid.com"
 end

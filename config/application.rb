@@ -30,5 +30,7 @@ module SportsApp
       g.stylesheets = false
       g.javascripts = false
     end
+
+    config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
   end
 end

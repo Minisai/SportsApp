@@ -13,6 +13,7 @@ class Ability
         end
         can :invite, Player
         can :manage, :dashboard
+        can :manage, Drill
         can :manage, Team, :coach_id => user.role.id
     end
 

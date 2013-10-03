@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131003174511) do
+ActiveRecord::Schema.define(version: 20131003174616) do
+
+  create_table "assessments", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "coach_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "assessments", ["coach_id"], name: "index_assessments_on_coach_id", using: :btree
 
   create_table "coaches", force: true do |t|
     t.string   "program_code"

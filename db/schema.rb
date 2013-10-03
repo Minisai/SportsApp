@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131003143547) do
+ActiveRecord::Schema.define(version: 20131003173206) do
 
   create_table "coaches", force: true do |t|
     t.string   "program_code"
@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(version: 20131003143547) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "exercises", force: true do |t|
+    t.integer  "repetitions",   default: 1
+    t.integer  "drill_id"
+    t.integer  "assessment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "exercises", ["assessment_id"], name: "index_exercises_on_assessment_id", using: :btree
+  add_index "exercises", ["drill_id"], name: "index_exercises_on_drill_id", using: :btree
 
   create_table "invitations", force: true do |t|
     t.integer  "player_id"

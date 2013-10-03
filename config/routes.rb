@@ -9,6 +9,7 @@ SportsApp::Application.routes.draw do
     end
 
     resources :motivations, :only => [:index]
+    resources :assessments, :only => [:new, :index]
     resources :players, :only => [:index, :show] do
       member do
         post :motivate

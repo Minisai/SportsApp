@@ -187,3 +187,12 @@ form.search-player {
 .modal-dialog {
   margin-top: 200px;
 }
+
+.brd.drills-table {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.exercises-table table {
+  width: 700px;
+}

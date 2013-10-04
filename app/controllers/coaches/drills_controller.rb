@@ -5,4 +5,8 @@ class Coaches::DrillsController < ApplicationController
   def show
     render :json => Drill.find(params[:id])
   end
+
+  def create
+
+  end
 end

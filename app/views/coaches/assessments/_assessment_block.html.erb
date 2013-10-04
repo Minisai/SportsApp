@@ -1,0 +1,30 @@
+
+<div class="row">
+  <%= simple_form_for [:coaches, Assessment.new], :class => 'form-horizontal' do |form| %>
+    <div class="col-md-9">
+      <div class="form-group">
+        <%= form.input :name, :input_html => {:class => "form-control"} %>
+      </div>
+      <div class="form-group">
+        <%= form.input :description, :input_html => {:class => "form-control"} %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <%= form.submit "Add", :class => "btn btn-success" %>
+    </div>
+  <% end %>
+</div>
+<div class='exercises-table'>
+  <table>
+    <tr class='brd' ng-repeat='exercise in exercises'>
+      <td>
+        {{exercise.name}}
+        {{exercise.repetitions}}
+        <span class='glyphicon plus-minus glyphicon-minus' ng-click="removeDrillClick($index)" ng-show='true'></span>
+      </td>
+    </tr>
+    <tr class='brd-white' data-drop="true" data-jqyoui-options ng-model="droppedDrill" jqyoui-droppable="{onDrop: 'dropDrillHandler'}">
+      <td> Drag & drop a drill from the left side to add to assessment</td>
+    </tr>
+  </table>
+</div>

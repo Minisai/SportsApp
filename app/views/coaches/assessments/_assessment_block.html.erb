@@ -1,19 +1,25 @@
-
 <div class="row">
-  <%= simple_form_for [:coaches, Assessment.new], :class => 'form-horizontal' do |form| %>
+  <form class='form-horizontal add-assessment' ng-submit="createAssessment()">
     <div class="col-md-9">
       <div class="form-group">
-        <%= form.input :name, :input_html => {:class => "form-control"} %>
+        <%= label_tag 'Name', nil, :class => 'control-label col-lg-2' %>
+        <div class='controls col-lg-10'>
+          <%= text_field_tag :name, nil, :class => "form-control", 'ng-model' => 'assessment.name' %>
+        </div>
       </div>
-      <div class="form-group">
-        <%= form.input :description, :input_html => {:class => "form-control"} %>
+      <div class="form-group ">
+        <%= label_tag 'Description', nil, :class => 'control-label col-lg-2' %>
+        <div class='controls col-lg-10'>
+          <%= text_area_tag :description, nil, :class => "form-control", 'ng-model' => 'assessment.description' %>
+        </div>
       </div>
     </div>
     <div class="col-md-3">
-      <%= form.submit "Add", :class => "btn btn-success" %>
+      <%= submit_tag "Add", :class => "btn btn-success" %>
     </div>
-  <% end %>
+  </form>
 </div>
+
 <div class='exercises-table'>
   <table>
     <tr class='brd' ng-repeat='exercise in exercises'>

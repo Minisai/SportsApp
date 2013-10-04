@@ -5,4 +5,8 @@ class Coaches::AssessmentsController < ApplicationController
 
   def index
   end
+
+  def create
+    #do smth
+  end
 end

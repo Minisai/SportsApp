@@ -19,7 +19,11 @@
     <tr class='brd' ng-repeat='exercise in exercises'>
       <td>
         {{exercise.name}}
-        {{exercise.repetitions}}
+        <span class='repetitions'>
+          <a href="#" editable-text="exercise.repetitions" buttons="no">
+            {{exercise.repetitions}}
+          </a>
+        </span>
         <span class='glyphicon plus-minus glyphicon-minus' ng-click="removeDrillClick($index)" ng-show='true'></span>
       </td>
     </tr>

@@ -4,6 +4,7 @@ describe Coach do
   it { should have_one(:user) }
   it { should have_many(:teams) }
   it { should have_many(:motivations) }
+  it { should have_many(:assessments) }
 
   it { should have_and_belong_to_many(:players) }
 

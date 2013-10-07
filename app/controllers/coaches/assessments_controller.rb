@@ -6,6 +6,7 @@ class Coaches::AssessmentsController < ApplicationController
   end
 
   def index
+    @assessments = current_user.role.assessments
   end
 
   def create

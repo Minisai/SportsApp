@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130925080813) do
+ActiveRecord::Schema.define(version: 20131003174616) do
+
+  create_table "assessments", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "coach_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "assessments", ["coach_id"], name: "index_assessments_on_coach_id", using: :btree
 
   create_table "coaches", force: true do |t|
     t.string   "program_code"
@@ -30,6 +40,24 @@ ActiveRecord::Schema.define(version: 20130925080813) do
   add_index "coaches_players", ["coach_id"], name: "index_coaches_players_on_coach_id", using: :btree
   add_index "coaches_players", ["player_id"], name: "index_coaches_players_on_player_id", using: :btree
 
+  create_table "drills", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "exercises", force: true do |t|
+    t.integer  "repetitions",   default: 1
+    t.integer  "drill_id"
+    t.integer  "assessment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "exercises", ["assessment_id"], name: "index_exercises_on_assessment_id", using: :btree
+  add_index "exercises", ["drill_id"], name: "index_exercises_on_drill_id", using: :btree
+
   create_table "invitations", force: true do |t|
     t.integer  "player_id"
     t.integer  "coach_id"
@@ -37,6 +65,9 @@ ActiveRecord::Schema.define(version: 20130925080813) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "invitations", ["coach_id"], name: "index_invitations_on_coach_id", using: :btree
+  add_index "invitations", ["player_id"], name: "index_invitations_on_player_id", using: :btree
 
   create_table "motivation_players", force: true do |t|
     t.integer "player_id"

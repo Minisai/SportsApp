@@ -9,6 +9,7 @@ SportsApp::Application.routes.draw do
     end
 
     resources :motivations, :only => [:index]
+    resources :assessments, :only => [:show, :index, :new, :create]
     resources :players, :only => [:index, :show] do
       member do
         post :motivate
@@ -20,8 +21,8 @@ SportsApp::Application.routes.draw do
     end
   end
 
+  resources :drills, :only => [:show]
   resources :pricing_plans, :only => [:index]
-
   resources :payments do
     collection do
       get :paypal_checkout

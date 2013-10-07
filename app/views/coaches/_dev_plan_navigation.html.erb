@@ -1,0 +1,25 @@
+<nav class="navbar navbar-default subnav" role="navigation">
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
+      <li>
+        <%= link_to "All Plans" %>
+      </li>
+      <li>
+        <%= link_to "Create Plan" %>
+      </li>
+      <li>
+        <%= link_to "Assign Plan" %>
+      </li>
+      <li>
+        <%= link_to "All Assessments" %>
+      </li>
+      <li  class="<%= 'active' if params[:controller] == 'coaches/assessments' &&
+                                  params[:action] == 'new' %>">
+        <%= link_to "Create Assessment", new_coaches_assessment_path %>
+      </li>
+      <li>
+        <%= link_to "Rewards" %>
+      </li>
+    </ul>
+  </div>
+</nav>

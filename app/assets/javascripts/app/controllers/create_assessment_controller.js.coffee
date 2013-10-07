@@ -26,9 +26,11 @@
     $scope.createAssessment = ->
       @assessment['exercises_attributes'] = @exercises
 
-      AssessmentsFactory.save(@assessment,
+      AssessmentsFactory.save({assessment: @assessment},
         (success_data) ->
-          $notification.success("Success", success_data['data']['message'])
+          $scope.assessment = {}
+          $scope.exercises = []
+          $notification.success("Success", success_data['message'])
         ,(error_result) ->
           $notification.error("Error", error_result['data']['message']))
 ]

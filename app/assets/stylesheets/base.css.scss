@@ -189,7 +189,7 @@ form.search-player {
 }
 
 .brd.drills-table {
-  max-height: 250px;
+  max-height: 260px;
   overflow-y: auto;
 }
 
@@ -204,4 +204,13 @@ form.search-player {
 
 .exercises-table span input {
   width: 50px;
+}
+
+.add-assessment {
+  margin-top: 10px;
+}
+
+.exercises-table {
+  max-height: 200px;
+  overflow-y: auto;
 }

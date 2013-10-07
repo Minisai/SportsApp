@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   validates :male, :inclusion => {:in => [true, false]}, :unless => :invited_player?
   validates :username, :uniqueness => true, :unless => :invited_player?
 
-  belongs_to :role, :polymorphic => true
+  belongs_to :role, :polymorphic => true, :inverse_of => :user
   has_many :payments
 
   after_create :generate_program_code_if_coach

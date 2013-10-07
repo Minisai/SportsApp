@@ -1,0 +1,12 @@
+<div class="brd">
+  <div class="row create-assessment-btn">
+    <%= link_to 'Create Assessment', new_coaches_assessment_path, :class => 'pull-right btn btn-success' %>
+  </div>
+  <div class='assessments-table' ng-init="assessments = <%= json_for(@assessments) %>">
+    <table class="table">
+      <tr ng-click='assessmentSelection(assessment.id)' ng-repeat="assessment in assessments" ng-class="{highlight:assessment.id == selectedAssessment.id}">
+        <td>{{assessment.name}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

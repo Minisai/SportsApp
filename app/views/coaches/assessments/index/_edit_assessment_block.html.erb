@@ -1,3 +1,47 @@
 <div class="brd">
+  <div class='edit-assessment-dummy' ng-hide='selectedAssessment'>
+    <h3>Select Assessment</h3>
+    <p>Select assessment to view.</p>
+  </div>
+  <div class="edit-assessment-form" ng-show='selectedAssessment'>
+    <div class="row">
+      <div class="col-md-9">
+        <div class="row">
+          <%= label_tag 'Name: ', nil, :class => 'control-label col-lg-2' %>
+          <div class='controls col-lg-10'>
+            <a href="#" editable-text="selectedAssessment.name" onbeforesave="checkName($data)">
+              {{selectedAssessment.name}}
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <%= label_tag 'Description: ', nil, :class => 'control-label col-lg-2' %>
+          <div class='controls col-lg-10'>
+            <a href="#" editable-textarea="selectedAssessment.description" e-rows="7" e-cols="40">
+              {{selectedAssessment.description || 'none'}}
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 buttons">
+        <%= button_tag "Update Assessment", :class => "btn btn-warning", 'ng-click' => 'updateAssessment()' %>
+        <%= button_tag "Remove Assessment", :class => "btn btn-danger", 'ng-click' => 'removeAssessment()' %>
+      </div>
+    </div>
 
+    <div class='exercises-table'>
+      <table>
+        <tr class='brd' ng-repeat='exercise in selectedAssessment.exercises'>
+          <td>
+            {{exercise.name}}
+          <span class='repetitions'>
+            <a href="#" editable-text="exercise.repetitions" buttons="no">
+              {{exercise.repetitions}}
+            </a>
+          </span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>

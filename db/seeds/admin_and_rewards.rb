@@ -27,3 +27,15 @@ RewardImage.where(:creator_type => 'Admin').each_with_index do |reward_image, in
     reward.reward_image = reward_image
   end
 end
+
+default_coach = User.find_by_email("coach@mail.com").try(:role)
+
+if default_coach.present?
+  RewardImage.where(:creator_type => 'Admin').each_with_index do |reward_image, index|
+    default_coach.rewards.create do |reward|
+      reward.name = "Custom Reward #{index}"
+      reward.description = "This is custom reward #{index}"
+      reward.reward_image = reward_image
+    end
+  end
+end

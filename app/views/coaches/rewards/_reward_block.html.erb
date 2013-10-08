@@ -1,5 +1,5 @@
 <div class="brd">
-  <div class="reward-dummy" ng-hide='selectedReward || selectedDefaultReward' >
+  <div class="reward-dummy" ng-hide='selectedReward || selectedDefaultReward || newReward' >
     <%= render 'reward_dummy' %>
   </div>
 
@@ -8,10 +8,10 @@
   </div>
 
   <div class="custom-reward" ng-show='selectedReward'>
-    CUSTOM
+    <%= render 'custom_reward' %>
   </div>
 
-  <div class="new-reward">
-
+  <div class="new-reward" ng-show='newReward'>
+    <%= render 'new_reward' %>
   </div>
 </div>

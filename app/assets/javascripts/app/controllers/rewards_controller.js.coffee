@@ -1,11 +1,17 @@
 @app.controller "RewardsController", ["$scope", '$notification', 'RewardsFactory',
   ($scope, $notification, RewardsFactory) ->
-    $scope.defaultRewardSelection = (default_reward_id) ->
-      RewardsFactory.get {id: default_reward_id}, (data)->
-        $scope.selectedDefaultReward = data["reward"]
-    $scope.rewardSelection = (reward_id) ->
-      RewardsFactory.get {id: reward_id}, (data)->
-        $scope.selectedReward = data["reward"]
+    $scope.defaultRewardSelection = (index) ->
+      $scope.selectedDefaultReward = $scope.defaultRewards[index]
+      $scope.selectedReward = null
+      $scope.newReward = null
 
+    $scope.rewardSelection = (index) ->
+      $scope.selectedReward = $scope.rewards[index]
+      $scope.selectedDefaultReward = null
+      $scope.newReward = null
 
+    $scope.createNewRewardClicked = ->
+      $scope.newReward = {}
+      $scope.selectedReward = null
+      $scope.selectedDefaultReward = null
 ]

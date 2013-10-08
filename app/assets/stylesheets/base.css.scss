@@ -246,6 +246,14 @@ form.search-player {
   height: 300px;
 }
 
-.default-reward, .reward-dummy {
+.default-reward, .reward-dummy, .custom-reward, .new-reward {
   margin: 20px 0px 0px 20px;
+}
+
+.custom-rewards-table {
+  margin-top: 60px;
+}
+
+.create-table-button {
+  margin-right: 10px;
 }

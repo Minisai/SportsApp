@@ -5,4 +5,6 @@ class RewardImage < ActiveRecord::Base
 
   belongs_to :creator, :polymorphic => true
   has_many :rewards
+
+  scope :default, -> { where(:creator_type => 'Admin') }
 end

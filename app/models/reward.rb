@@ -7,7 +7,7 @@ class Reward < ActiveRecord::Base
 
   delegate :image, :to => :reward_image
 
-  scope :default, where(:creator_type => 'Admin')
+  scope :default, -> { where(:creator_type => 'Admin') }
 
   def image_url
     if reward_image.present?

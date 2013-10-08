@@ -7,7 +7,7 @@
   </div>
   <div class="col-md-8">
     <h5>Reward: </h5>
-    <div class="reward-block">
+    <div class="reward-block" ng-init='rewardImages = <%= json_for @reward_images %>'>
       <%= render 'reward_block' %>
     </div>
   </div>

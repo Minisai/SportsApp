@@ -6,6 +6,7 @@ class Coaches::RewardsController < ApplicationController
   def index
     @rewards = @coach.rewards
     @default_rewards = Reward.default
+    @reward_images = @coach.reward_images + RewardImage.default
   end
 
   private

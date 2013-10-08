@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-md-3">
+    <img src="{{selectedReward.image_url}}" alt="{{selectedReward.name}}"/>
+  </div>
+  <div class="col-md-9">
+    <div class="row">
+      <div class="col-md-3">
+        <p><b>Name:</b></p>
+        <p><b>Description:</b></p>
+      </div>
+      <div class="col-md-9">
+        <p> {{selectedReward.name}} </p>
+        <p> {{selectedReward.description}} </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row reward-images-list">
+  <ul class="list-inline">
+    <li class='reward-image' ng-repeat='rewardImage in rewardImages'>
+      <img ng-src="{{rewardImage.image_url}}" alt="{{rewardImage.image}}"/>
+    </li>
+  </ul>
+</div>

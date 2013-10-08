@@ -10,10 +10,11 @@
       <li>
         <%= link_to "Assign Plan" %>
       </li>
-      <li>
-        <%= link_to "All Assessments" %>
+      <li class="<%= 'active' if params[:controller] == 'coaches/assessments' &&
+              params[:action] == 'index' %>">
+        <%= link_to "All Assessments", coaches_assessments_path %>
       </li>
-      <li  class="<%= 'active' if params[:controller] == 'coaches/assessments' &&
+      <li class="<%= 'active' if params[:controller] == 'coaches/assessments' &&
                                   params[:action] == 'new' %>">
         <%= link_to "Create Assessment", new_coaches_assessment_path %>
       </li>

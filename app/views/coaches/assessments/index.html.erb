@@ -1,0 +1,15 @@
+<%= render 'coaches/dev_plan_navigation' %>
+
+<div class="row" ng-controller='AllAssessmentController'>
+  <div class="col-md-4 assessments-block">
+    <h5>Assessments: </h5>
+    <%= render 'coaches/assessments/index/assessments_block' %>
+  </div>
+  <div class="col-md-8">
+    <h5>Assessment Plan: </h5>
+    <div class="edit-assessment-block">
+      <%= render 'coaches/assessments/index/edit_assessment_block' %>
+    </div>
+  </div>
+</div>
+

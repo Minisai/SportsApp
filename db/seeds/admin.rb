@@ -10,3 +10,20 @@ default_admin = User.find_by_email("admin@mail.com").try(:role) || Admin.create 
       :male => true
   }
 end
+
+unless RewardImage.any?
+  Dir.foreach(Rails.root.join('db/seeds/images')) do |file_path|
+    RewardImage.create do |reward_image|
+      reward_image.image = File.open(Rails.root.join("db/seeds/images/#{file_path}"))
+      reward_image.creator = default_admin
+    end
+  end
+end
+
+RewardImage.where(:creator_type => 'Admin').each_with_index do |reward_image, index|
+  default_admin.rewards.create do |reward|
+    reward.name = "Reward #{index}"
+    reward.description = "This is reward #{index}"
+    reward.reward_image = reward_image
+  end
+end

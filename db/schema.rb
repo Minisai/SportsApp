@@ -148,7 +148,7 @@ ActiveRecord::Schema.define(version: 20131008094226) do
 
   create_table "rewards", force: true do |t|
     t.integer  "creator_id"
-    t.integer  "creator_type"
+    t.string   "creator_type"
     t.string   "name"
     t.text     "description"
     t.datetime "created_at"

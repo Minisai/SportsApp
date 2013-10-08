@@ -3,4 +3,6 @@ class Exercise < ActiveRecord::Base
 
   belongs_to :drill
   belongs_to :assessment
+
+  delegate :name, :to => :drill
 end

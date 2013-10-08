@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131003174616) do
+ActiveRecord::Schema.define(version: 20131008081312) do
 
   create_table "assessments", force: true do |t|
     t.string   "name"
@@ -130,6 +130,17 @@ ActiveRecord::Schema.define(version: 20131003174616) do
   end
 
   add_index "pricing_plans", ["role_type"], name: "index_pricing_plans_on_role_type", using: :btree
+
+  create_table "rewards", force: true do |t|
+    t.integer  "creator_id"
+    t.integer  "creator_type"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rewards", ["creator_id", "creator_type"], name: "index_rewards_on_creator_id_and_creator_type", using: :btree
 
   create_table "teams", force: true do |t|
     t.string   "name"

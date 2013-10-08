@@ -1,0 +1,8 @@
+<div class="row reward-images-list">
+  <ul class="list-inline">
+    <li class='reward-image' ng-repeat='rewardImage in rewardImages' ng-click='rewardImageSelection($index)'
+        ng-class="{highlight:rewardImage.id == selectedRewardImage.id}">
+      <img ng-src="{{rewardImage.image_url}}" alt="{{rewardImage.image}}"/>
+    </li>
+  </ul>
+</div>

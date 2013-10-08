@@ -16,10 +16,4 @@
   </div>
 </div>
 
-<div class="row reward-images-list">
-  <ul class="list-inline">
-    <li class='reward-image' ng-repeat='rewardImage in rewardImages'>
-      <img ng-src="{{rewardImage.image_url}}" alt="{{rewardImage.image}}"/>
-    </li>
-  </ul>
-</div>
+<%= render 'coaches/rewards/reward_block/reward_images' %>

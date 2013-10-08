@@ -19,11 +19,13 @@
         $notification.error("Error", error_result['data']['message']))
 
     $scope.removeAssessment = ->
-      AssessmentsFactory.delete({id: @selectedAssessment.id},
-      (success_data) ->
-        $scope.assessments = success_data['assessments']
-        $notification.success("Success", success_data['message'])
-      ,(error_result) ->
-        $notification.error("Error", error_result['data']['message']))
+      if (confirm('Are you sure you want to delete assessment?'))
+        AssessmentsFactory.delete({id: @selectedAssessment.id},
+        (success_data) ->
+          $scope.assessments = success_data['assessments']
+          $scope.selectedAssessment = null
+          $notification.success("Success", success_data['message'])
+        ,(error_result) ->
+          $notification.error("Error", error_result['data']['message']))
 
 ]

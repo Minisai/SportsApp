@@ -24,8 +24,8 @@
         </div>
       </div>
       <div class="col-md-3 buttons">
-        <%= button_tag "Update Assessment", :class => "btn btn-warning", 'ng-click' => 'updateAssessment()' %>
-        <%= button_tag "Remove Assessment", :class => "btn btn-danger", 'ng-click' => 'removeAssessment()' %>
+        <%= button_tag "Update Assessment", :class => "btn btn-warning", 'ng-click' => 'updateAssessment()'  %>
+        <%= button_tag "Remove Assessment", :class => "btn btn-danger", 'ng-click' => 'removeAssessment()', :data => {:confirm => 'Are you sure?'} %>
       </div>
     </div>
 

@@ -12,5 +12,6 @@ FactoryGirl.define do
     factory(:player_user) { association :role, :factory => :player }
     factory(:parent_user) { association :role, :factory => :parent }
     factory(:coach_user) { association :role, :factory => :coach }
+    factory(:admin_user) { association :role, :factory => :admin }
   end
 end

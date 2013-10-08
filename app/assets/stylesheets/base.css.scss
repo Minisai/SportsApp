@@ -229,3 +229,23 @@ form.search-player {
 .edit-assessment-block .buttons .btn{
   margin-top: 10px;
 }
+
+.default-rewards {
+  margin-bottom: 20px;
+}
+.default-rewards-table {
+  max-height: 150px;
+  overflow-y: auto;
+}
+.custom-rewards-table {
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.reward-block .brd {
+  height: 300px;
+}
+
+.default-reward, .reward-dummy {
+  margin: 20px 0px 0px 20px;
+}

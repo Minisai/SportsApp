@@ -13,6 +13,7 @@ class Ability
       can :invite, Player
       can :manage, :dashboard
       can :manage, Assessment, :coach_id => user.role.id
+      can :manage, Reward, :creator_id => user.role.id, :creator_type => 'Coach'
       can :manage, Team, :coach_id => user.role.id
     end
   end

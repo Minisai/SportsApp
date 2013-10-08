@@ -7,9 +7,9 @@ SportsApp::Application.routes.draw do
     resources :teams, :only => [:show, :index, :create] do
       resources :players, :only => [:create, :destroy], :controller => "teams/players"
     end
-
     resources :motivations, :only => [:index]
     resources :assessments, :except => [:edit]
+    resources :rewards, :except => [:edit, :new, :show]
     resources :players, :only => [:index, :show] do
       member do
         post :motivate
@@ -22,6 +22,7 @@ SportsApp::Application.routes.draw do
   end
 
   resources :drills, :only => [:show]
+  resources :rewards, :only => [:show]
   resources :pricing_plans, :only => [:index]
   resources :payments do
     collection do

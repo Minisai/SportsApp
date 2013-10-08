@@ -1,0 +1,14 @@
+<%= render 'coaches/dev_plan_navigation' %>
+
+<div class="row" ng-controller='RewardsController'>
+  <div class="col-md-4 rewards-list">
+    <h5>Select a reward below to edit it, setup a sponsored reward or create a new custom reward: </h5>
+    <%= render 'rewards_list' %>
+  </div>
+  <div class="col-md-8">
+    <h5>Reward: </h5>
+    <div class="reward-block">
+      <%= render 'reward_block' %>
+    </div>
+  </div>
+</div>

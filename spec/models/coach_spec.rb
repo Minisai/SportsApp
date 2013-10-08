@@ -6,6 +6,7 @@ describe Coach do
   it { should have_many(:motivations) }
   it { should have_many(:assessments) }
   it { should have_many(:rewards) }
+  it { should have_many(:reward_images) }
 
   it { should have_and_belong_to_many(:players) }
 

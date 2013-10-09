@@ -4,6 +4,11 @@
   <div class="scrolls">
     <span class='reward-image' ng-repeat='rewardImage in rewardImages' ng-click='rewardImageSelection($index)'
         ng-class="{'highlight-border':rewardImage.id == selectedRewardImage.id}">
+      <div class='link-to-delete' ng-hide='rewardImage.rooted' >
+        <%= link_to nil, :remote => true, 'ng-click' => 'removeRewardImage(rewardImage.id)' do %>
+          <span class='glyphicon glyphicon-remove'></span>
+        <% end %>
+      </div>
       <img ng-src="{{rewardImage.image_url}}" alt="{{rewardImage.image}}"/>
     </span>
   </div>

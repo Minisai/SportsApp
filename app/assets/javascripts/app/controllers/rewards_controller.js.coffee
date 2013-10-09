@@ -1,5 +1,5 @@
-@app.controller "RewardsController", ["$scope", '$http', '$notification', 'RewardsFactory', 'CoachesRewardsFactory',
-  ($scope, $http, $notification, RewardsFactory, CoachesRewardsFactory) ->
+@app.controller "RewardsController", ["$scope", '$http', '$notification', 'RewardsFactory', 'CoachesRewardsFactory', 'RewardImagesFactory'
+  ($scope, $http, $notification, RewardsFactory, CoachesRewardsFactory, RewardImagesFactory) ->
     $scope.defaultRewardSelection = (index) ->
       $scope.selectedDefaultReward = $scope.defaultRewards[index]
       $scope.selectedReward = null
@@ -26,16 +26,6 @@
       if @newReward
         @newReward.image_url = @selectedRewardImage.image_url
         @newReward.reward_image_id = @selectedRewardImage.id
-
-    $scope.onFileSelect = (files) ->
-      file = files[0]
-      $http.uploadFile(
-        url: "/coaches/reward_images"
-        file: file
-      ).success((data) ->
-        $scope.rewardImages = data['reward_images']
-      ).error (data) ->
-        $notification.error("Error", data['message'])
 
     $scope.checkName = (data) ->
       if (data.length == 0)
@@ -67,4 +57,23 @@
           $notification.success("Success", "Reward was deleted successfully")
         ,(error_result) ->
           $notification.error("Error", error_result['data']['message']))
+
+    $scope.onFileSelect = (files) ->
+      file = files[0]
+      $http.uploadFile(
+        url: "/coaches/reward_images"
+        file: file
+      ).success((data) ->
+        $scope.rewardImages = data['reward_images']
+      ).error (data) ->
+        $notification.error("Error", data['message'])
+
+    $scope.removeRewardImage = (reward_image_id) ->
+      if (confirm('Are you sure you want to delete image?'))
+        RewardImagesFactory.delete({id: reward_image_id},
+        (success_data) ->
+          $scope.rewardImages = success_data['reward_images']
+        ,(error_result) ->
+          $notification.error("Error", error_result['data']['message']))
+
 ]

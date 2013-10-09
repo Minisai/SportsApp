@@ -22,7 +22,7 @@ class Coaches::AssessmentsController < ApplicationController
 
   def update
     if @assessment.update_attributes(update_assessment_params)
-      render :json => {:assessments => @coach.assessments, :message => "Assessment was updated successfully"}
+      render :json => @coach.assessments
     else
       render :json => {:message => @assessment.errors.full_messages.join}, :status => :bad_request
     end
@@ -30,7 +30,7 @@ class Coaches::AssessmentsController < ApplicationController
 
   def destroy
     if @assessment.destroy
-      render :json => {:assessments => @coach.assessments, :message => "Assessment was deleted successfully"}
+      render :json => @coach.assessments
     else
       render :json => {:message => @assessment.errors.full_messages.join}, :status => :bad_request
     end

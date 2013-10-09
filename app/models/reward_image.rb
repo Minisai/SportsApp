@@ -7,4 +7,10 @@ class RewardImage < ActiveRecord::Base
   has_many :rewards
 
   scope :default, -> { where(:creator_type => 'Admin') }
+
+  class << self
+    def accessible_for(coach)
+      RewardImage.default + coach.reward_images
+    end
+  end
 end

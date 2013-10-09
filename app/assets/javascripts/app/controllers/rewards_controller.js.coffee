@@ -1,5 +1,5 @@
-@app.controller "RewardsController", ["$scope", '$notification', 'RewardsFactory',
-  ($scope, $notification, RewardsFactory) ->
+@app.controller "RewardsController", ["$scope", '$http', '$notification', 'RewardsFactory',
+  ($scope, $http, $notification, RewardsFactory) ->
     $scope.defaultRewardSelection = (index) ->
       $scope.selectedDefaultReward = $scope.defaultRewards[index]
       $scope.selectedReward = null
@@ -27,5 +27,14 @@
         @newReward.image_url = @selectedRewardImage.image_url
         @newReward.reward_image_id = @selectedRewardImage.id
 
+    $scope.onFileSelect = (files) ->
+      file = files[0]
+      $http.uploadFile(
+        url: "/coaches/reward_images"
+        file: file
+      ).success((data) ->
+        $scope.rewardImages = data['reward_images']
+      ).error (data) ->
+        $notification.error("Error", data['message'])
 
 ]

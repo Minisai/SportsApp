@@ -1,6 +1,6 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
   factory :reward_image do
+    image File.open(Rails.root.join('spec/factories/files/reward_image/valid.png'))
+    association :creator, :factory => :coach
   end
 end

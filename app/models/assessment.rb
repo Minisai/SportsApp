@@ -1,6 +1,6 @@
 class Assessment < ActiveRecord::Base
   validates :name, :coach, :presence => true
-  validates :name, :uniqueness => true
+  validates :name, :uniqueness => {:scope => :coach_id}
 
   belongs_to :coach
   has_many :exercises, :dependent => :destroy

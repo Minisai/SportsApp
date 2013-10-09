@@ -18,8 +18,8 @@
                                   params[:action] == 'new' %>">
         <%= link_to "Create Assessment", new_coaches_assessment_path %>
       </li>
-      <li>
-        <%= link_to "Rewards" %>
+      <li class="<%= 'active' if params[:controller] == 'coaches/rewards' %>">
+        <%= link_to "Rewards", coaches_rewards_path %>
       </li>
     </ul>
   </div>

@@ -229,3 +229,85 @@ form.search-player {
 .edit-assessment-block .buttons .btn{
   margin-top: 10px;
 }
+
+.default-rewards {
+  margin-bottom: 20px;
+}
+.default-rewards-table {
+  max-height: 150px;
+  overflow-y: auto;
+}
+.custom-rewards-table {
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.reward-block .brd {
+  height: 480px;
+}
+
+.reward-block .reward {
+  margin: 20px 0px 0px 20px;
+  height: 240px;
+}
+
+.custom-rewards-table {
+  margin-top: 60px;
+}
+
+.create-table-button {
+  margin-right: 10px;
+}
+
+.reward .reward-image {
+  height: 110px;
+}
+
+.reward-images-list {
+  box-shadow: 1px 1px 10px #999;
+  text-align: center;
+  position: relative;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin: 20px 0px 20px 0px !important;
+  width: 720px;
+  padding-top: 5px;
+}
+.scrolls {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  height: 130px;
+  white-space:nowrap
+}
+
+.scrolls span {
+  margin: 2px;
+  max-height: 130px;
+  cursor: pointer;
+  display:inline-block;
+  *display:inline;
+  *zoom:1;
+  vertical-align:top;
+}
+
+.highlight-border {
+  border: 2px solid #006dcc;
+}
+
+.reward-image {
+  position: relative;
+}
+.reward-image .link-to-delete {
+  display: none;
+}
+
+.reward-image:hover .link-to-delete {
+  display: inline;
+  position: absolute;
+  left: 80px;
+  z-index: 2;
+  background: url(../images/bg-corner-percentage.png);
+  background-position-y: 0px;
+  background-position-x: -8px;
+}

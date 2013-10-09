@@ -28,6 +28,8 @@ gem 'rabl'
 gem 'enumerize'
 gem 'paypal-recurring'
 gem "active_model_serializers"
+gem 'carrierwave'
+gem 'rmagick'
 
 group :doc do
   gem 'sdoc', :require => false

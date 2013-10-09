@@ -17,8 +17,8 @@ default_team = Team.find_by_name('Garden City Panthers') || Team.create do |team
   team.name = 'Garden City Panthers'
 end
 
-default_parent = User.find_by_email("parent@mail.com").try(:role) || Parent.create do |coach|
-  coach.user_attributes = {
+default_parent = User.find_by_email("parent@mail.com").try(:role) || Parent.create do |parent|
+  parent.user_attributes = {
     :email => "parent@mail.com",
     :first_name => "first_name",
     :last_name => 'last_name',

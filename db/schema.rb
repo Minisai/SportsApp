@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131003174616) do
+ActiveRecord::Schema.define(version: 20131008094226) do
+
+  create_table "admins", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "assessments", force: true do |t|
     t.string   "name"
@@ -130,6 +135,29 @@ ActiveRecord::Schema.define(version: 20131003174616) do
   end
 
   add_index "pricing_plans", ["role_type"], name: "index_pricing_plans_on_role_type", using: :btree
+
+  create_table "reward_images", force: true do |t|
+    t.string   "image"
+    t.integer  "creator_id"
+    t.string   "creator_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reward_images", ["creator_id", "creator_type"], name: "index_reward_images_on_creator_id_and_creator_type", using: :btree
+
+  create_table "rewards", force: true do |t|
+    t.integer  "creator_id"
+    t.string   "creator_type"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "reward_image_id"
+  end
+
+  add_index "rewards", ["creator_id", "creator_type"], name: "index_rewards_on_creator_id_and_creator_type", using: :btree
+  add_index "rewards", ["reward_image_id"], name: "index_rewards_on_reward_image_id", using: :btree
 
   create_table "teams", force: true do |t|
     t.string   "name"

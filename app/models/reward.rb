@@ -5,13 +5,7 @@ class Reward < ActiveRecord::Base
   belongs_to :creator, :polymorphic => true
   belongs_to :reward_image
 
-  delegate :image, :to => :reward_image
+  delegate :image_url, :to => :reward_image, :allow_nil => true
 
   scope :default, -> { where(:creator_type => 'Admin') }
-
-  def image_url
-    if reward_image.present?
-      reward_image.image.url
-    end
-  end
 end

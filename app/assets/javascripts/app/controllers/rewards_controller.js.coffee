@@ -1,5 +1,5 @@
-@app.controller "RewardsController", ["$scope", '$http', '$notification', 'RewardsFactory',
-  ($scope, $http, $notification, RewardsFactory) ->
+@app.controller "RewardsController", ["$scope", '$http', '$notification', 'RewardsFactory', 'CoachesRewardsFactory',
+  ($scope, $http, $notification, RewardsFactory, CoachesRewardsFactory) ->
     $scope.defaultRewardSelection = (index) ->
       $scope.selectedDefaultReward = $scope.defaultRewards[index]
       $scope.selectedReward = null

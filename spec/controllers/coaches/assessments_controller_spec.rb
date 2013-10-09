@@ -67,7 +67,7 @@ describe Coaches::AssessmentsController do
 
   describe 'PUT update' do
     let!(:drill) { create(:drill) }
-    let!(:assessment) { create(:assessment, :name => 'old_name') }
+    let!(:assessment) { create(:assessment, :name => 'old_name', :coach => coach) }
     let!(:exercise) { create(:exercise, :repetitions => 5, :drill => drill, :assessment => assessment) }
 
     let(:valid_params) do
@@ -127,7 +127,7 @@ describe Coaches::AssessmentsController do
 
   describe 'delete DESTROY' do
     let!(:drill) { create(:drill) }
-    let!(:assessment) { create(:assessment) }
+    let!(:assessment) { create(:assessment, :coach => coach) }
     let!(:exercise) { create(:exercise, :drill => drill, :assessment => assessment) }
 
     let(:valid_params) {{ :id => assessment.id }}

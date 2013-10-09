@@ -7,7 +7,7 @@
 
     $scope.checkName = (data) ->
       if (data.length == 0)
-        return "Username should be present"
+        return "Name should be present"
 
     $scope.updateAssessment = ->
       @selectedAssessment['exercises_attributes'] = @selectedAssessment['exercises']

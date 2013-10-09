@@ -1,7 +1,7 @@
 class Coaches::AssessmentsController < ApplicationController
   authorize_resource
-  before_filter :load_assessment, :only => [:show, :update, :destroy]
   before_filter :load_coach
+  before_filter :load_assessment, :only => [:show, :update, :destroy]
 
   def new
     @drills = Drill.all
@@ -45,11 +45,11 @@ class Coaches::AssessmentsController < ApplicationController
     params[:assessment].permit(:name, :description, :exercises_attributes => [:id, :repetitions])
   end
 
-  def load_assessment
-    @assessment = Assessment.find(params[:id])
-  end
-
   def load_coach
     @coach = current_user.role
+  end
+
+  def load_assessment
+    @assessment = @coach.assessments.find(params[:id])
   end
 end

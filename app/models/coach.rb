@@ -7,6 +7,8 @@ class Coach < ActiveRecord::Base
   has_many :assessments
   has_many :motivations, :dependent => :destroy
   has_many :invitations, :dependent => :destroy
+  has_many :rewards, :as => :creator
+  has_many :reward_images, :as => :creator
 
   has_and_belongs_to_many :players, -> { uniq }
 

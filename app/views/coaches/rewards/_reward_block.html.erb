@@ -1,0 +1,17 @@
+<div class="brd">
+  <div ng-hide='selectedReward || selectedDefaultReward || newReward' >
+    <%= render 'coaches/rewards/reward_block/reward_dummy' %>
+  </div>
+
+  <div ng-show='selectedDefaultReward'>
+    <%= render 'coaches/rewards/reward_block/default_reward' %>
+  </div>
+
+  <div ng-show='selectedReward'>
+    <%= render 'coaches/rewards/reward_block/custom_reward' %>
+  </div>
+
+  <div ng-show='newReward'>
+    <%= render 'coaches/rewards/reward_block/new_reward' %>
+  </div>
+</div>

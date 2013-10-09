@@ -1,16 +1,42 @@
-<div class="reward row">
-  <div class="col-md-3">
-    <img src="{{selectedReward.image_url}}" alt="{{selectedReward.name}}"/>
-  </div>
-  <div class="col-md-9">
-    <div class="row">
-      <div class="col-md-3">
-        <p><b>Name:</b></p>
-        <p><b>Description:</b></p>
+<div class="reward">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="row reward-image">
+        <img src="{{selectedReward.image_url}}" alt="{{selectedReward.name}}"/>
       </div>
-      <div class="col-md-9">
-        <p> {{selectedReward.name}} </p>
-        <p> {{selectedReward.description}} </p>
+      <div class="buttons">
+        <div class="row">
+          <%= link_to "Update reward", '', :remote => true, :class => "btn btn-warning", 'ng-click' => 'updateReward()' %>
+        </div>
+        <div class="row">
+          <%= link_to "Remove reward", '', :remote => true, :class => "btn btn-danger", 'ng-click' => 'removeReward()' %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-2">
+          <p><b>Name:</b></p>
+        </div>
+        <div class="col-md-10">
+          <p>
+            <a href="#" editable-text="selectedReward.name" onbeforesave="checkName($data)">
+              {{selectedReward.name}}
+            </a>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <p><b>Description:</b></p>
+        </div>
+        <div class="col-md-10">
+          <p>
+            <a href="#" editable-textarea="selectedReward.description" e-rows="7" e-cols="30">
+              {{selectedReward.description || 'none'}}
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   </div>

@@ -37,4 +37,34 @@
       ).error (data) ->
         $notification.error("Error", data['message'])
 
+    $scope.checkName = (data) ->
+      if (data.length == 0)
+        return "Name should be present"
+
+    $scope.createReward = ->
+      CoachesRewardsFactory.save({reward: @newReward},
+      (success_data) ->
+        $scope.rewards = success_data['rewards']
+        $scope.newReward = {}
+        $notification.success("Success", "Reward was created successfully")
+      ,(error_result) ->
+        $notification.error("Error", error_result['data']['message']))
+
+    $scope.updateReward = ->
+      CoachesRewardsFactory.update({id: @selectedReward.id, reward: @selectedReward},
+      (success_data) ->
+        $scope.rewards = success_data['rewards']
+        $notification.success("Success", "Reward was updated successfully")
+      ,(error_result) ->
+        $notification.error("Error", error_result['data']['message']))
+
+    $scope.removeReward = ->
+      if (confirm('Are you sure you want to delete reward?'))
+        CoachesRewardsFactory.delete({id: @selectedReward.id},
+        (success_data) ->
+          $scope.rewards = success_data['rewards']
+          $scope.selectedReward = null
+          $notification.success("Success", "Reward was deleted successfully")
+        ,(error_result) ->
+          $notification.error("Error", error_result['data']['message']))
 ]

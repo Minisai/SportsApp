@@ -31,6 +31,7 @@
       TeamsFactory.save(@new_team,
         (success_data) ->
           $scope.teams = success_data['teams']
+          $scope.new_team = {}
           $notification.success("Success", success_data['message'])
         , (error_result) ->
           $notification.error("Error", error_result['data']['message']))

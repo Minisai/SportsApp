@@ -53,6 +53,7 @@ group :test do
   gem 'database_cleaner'
   gem "shoulda-matchers"
   gem 'simplecov', :require => false
+  gem 'ci_reporter'
 end
 
 group :production do

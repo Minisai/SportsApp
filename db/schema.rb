@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131008094226) do
+ActiveRecord::Schema.define(version: 20131025144900) do
 
   create_table "admins", force: true do |t|
     t.datetime "created_at"
@@ -53,15 +53,16 @@ ActiveRecord::Schema.define(version: 20131008094226) do
   end
 
   create_table "exercises", force: true do |t|
-    t.integer  "repetitions",   default: 1
+    t.integer  "repetitions", default: 1
     t.integer  "drill_id"
-    t.integer  "assessment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "suite_id"
+    t.string   "suite_type"
   end
 
-  add_index "exercises", ["assessment_id"], name: "index_exercises_on_assessment_id", using: :btree
   add_index "exercises", ["drill_id"], name: "index_exercises_on_drill_id", using: :btree
+  add_index "exercises", ["suite_id", "suite_type"], name: "index_exercises_on_suite_id_and_suite_type", using: :btree
 
   create_table "invitations", force: true do |t|
     t.integer  "player_id"

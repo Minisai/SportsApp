@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131025144900) do
+ActiveRecord::Schema.define(version: 20131025151836) do
 
   create_table "admins", force: true do |t|
     t.datetime "created_at"
@@ -44,6 +44,14 @@ ActiveRecord::Schema.define(version: 20131025144900) do
   add_index "coaches_players", ["coach_id", "player_id"], name: "index_coaches_players_on_coach_id_and_player_id", using: :btree
   add_index "coaches_players", ["coach_id"], name: "index_coaches_players_on_coach_id", using: :btree
   add_index "coaches_players", ["player_id"], name: "index_coaches_players_on_player_id", using: :btree
+
+  create_table "days", force: true do |t|
+    t.integer  "plan_session_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "days", ["plan_session_id"], name: "index_days_on_plan_session_id", using: :btree
 
   create_table "drills", force: true do |t|
     t.string   "name"

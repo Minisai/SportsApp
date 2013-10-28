@@ -5,4 +5,5 @@ describe Reward do
 
   it { should belong_to(:creator) }
   it { should belong_to(:reward_image) }
+  it { should have_many(:plan_items) }
 end

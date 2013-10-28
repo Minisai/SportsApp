@@ -7,4 +7,5 @@ describe Assessment do
   it { should belong_to(:coach) }
   it { should have_many(:exercises) }
   it { should have_many(:drills).through(:exercises) }
+  it { should have_many(:plan_items) }
 end

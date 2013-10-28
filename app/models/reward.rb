@@ -4,6 +4,7 @@ class Reward < ActiveRecord::Base
 
   belongs_to :creator, :polymorphic => true
   belongs_to :reward_image
+  has_many :plan_items, :as => :item
 
   delegate :image_url, :to => :reward_image, :allow_nil => true
 

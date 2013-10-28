@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131008094226) do
+ActiveRecord::Schema.define(version: 20131028093546) do
 
   create_table "admins", force: true do |t|
     t.datetime "created_at"
@@ -45,6 +45,14 @@ ActiveRecord::Schema.define(version: 20131008094226) do
   add_index "coaches_players", ["coach_id"], name: "index_coaches_players_on_coach_id", using: :btree
   add_index "coaches_players", ["player_id"], name: "index_coaches_players_on_player_id", using: :btree
 
+  create_table "days", force: true do |t|
+    t.integer  "plan_session_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "days", ["plan_session_id"], name: "index_days_on_plan_session_id", using: :btree
+
   create_table "drills", force: true do |t|
     t.string   "name"
     t.text     "description"
@@ -53,15 +61,16 @@ ActiveRecord::Schema.define(version: 20131008094226) do
   end
 
   create_table "exercises", force: true do |t|
-    t.integer  "repetitions",   default: 1
+    t.integer  "repetitions", default: 1
     t.integer  "drill_id"
-    t.integer  "assessment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "suite_id"
+    t.string   "suite_type"
   end
 
-  add_index "exercises", ["assessment_id"], name: "index_exercises_on_assessment_id", using: :btree
   add_index "exercises", ["drill_id"], name: "index_exercises_on_drill_id", using: :btree
+  add_index "exercises", ["suite_id", "suite_type"], name: "index_exercises_on_suite_id_and_suite_type", using: :btree
 
   create_table "invitations", force: true do |t|
     t.integer  "player_id"
@@ -107,6 +116,33 @@ ActiveRecord::Schema.define(version: 20131008094226) do
 
   add_index "payments", ["pricing_plan_id"], name: "index_payments_on_pricing_plan_id", using: :btree
   add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
+
+  create_table "plan_items", force: true do |t|
+    t.integer  "plan_id"
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "plan_items", ["item_id", "item_type"], name: "index_plan_items_on_item_id_and_item_type", using: :btree
+  add_index "plan_items", ["plan_id"], name: "index_plan_items_on_plan_id", using: :btree
+
+  create_table "plan_sessions", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "plans", force: true do |t|
+    t.integer  "coach_id"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "plans", ["coach_id"], name: "index_plans_on_coach_id", using: :btree
 
   create_table "players", force: true do |t|
     t.string   "token"

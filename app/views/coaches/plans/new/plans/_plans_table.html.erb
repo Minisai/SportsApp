@@ -1,0 +1,27 @@
+<table>
+  <tbody ng-repeat='plan_item in plan_items'>
+    <tr class='brd' ng-class="{highlight:plan_item.selected}">
+      <td ng-click='planItemSelection(plan_item)'>
+        {{plan_item.item_type}} {{$index}}
+        <span ng-show="plan_item.selected">
+          <span class='glyphicon plus-minus glyphicon-minus'></span>
+          <span class='glyphicon plus-minus glyphicon-chevron-down arrows' ng-click="planItemDownClick(); $event.stopPropagation()"></span>
+          <span class='glyphicon plus-minus glyphicon-chevron-up' ng-click="planItemUpClick(); $event.stopPropagation()"></span>
+        </span>
+      </td>
+    </tr>
+    <td ng-show="plan_item.item_type == 'PlanSession' && plan_item.selected">
+      <%= render 'coaches/plans/new/plans/days' %>
+    </td>
+  </tbody>
+
+  <tr class="brd add-plan-item" ng-click="addSessionClick()">
+    <td>Add Session <span class='glyphicon glyphicon-plus plus-minus'></span></td>
+  </tr>
+  <tr class="brd add-plan-item" ng-click="addAssessmentClick()">
+    <td>Add Assessment <span class='glyphicon glyphicon-plus plus-minus'></span></td>
+  </tr>
+  <tr class="brd add-plan-item" ng-click="addRewardClick()">
+    <td>Add Reward <span class='glyphicon glyphicon-plus plus-minus'></span></td>
+  </tr>
+</table>

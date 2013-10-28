@@ -20,21 +20,6 @@
   </form>
 </div>
 
-<div class='exercises-table'>
-  <table data-drop="true" data-jqyoui-options ng-model="droppedDrill" jqyoui-droppable="{onDrop: 'dropDrillHandler'}">
-    <tr class='brd' ng-repeat='exercise in exercises'>
-      <td>
-        {{exercise.name}}
-        <span class='glyphicon plus-minus glyphicon-minus' ng-click="removeDrillClick($index)" ng-show='true'></span>
-        <span class='repetitions'>
-          <a href="#" editable-text="exercise.repetitions" buttons="no">
-            {{exercise.repetitions}}
-          </a>
-        </span>
-      </td>
-    </tr>
-    <tr class='brd-white'>
-      <td> Drag & drop a drill from the left side to add to plan</td>
-    </tr>
-  </table>
+<div class='plans-table'>
+  <%= render 'coaches/plans/new/plans/plans_table' %>
 </div>

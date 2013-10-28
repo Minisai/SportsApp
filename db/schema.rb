@@ -117,6 +117,11 @@ ActiveRecord::Schema.define(version: 20131025151836) do
   add_index "payments", ["pricing_plan_id"], name: "index_payments_on_pricing_plan_id", using: :btree
   add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
 
+  create_table "plan_sessions", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "players", force: true do |t|
     t.string   "token"
     t.integer  "parent_id"

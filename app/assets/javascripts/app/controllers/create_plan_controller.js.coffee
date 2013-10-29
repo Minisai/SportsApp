@@ -1,10 +1,8 @@
-@app.controller "CreatePlanController", ["$scope", '$notification', "DrillsFactory",
-  ($scope, $notification, DrillsFactory) ->
-    $scope.planItems = []
+@app.controller "CreatePlanController", ["$scope", '$notification',
+  ($scope, $notification) ->
 
-    $scope.drillSelection = (drillId) ->
-      DrillsFactory.get {id: drillId}, (data) ->
-        $scope.selectedDrill = data["drill"]
+    $scope.planItems = []
+    $scope.droppedDrill = {}
 
     addOrRemoveSelectedFlag = (object) ->
       if object.selected == true
@@ -19,18 +17,13 @@
           planItem.name = "Session " + i
           i++
 
+    # For plan items
     $scope.addSessionClick = ->
       $scope.planItems.push({itemType: 'PlanSession', days: []})
       calculateSessionNumbers()
 
     $scope.planItemSelection = (planItem) ->
       addOrRemoveSelectedFlag(planItem)
-
-    $scope.addDayClick = (planItem) ->
-      planItem.days.push({exercises: []})
-
-    $scope.daySelection = (day) ->
-      addOrRemoveSelectedFlag(day)
 
     $scope.planItemUpClick = (index) ->
       if index > 0
@@ -48,22 +41,45 @@
       deletedPlanItem = $scope.planItems.splice(index, 1)[0]
       calculateSessionNumbers() if deletedPlanItem.itemType == 'PlanSession'
 
+    # For days
+    $scope.addDayClick = (planItem) ->
+      planItem.days.push({exercises: []})
+
+    $scope.daySelection = (day) ->
+      addOrRemoveSelectedFlag(day)
+
     $scope.dayUpClick = (planItem, index) ->
       if index > 0
         day = planItem.days.splice(index, 1)[0]
         planItem.days.splice(index-1, 0, day)
 
     $scope.dayDownClick = (planItem, index) ->
-      if index < $scope.planItems.length
+      if index < planItem.days.length
         day = planItem.days.splice(index, 1)[0]
         planItem.days.splice(index+1, 0, day)
-        calculateDayNumbers() if planItem.itemType == 'PlanSession'
 
     $scope.dayRemoveClick = (planItem, index) ->
       planItem.days.splice(index, 1)[0]
+
+    # For drills
+    $scope.drillSelection = (drill) ->
+      $scope.selectedDrill = drill
+
+    $scope.dragDrillHandler = (event, ui, drill) ->
+      $scope.draggedDrill = drill
+
+    $scope.dropDrillHandler = (event, ui, plan_item_index, day_index) ->
+      $scope.planItems[plan_item_index].days[day_index].exercises.push({
+        drillId: $scope.draggedDrill.id,
+        name: $scope.draggedDrill.name,
+        repetitions: 1
+      })
+
+    $scope.removeDrillClick = (day, index) ->
+      day.exercises.splice(index, 1)
 ]
 
-app.directive "tableSelect", ->
+@app.directive "tableSelect", ->
   replace: false
   templateUrl: "/angular/templates/table_select.html"
   scope:

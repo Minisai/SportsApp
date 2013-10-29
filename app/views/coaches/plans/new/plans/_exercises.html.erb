@@ -1,9 +1,9 @@
 <div>
-  <table class='exercises' data-drop="true" data-jqyoui-options ng-model="droppedDrill" jqyoui-droppable="{onDrop: 'dropDrillHandler'}">
+  <table class='exercises' data-drop="true" data-jqyoui-options ng-model="droppedDrill" jqyoui-droppable="{onDrop: 'dropDrillHandler({{$parent.$index}}, {{$index}})'}">
     <tr class='brd' ng-repeat='exercise in day.exercises'>
       <td>
         {{exercise.name}}
-        <span class='glyphicon plus-minus glyphicon-minus' ng-click="removeDrillClick($index)" ng-show='true'></span>
+        <span class='glyphicon plus-minus glyphicon-minus' ng-click="removeDrillClick(day, $index)" ng-show='true'></span>
         <span class='repetitions'>
           <a href="#" editable-text="exercise.repetitions" buttons="no">
             {{exercise.repetitions}}
@@ -12,7 +12,7 @@
       </td>
     </tr>
     <tr class='brd-white'>
-      <td> Drag & drop a drill from the left side to add to assessment</td>
+      <td> {{day.exercises.length}} Drag & drop a drill from the left side to add to assessment</td>
     </tr>
   </table>
 </div>

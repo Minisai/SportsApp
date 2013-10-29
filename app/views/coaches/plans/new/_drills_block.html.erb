@@ -12,7 +12,7 @@
 <h5>Drills:</h5>
 <div class='brd drills-table' ng-init="drills = <%= json_for(@drills) %>">
   <table class="table">
-    <tr ng-click='drillSelection(drill.id)' ng-repeat="drill in drills" ng-class="{highlight:selectedDrill.id == drill.id }"
+    <tr ng-click='drillSelection(drill)' ng-repeat="drill in drills" ng-class="{highlight:selectedDrill.id == drill.id }"
         data-drag="true" data-jqyoui-options="{revert: 'invalid', appendTo: 'body', helper: 'clone'}"
         ng-model="droppedDrill" jqyoui-draggable="{animate:true, onStart: 'dragDrillHandler({{drill}})' }">
       <td>{{drill.name}}</td>

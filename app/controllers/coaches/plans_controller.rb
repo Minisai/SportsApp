@@ -4,8 +4,8 @@ class Coaches::PlansController < ApplicationController
 
   def new
     @drills = Drill.all
-    @reward = @coach.rewards + Reward.default
-    @reward = @coach.assessments
+    @rewards = @coach.rewards + Reward.default
+    @assessments = @coach.assessments
   end
 
   private

@@ -1,9 +1,9 @@
 @app.controller "CreatePlanController", ["$scope", '$notification', "DrillsFactory",
   ($scope, $notification, DrillsFactory) ->
-    $scope.plan_items = []
+    $scope.planItems = []
 
-    $scope.drillSelection = (drill_id) ->
-      DrillsFactory.get {id: drill_id}, (data) ->
+    $scope.drillSelection = (drillId) ->
+      DrillsFactory.get {id: drillId}, (data) ->
         $scope.selectedDrill = data["drill"]
 
     addOrRemoveSelectedFlag = (object) ->
@@ -14,54 +14,51 @@
 
     calculateSessionNumbers = ->
       i = 1
-      for plan_item in $scope.plan_items
-        if plan_item.item_type == 'PlanSession'
-          plan_item.name = "Session " + i
+      for planItem in $scope.planItems
+        if planItem.itemType == 'PlanSession'
+          planItem.name = "Session " + i
           i++
 
     $scope.addSessionClick = ->
-      $scope.plan_items.push({item_type: 'PlanSession', days: []})
+      $scope.planItems.push({itemType: 'PlanSession', days: []})
       calculateSessionNumbers()
 
-    $scope.addAssessmentClick = ->
-      $scope.plan_items.push({item_type: 'Assessment', name: 'New  Assessment'})
+    $scope.planItemSelection = (planItem) ->
+      addOrRemoveSelectedFlag(planItem)
 
-    $scope.addRewardClick = ->
-      $scope.plan_items.push({item_type: 'Reward', name: 'New Reward'})
-
-    $scope.planItemSelection = (plan_item) ->
-      addOrRemoveSelectedFlag(plan_item)
-
-    $scope.addDayClick = (plan_item) ->
-      plan_item.days.push({exercises: []})
+    $scope.addDayClick = (planItem) ->
+      planItem.days.push({exercises: []})
 
     $scope.daySelection = (day) ->
       addOrRemoveSelectedFlag(day)
 
     $scope.planItemUpClick = (index) ->
       if index > 0
-        plan_item = $scope.plan_items.splice(index, 1)[0]
-        $scope.plan_items.splice(index-1, 0, plan_item)
-        calculateSessionNumbers() if plan_item.item_type == 'PlanSession'
+        planItem = $scope.planItems.splice(index, 1)[0]
+        $scope.planItems.splice(index-1, 0, planItem)
+        calculateSessionNumbers() if planItem.itemType == 'PlanSession'
 
     $scope.planItemDownClick = (index) ->
-      if index < $scope.plan_items.length
-        plan_item = $scope.plan_items.splice(index, 1)[0]
-        $scope.plan_items.splice(index+1, 0, plan_item)
-        calculateSessionNumbers() if plan_item.item_type == 'PlanSession'
+      if index < $scope.planItems.length
+        planItem = $scope.planItems.splice(index, 1)[0]
+        $scope.planItems.splice(index+1, 0, planItem)
+        calculateSessionNumbers() if planItem.itemType == 'PlanSession'
 
     $scope.planItemRemoveClick = (index) ->
-      deleted_plan_item = $scope.plan_items.splice(index, 1)[0]
-      calculateSessionNumbers() if deleted_plan_item.item_type == 'PlanSession'
+      deletedPlanItem = $scope.planItems.splice(index, 1)[0]
+      calculateSessionNumbers() if deletedPlanItem.itemType == 'PlanSession'
 ]
 
 app.directive "tableSelect", ->
-  replace: true
+  replace: false
   templateUrl: "/angular/templates/table_select.html"
   scope:
     items: "="
     selected: "="
-
+    itemType: "="
+    planItems: "="
   link: (scope) ->
-    scope.selectItem = (item) ->
-      scope.selected = item
+    scope.selectItem = ->
+      scope.selectedPlanItem.itemType = scope.itemType
+      scope.planItems.push(scope.selectedPlanItem)
+      scope.selectedPlanItem = null

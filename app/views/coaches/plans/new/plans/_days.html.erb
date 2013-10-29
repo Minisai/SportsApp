@@ -1,6 +1,6 @@
 <div>
   <table class="days">
-    <tbody  ng-repeat='day in plan_item.days'>
+    <tbody  ng-repeat='day in planItem.days'>
       <tr class='brd' ng-click='daySelection(day)' ng-class="{highlight:day.selected}">
         <td>
           Day {{$index}}
@@ -15,7 +15,7 @@
         <%= render 'coaches/plans/new/plans/exercises' %>
       </td>
     </tbody>
-    <tr class="brd add-plan-item" ng-click="addDayClick(plan_item)">
+    <tr class="brd add-plan-item" ng-click="addDayClick(planItem)">
       <td>Add Day <span class='glyphicon glyphicon-plus plus-minus'></span></td>
     </tr>
   </table>

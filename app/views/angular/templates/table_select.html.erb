@@ -1,6 +1,8 @@
-<div class="table-select {{name}}" ng-init="open = false">
-  <div href ng-click="open = !open" class="table-select-label">Status</div>
-  <ul ng-show="open" class="table-select-list">
-    <li ng-repeat="item in items" ng-click="selectItem(item)" ng-class="{selected: item == selected}">{{item.name}}</li>
-  </ul>
-</div>
+<td href ng-click="open = !open">
+  <span>
+    <span ng-show="!open"> Add {{itemType}} <span class='glyphicon glyphicon-plus plus-minus'></span> </span>
+    <select ng-model="selectedPlanItem" ng-options="i.name for i in items" class='row-replacer' ng-show="open" ng-change="selectItem()">
+      <option value="">-- none --</option>
+    </select>
+  </span>
+</td>

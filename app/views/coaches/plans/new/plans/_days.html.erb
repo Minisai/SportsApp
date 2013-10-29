@@ -5,9 +5,9 @@
         <td>
           Day {{$index}}
           <span ng-show="day.selected">
-            <span class='glyphicon plus-minus glyphicon-minus'></span>
-            <span class='glyphicon plus-minus glyphicon-chevron-down arrows'></span>
-            <span class='glyphicon plus-minus glyphicon-chevron-up'></span>
+            <span class='glyphicon plus-minus glyphicon-minus' ng-click="dayRemoveClick(planItem, $index); $event.stopPropagation()"></span>
+            <span class='glyphicon plus-minus glyphicon-chevron-down arrows' ng-click="dayDownClick(planItem, $index); $event.stopPropagation()"></span>
+            <span class='glyphicon plus-minus glyphicon-chevron-up' ng-click="dayUpClick(planItem, $index); $event.stopPropagation()"></span>
           </span>
         </td>
       </tr>

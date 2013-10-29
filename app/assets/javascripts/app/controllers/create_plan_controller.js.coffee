@@ -47,6 +47,20 @@
     $scope.planItemRemoveClick = (index) ->
       deletedPlanItem = $scope.planItems.splice(index, 1)[0]
       calculateSessionNumbers() if deletedPlanItem.itemType == 'PlanSession'
+
+    $scope.dayUpClick = (planItem, index) ->
+      if index > 0
+        day = planItem.days.splice(index, 1)[0]
+        planItem.days.splice(index-1, 0, day)
+
+    $scope.dayDownClick = (planItem, index) ->
+      if index < $scope.planItems.length
+        day = planItem.days.splice(index, 1)[0]
+        planItem.days.splice(index+1, 0, day)
+        calculateDayNumbers() if planItem.itemType == 'PlanSession'
+
+    $scope.dayRemoveClick = (planItem, index) ->
+      planItem.days.splice(index, 1)[0]
 ]
 
 app.directive "tableSelect", ->

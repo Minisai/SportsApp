@@ -1,5 +1,5 @@
-@app.controller "CreatePlanController", ["$scope", '$notification',
-  ($scope, $notification) ->
+@app.controller "CreatePlanController", ["$scope", '$notification', 'PlansFactory'
+  ($scope, $notification, PlansFactory) ->
 
     $scope.planItems = []
     $scope.droppedDrill = {}
@@ -77,6 +77,16 @@
 
     $scope.removeDrillClick = (day, index) ->
       day.exercises.splice(index, 1)
+
+    $scope.createPlan = ->
+      plan = {}
+      plan['plan_item_attributes'] = $scope.planItems
+      PlansFactory.save({plan: plan},
+        (success_data) ->
+          $scope.plan_items = []
+          $notification.success("Success", success_data['message'])
+        ,(error_result) ->
+          $notification.error("Error", error_result['data']['message']))
 ]
 
 @app.directive "tableSelect", ->

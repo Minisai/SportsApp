@@ -8,6 +8,15 @@ class Coaches::PlansController < ApplicationController
     @assessments = @coach.assessments
   end
 
+  def create
+    plan = @coach.plans.create
+    if plan.persisted?
+      render :json => {:message => "Plan was created successfully"}
+    else
+      render :json => {:message => plan.errors.full_messages.join}, :status => :bad_request
+    end
+  end
+
   private
   def load_coach
     @coach = current_user.role

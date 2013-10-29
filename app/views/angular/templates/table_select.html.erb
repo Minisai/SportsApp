@@ -1,0 +1,6 @@
+<div class="table-select {{name}}" ng-init="open = false">
+  <div href ng-click="open = !open" class="table-select-label">Status</div>
+  <ul ng-show="open" class="table-select-list">
+    <li ng-repeat="item in items" ng-click="selectItem(item)" ng-class="{selected: item == selected}">{{item.name}}</li>
+  </ul>
+</div>

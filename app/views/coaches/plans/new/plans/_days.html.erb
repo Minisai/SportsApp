@@ -1,9 +1,9 @@
 <div>
   <table class="days">
-    <tbody  ng-repeat='day in planItem.days'>
+    <tbody  ng-repeat='day in planItem.days_attributes'>
       <tr class='brd' ng-click='daySelection(day)' ng-class="{highlight:day.selected}">
         <td>
-          Day {{$index}}
+          Day {{$index + 1}}
           <span ng-show="day.selected">
             <span class='glyphicon plus-minus glyphicon-minus' ng-click="dayRemoveClick(planItem, $index); $event.stopPropagation()"></span>
             <span class='glyphicon plus-minus glyphicon-chevron-down arrows' ng-click="dayDownClick(planItem, $index); $event.stopPropagation()"></span>

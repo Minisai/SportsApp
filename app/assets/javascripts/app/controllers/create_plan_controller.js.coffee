@@ -1,6 +1,6 @@
 @app.controller "CreatePlanController", ["$scope", '$notification', 'PlansFactory'
   ($scope, $notification, PlansFactory) ->
-
+    $scope.plan = {}
     $scope.planItems = []
     $scope.droppedDrill = {}
 
@@ -13,13 +13,13 @@
     calculateSessionNumbers = ->
       i = 1
       for planItem in $scope.planItems
-        if planItem.itemType == 'PlanSession'
+        if planItem.item_type == 'PlanSession'
           planItem.name = "Session " + i
           i++
 
     # For plan items
     $scope.addSessionClick = ->
-      $scope.planItems.push({itemType: 'PlanSession', days: []})
+      $scope.planItems.push({item_type: 'PlanSession', days_attributes: []})
       calculateSessionNumbers()
 
     $scope.planItemSelection = (planItem) ->
@@ -29,37 +29,37 @@
       if index > 0
         planItem = $scope.planItems.splice(index, 1)[0]
         $scope.planItems.splice(index-1, 0, planItem)
-        calculateSessionNumbers() if planItem.itemType == 'PlanSession'
+        calculateSessionNumbers() if planItem.item_type == 'PlanSession'
 
     $scope.planItemDownClick = (index) ->
       if index < $scope.planItems.length
         planItem = $scope.planItems.splice(index, 1)[0]
         $scope.planItems.splice(index+1, 0, planItem)
-        calculateSessionNumbers() if planItem.itemType == 'PlanSession'
+        calculateSessionNumbers() if planItem.item_type == 'PlanSession'
 
     $scope.planItemRemoveClick = (index) ->
       deletedPlanItem = $scope.planItems.splice(index, 1)[0]
-      calculateSessionNumbers() if deletedPlanItem.itemType == 'PlanSession'
+      calculateSessionNumbers() if deletedPlanItem.item_type == 'PlanSession'
 
     # For days
     $scope.addDayClick = (planItem) ->
-      planItem.days.push({exercises: []})
+      planItem.days_attributes.push({exercises_attributes: []})
 
     $scope.daySelection = (day) ->
       addOrRemoveSelectedFlag(day)
 
     $scope.dayUpClick = (planItem, index) ->
       if index > 0
-        day = planItem.days.splice(index, 1)[0]
-        planItem.days.splice(index-1, 0, day)
+        day = planItem.days_attributes.splice(index, 1)[0]
+        planItem.days_attributes.splice(index-1, 0, day)
 
     $scope.dayDownClick = (planItem, index) ->
-      if index < planItem.days.length
-        day = planItem.days.splice(index, 1)[0]
-        planItem.days.splice(index+1, 0, day)
+      if index < planItem.days_attributes.length
+        day = planItem.days_attributes.splice(index, 1)[0]
+        planItem.days_attributes.splice(index+1, 0, day)
 
     $scope.dayRemoveClick = (planItem, index) ->
-      planItem.days.splice(index, 1)[0]
+      planItem.days_attributes.splice(index, 1)[0]
 
     # For drills
     $scope.drillSelection = (drill) ->
@@ -69,19 +69,18 @@
       $scope.draggedDrill = drill
 
     $scope.dropDrillHandler = (event, ui, plan_item_index, day_index) ->
-      $scope.planItems[plan_item_index].days[day_index].exercises.push({
-        drillId: $scope.draggedDrill.id,
+      $scope.planItems[plan_item_index].days_attributes[day_index].exercises_attributes.push({
+        drill_id: $scope.draggedDrill.id,
         name: $scope.draggedDrill.name,
         repetitions: 1
       })
 
     $scope.removeDrillClick = (day, index) ->
-      day.exercises.splice(index, 1)
+      day.exercises_attributes.splice(index, 1)
 
+    # For plan
     $scope.createPlan = ->
-      plan = {}
-      plan['plan_item_attributes'] = $scope.planItems
-      PlansFactory.save({plan: plan},
+      PlansFactory.save({plan: $scope.plan, plan_items: $scope.planItems},
         (success_data) ->
           $scope.plan_items = []
           $notification.success("Success", success_data['message'])
@@ -99,6 +98,6 @@
     planItems: "="
   link: (scope) ->
     scope.selectItem = ->
-      scope.selectedPlanItem.itemType = scope.itemType
+      scope.selectedPlanItem.item_type = scope.itemType
       scope.planItems.push(scope.selectedPlanItem)
       scope.selectedPlanItem = null

@@ -9,7 +9,7 @@ class Coaches::PlansController < ApplicationController
   end
 
   def create
-    plan = @coach.plans.create
+    plan = @coach.plans.create(plan_params[:plan].merge(:plan_items_attributes => PlanItem.build_from(plan_params[:plan_items])))
     if plan.persisted?
       render :json => {:message => "Plan was created successfully"}
     else
@@ -18,6 +18,12 @@ class Coaches::PlansController < ApplicationController
   end
 
   private
+  def plan_params
+    params.permit(:plan => [:name, :description],
+                  :plan_items => [:item_type, :id,
+                                  :days_attributes => [:exercises_attributes => [:drill_id, :repetitions]]])
+  end
+
   def load_coach
     @coach = current_user.role
   end

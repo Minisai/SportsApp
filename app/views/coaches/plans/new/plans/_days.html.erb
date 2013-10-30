@@ -1,0 +1,22 @@
+<div>
+  <table class="days">
+    <tbody  ng-repeat='day in planItem.days_attributes'>
+      <tr class='brd' ng-click='daySelection(day)' ng-class="{highlight:day.selected}">
+        <td>
+          Day {{$index + 1}}
+          <span ng-show="day.selected">
+            <span class='glyphicon plus-minus glyphicon-minus' ng-click="dayRemoveClick(planItem, $index); $event.stopPropagation()"></span>
+            <span class='glyphicon plus-minus glyphicon-chevron-down arrows' ng-click="dayDownClick(planItem, $index); $event.stopPropagation()"></span>
+            <span class='glyphicon plus-minus glyphicon-chevron-up' ng-click="dayUpClick(planItem, $index); $event.stopPropagation()"></span>
+          </span>
+        </td>
+      </tr>
+      <td ng-show="day.selected">
+        <%= render 'coaches/plans/new/plans/exercises' %>
+      </td>
+    </tbody>
+    <tr class="brd add-plan-item" ng-click="addDayClick(planItem)">
+      <td>Add Day <span class='glyphicon glyphicon-plus plus-minus'></span></td>
+    </tr>
+  </table>
+</div>

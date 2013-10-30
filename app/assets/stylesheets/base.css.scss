@@ -106,7 +106,7 @@ textarea.ng-invalid {
 }
 
 .highlight {
-  background-color: darkgrey;
+  background-color: skyblue;
 }
 
 .modal {
@@ -310,4 +310,45 @@ form.search-player {
   background: url(../images/bg-corner-percentage.png);
   background-position-y: 0px;
   background-position-x: -8px;
+}
+
+.add-plan-item {
+  background-color: deepskyblue;
+  color: black;
+}
+
+table.days {
+  margin-left: 5%;
+  width: 664px !important;
+}
+
+table.days table.exercises {
+  margin-left: 5%;
+  width: 629px;
+}
+
+.plans-table table {
+  width: 700px;
+}
+
+select.row-replacer {
+  width: 695px;
+}
+
+.plans-table span.repetitions {
+  padding-right: 300px;
+  float: right;
+}
+
+.plans-table span input {
+  width: 50px;
+}
+
+.plans-table {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+span.arrows {
+  margin: 0 40px 0 5px;
 }

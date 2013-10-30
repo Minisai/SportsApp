@@ -5,8 +5,10 @@ describe Coaches::AssessmentsController do
 
   describe "GET :new" do
     let!(:drills) { create_list(:drill, 10) }
-    before { controller.stub(:current_user => coach.user) }
-    before { get :new }
+    before do
+      controller.stub(:current_user => coach.user)
+      get :new
+    end
 
     it "should assigns all drills to drills" do
       expect(assigns(:drills)).to match_array(drills)

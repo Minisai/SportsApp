@@ -1,0 +1,23 @@
+<table ng-init="assessments = <%= json_for(@assessments) %>; rewards = <%= json_for(@rewards) %>">
+  <tbody ng-repeat='planItem in planItems'>
+    <tr class='brd' ng-class="{highlight:planItem.selected}">
+      <td ng-click='planItemSelection(planItem)'>
+        {{planItem.name}}
+        <span ng-show="planItem.selected">
+          <span class='glyphicon plus-minus glyphicon-minus' ng-click="planItemRemoveClick($index); $event.stopPropagation()"></span>
+          <span class='glyphicon plus-minus glyphicon-chevron-down arrows' ng-click="planItemDownClick($index); $event.stopPropagation()"></span>
+          <span class='glyphicon plus-minus glyphicon-chevron-up' ng-click="planItemUpClick($index); $event.stopPropagation()"></span>
+        </span>
+      </td>
+    </tr>
+    <td ng-show="planItem.item_type == 'PlanSession' && planItem.selected">
+      <%= render 'coaches/plans/new/plans/days' %>
+    </td>
+  </tbody>
+
+  <tr class="brd add-plan-item" ng-click="addSessionClick()">
+    <td>Add Session <span class='glyphicon glyphicon-plus plus-minus'></span></td>
+  </tr>
+  <tr class='brd add-plan-item' table-select item-type="'Assessment'" plan-items="planItems" items="assessments" selected="selectedAssessment"></tr>
+  <tr class='brd add-plan-item' table-select item-type="'Reward'" plan-items="planItems" items="rewards" selected="selectedReward"></tr>
+</table>

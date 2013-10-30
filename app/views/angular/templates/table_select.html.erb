@@ -1,0 +1,8 @@
+<td href ng-click="open = !open">
+  <span>
+    <span ng-show="!open"> Add {{itemType}} <span class='glyphicon glyphicon-plus plus-minus'></span> </span>
+    <select ng-model="selectedPlanItem" ng-options="i.name for i in items" class='row-replacer' ng-show="open" ng-change="selectItem()">
+      <option value="">-- none --</option>
+    </select>
+  </span>
+</td>

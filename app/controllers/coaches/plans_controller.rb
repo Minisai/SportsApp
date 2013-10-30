@@ -9,8 +9,9 @@ class Coaches::PlansController < ApplicationController
   end
 
   def create
-    plan = @coach.plans.create(plan_params[:plan].merge(:plan_items_attributes => PlanItem.build_from(plan_params[:plan_items])))
+    plan = @coach.plans.create(plan_params[:plan])
     if plan.persisted?
+      plan.update_attributes(:plan_items_attributes => PlanItem.build_from(plan_params[:plan_items]))
       render :json => {:message => "Plan was created successfully"}
     else
       render :json => {:message => plan.errors.full_messages.join}, :status => :bad_request

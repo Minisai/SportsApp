@@ -60,7 +60,7 @@ describe PlanItem do
 
   context :destroy_plan_session do
     let!(:coach) { create(:coach_user).role }
-    let!(:plan) { create(:plan, :with_plan_items, :coach => coach) }
+    let!(:plan) { create(:plan, :with_plan_items, :creator => coach) }
 
     subject { -> { plan.destroy } }
 

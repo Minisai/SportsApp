@@ -1,7 +1,7 @@
 class Plan < ActiveRecord::Base
   validates :name, :presence => true, :uniqueness => true
 
-  belongs_to :coach
+  belongs_to :creator, :polymorphic => true
   has_many :plan_items, :dependent => :destroy
   has_many :assignee_plans, :dependent => :destroy
   has_many :assignees, :through => :assignee_plans

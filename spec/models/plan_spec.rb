@@ -6,4 +6,6 @@ describe Plan do
 
   it { should belong_to(:coach) }
   it { should have_many(:plan_items) }
+  it { should have_many(:assignee_plans) }
+  it { should have_many(:assignees) }
 end

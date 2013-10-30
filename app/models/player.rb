@@ -5,6 +5,8 @@ class Player < ActiveRecord::Base
 
   has_many :motivation_players
   has_many :motivations, :through => :motivation_players
+  has_many :assignee_plans, :as => :assignee, :dependent => :destroy
+  has_many :plans, :through => :assignee_plans
 
   has_and_belongs_to_many :coaches, -> { uniq }
   has_and_belongs_to_many :teams, -> { uniq }

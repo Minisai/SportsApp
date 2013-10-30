@@ -6,6 +6,8 @@ describe Player do
 
   it { should have_many(:motivation_players) }
   it { should have_many(:motivations).through(:motivation_players) }
+  it { should have_many(:assignee_plans) }
+  it { should have_many(:plans) }
 
   it { should have_and_belong_to_many(:coaches) }
   it { should have_and_belong_to_many(:teams) }

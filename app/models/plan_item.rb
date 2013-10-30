@@ -1,6 +1,9 @@
 class PlanItem < ActiveRecord::Base
   validates :item, :presence => true
   belongs_to :item, :polymorphic => true
+  belongs_to :plan
+
+  after_destroy :destroy_plan_session
 
   class << self
     def build_from(plan_items_params)
@@ -17,6 +20,14 @@ class PlanItem < ActiveRecord::Base
         end
       end
       result
+    end
+  end
+
+  private
+
+  def destroy_plan_session
+    if item_type == 'PlanSession'
+      item.destroy
     end
   end
 end

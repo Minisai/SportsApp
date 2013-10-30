@@ -8,8 +8,9 @@
               params[:action] == 'new' %>">
         <%= link_to "Create Plan", new_coaches_plan_path %>
       </li>
-      <li>
-        <%= link_to "Assign Plan" %>
+      <li class="<%= 'active' if params[:controller] == 'coaches/plans' &&
+              params[:action] == 'assign' %>">
+        <%= link_to "Assign Plan", assign_coaches_plans_path %>
       </li>
       <li class="<%= 'active' if params[:controller] == 'coaches/assessments' &&
               params[:action] == 'index' %>">

@@ -18,6 +18,10 @@ class Coaches::PlansController < ApplicationController
     end
   end
 
+  def assign
+
+  end
+
   private
   def plan_params
     params.permit(:plan => [:name, :description],

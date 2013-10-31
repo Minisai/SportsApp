@@ -230,19 +230,19 @@ form.search-player {
   margin-top: 10px;
 }
 
-.default-rewards {
+.default-rewards, .default-plans {
   margin-bottom: 20px;
 }
-.default-rewards-table {
+.default-rewards-table, .default-plans-table {
   max-height: 150px;
   overflow-y: auto;
 }
-.custom-rewards-table {
+.custom-rewards-table, .custom-plans-table {
   max-height: 150px;
   overflow-y: auto;
 }
 
-.reward-block .brd {
+.reward-block,.assign-block .brd {
   height: 480px;
 }
 
@@ -351,4 +351,13 @@ select.row-replacer {
 
 span.arrows {
   margin: 0 40px 0 5px;
+}
+
+select.assignee {
+  width: 200px;
+  margin-right: 50px;
+}
+
+#assign-plan-title {
+  margin-left: 15px;
 }

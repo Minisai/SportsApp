@@ -1,0 +1,12 @@
+<div class='row'>
+  <h5 id='assign-plan-title'>
+    Assign Plan:
+    <select class="form-control assignee pull-right" ng-model='selectedAssignee'
+            ng-options='value for (key, value) in assigneeTypes' ng-init= "selectedAssignee = 'Team'">
+    </select>
+  </h5>
+</div>
+<div id='assign-plan-desc'>
+  <p>Select from the drop down if you are assigning plans to players or a team. Drag & drop the plan onto the player or team to assign it</p>
+  <p>Clicking the X will remove that from their active plan.</p>
+</div>

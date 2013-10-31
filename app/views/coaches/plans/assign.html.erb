@@ -1,1 +1,13 @@
 <%= render 'coaches/dev_plan_navigation' %>
+
+<div class="row" ng-controller='AssignPlanController'>
+  <div class="col-md-4 plans-list">
+    <h5>Drag & Drop a plan to team or player: </h5>
+    <%= render 'coaches/plans/assign/plans_list' %>
+  </div>
+  <div class="col-md-8">
+    <div class="assign-block">
+      <%= render 'coaches/plans/assign/assign_block' %>
+    </div>
+  </div>
+</div>

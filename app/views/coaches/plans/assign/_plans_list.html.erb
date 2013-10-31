@@ -1,0 +1,23 @@
+<div class="brd default-plans">
+  <h5>Sports Hub Plans</h5>
+  <div class="default-plans-table" ng-init="defaultPlans = <%= json_for(@default_plans) %>">
+    <table class="table">
+      <tr ng-repeat="defaultPlan in defaultPlans">
+        <td>{{defaultPlan.name}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="brd custom-plans">
+  <h5>Custom Plans</h5>
+  <div class="create-table-button pull-right">
+    <%= link_to 'Create New Plan', new_coaches_plan_path, :class => 'btn btn-success' %>
+  </div>
+  <div class="custom-plans-table" ng-init="plans = <%= json_for(@plans) %>">
+    <table class="table">
+      <tr ng-repeat="plan in plans">
+        <td>{{plan.name}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

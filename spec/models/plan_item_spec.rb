@@ -9,7 +9,7 @@ describe PlanItem do
     let!(:coach) { create(:coach_user).role }
     let!(:drills) { create_list(:drill, 4) }
     let!(:reward) { create(:reward, :creator => coach) }
-    let!(:assessment) { create(:assessment, :coach => coach) }
+    let!(:assessment) { create(:assessment, :creator => coach) }
 
     let(:valid_params) do
       [ {

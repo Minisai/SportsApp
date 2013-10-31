@@ -19,7 +19,8 @@ class Coaches::PlansController < ApplicationController
   end
 
   def assign
-
+    @plans = @coach.plans
+    @default_plans = Plan.default
   end
 
   private

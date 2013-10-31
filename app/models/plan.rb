@@ -7,4 +7,6 @@ class Plan < ActiveRecord::Base
   has_many :assignees, :through => :assignee_plans
 
   accepts_nested_attributes_for :plan_items
+
+  scope :default, -> { where(:creator_type => 'Admin') }
 end

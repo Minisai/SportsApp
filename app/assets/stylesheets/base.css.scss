@@ -237,12 +237,12 @@ form.search-player {
   max-height: 150px;
   overflow-y: auto;
 }
-.custom-rewards-table, .custom-plans-table {
+.custom-rewards-table {
   max-height: 150px;
   overflow-y: auto;
 }
 
-.reward-block,.assign-block .brd {
+.reward-block .brd {
   height: 480px;
 }
 
@@ -360,4 +360,22 @@ select.assignee {
 
 #assign-plan-title {
   margin-left: 15px;
+}
+
+.assign-block .assignee-list {
+  height: 300px;
+  overflow-y: auto;
+}
+
+.assignees-with-plans .assignee {
+  margin: 10px 10px 20px 10px;
+}
+
+.assignees-with-plans .assignee .dropzone {
+  margin-bottom: 20px;
+}
+
+.custom-plans {
+  height: 200px;
+  overflow-y: auto;
 }

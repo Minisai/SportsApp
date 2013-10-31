@@ -21,6 +21,8 @@ class Coaches::PlansController < ApplicationController
   def assign
     @plans = @coach.plans
     @default_plans = Plan.default
+    @teams = @coach.teams
+    @players = @coach.players
   end
 
   private

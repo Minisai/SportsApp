@@ -10,3 +10,11 @@
   <p>Select from the drop down if you are assigning plans to players or a team. Drag & drop the plan onto the player or team to assign it</p>
   <p>Clicking the X will remove that from their active plan.</p>
 </div>
+<div class="brd assignee-list">
+  <div class="teams" ng-show="selectedAssignee == 'Team'">
+    <%= render 'coaches/plans/assign/teams' %>
+  </div>
+  <div class="players" ng-show="selectedAssignee == 'Player'">
+    <%= render 'coaches/plans/assign/players' %>
+  </div>
+</div>

@@ -2,7 +2,8 @@
   <h5>Sports Hub Plans</h5>
   <div class="default-plans-table" ng-init="defaultPlans = <%= json_for(@default_plans) %>">
     <table class="table">
-      <tr ng-repeat="defaultPlan in defaultPlans">
+      <tr ng-repeat="defaultPlan in defaultPlans" data-drag="true" data-jqyoui-options="{revert: 'invalid', appendTo: 'body', helper: 'clone'}"
+          ng-model="droppedPlan" jqyoui-draggable="{animate:true, onStart: 'dragPlanHandler({{defaultPlan}})' }">
         <td>{{defaultPlan.name}}</td>
       </tr>
     </table>
@@ -15,7 +16,8 @@
   </div>
   <div class="custom-plans-table" ng-init="plans = <%= json_for(@plans) %>">
     <table class="table">
-      <tr ng-repeat="plan in plans">
+      <tr ng-repeat="plan in plans" data-drag="true" data-jqyoui-options="{revert: 'invalid', appendTo: 'body', helper: 'clone'}"
+          ng-model="droppedPlan" jqyoui-draggable="{animate:true, onStart: 'dragPlanHandler({{plan}})' }">
         <td>{{plan.name}}</td>
       </tr>
     </table>

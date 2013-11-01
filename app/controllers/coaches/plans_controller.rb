@@ -1,6 +1,14 @@
 class Coaches::PlansController < ApplicationController
   before_filter :load_coach
+  before_filter :load_plans, :only => [:index, :assign]
   authorize_resource
+
+  def index
+  end
+
+  def show
+    @plan = Plan.default_or_for_coach(@coach).find(params[:id])
+  end
 
   def new
     @drills = Drill.all
@@ -34,5 +42,10 @@ class Coaches::PlansController < ApplicationController
 
   def load_coach
     @coach = current_user.role
+  end
+
+  def load_plans
+    @plans = @coach.plans
+    @default_plans = Plan.default
   end
 end

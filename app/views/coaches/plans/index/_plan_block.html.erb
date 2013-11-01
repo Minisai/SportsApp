@@ -1,0 +1,27 @@
+<div id="plan-description">
+  <div ng-hide='selectedPlan'>
+    <h5>Select a plan</h5>
+    <div class='description'>
+      Select a plan from left panel
+    </div>
+  </div>
+  <div ng-show='selectedPlan'>
+    <h5>Plan Description:</h5>
+    <div class='description'>
+      {{selectedPlan.description || 'No description'}}
+    </div>
+  </div>
+</div>
+<div id="plan-structure">
+  <div class='plan-item' ng-repeat='plan_item in selectedPlan.plan_items'>
+    <div ng-show="plan_item.item_type == 'PlanSession'">
+      PlanSession
+    </div>
+    <div ng-show="plan_item.item_type == 'Reward'">
+      Reward {{plan_item.item.name}}
+    </div>
+    <div ng-show="plan_item.item_type == 'Assessment'">
+      Assessment {{plan_item.item.name}}
+    </div>
+  </div>
+</div>

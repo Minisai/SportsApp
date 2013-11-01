@@ -10,7 +10,6 @@ SportsApp::Application.routes.draw do
     resources :motivations, :only => [:index]
     resources :assessments, :except => [:edit]
     resources :rewards, :except => [:edit, :new, :show]
-    resources :plans, :except => [:edit]
     resources :reward_images, :only => [:create, :destroy]
     resources :players, :only => [:index, :show] do
       member do
@@ -20,6 +19,11 @@ SportsApp::Application.routes.draw do
       collection do
         post :invite
       end
+    end
+    resources :plans, :except => [:edit] do
+      collection { get :assign }
+      resources :players, :only => [:create, :destroy], :controller => "plans/players"
+      resources :teams, :only => [:create, :destroy], :controller => "plans/teams"
     end
   end
 

@@ -18,6 +18,13 @@ class Coaches::PlansController < ApplicationController
     end
   end
 
+  def assign
+    @plans = @coach.plans
+    @default_plans = Plan.default
+    @teams = @coach.teams
+    @players = @coach.players
+  end
+
   private
   def plan_params
     params.permit(:plan => [:name, :description],

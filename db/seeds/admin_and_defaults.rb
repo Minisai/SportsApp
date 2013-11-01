@@ -39,3 +39,7 @@ if default_coach.present?
     end
   end
 end
+
+3.times do |i|
+  FactoryGirl.create(:plan, :with_plan_items, :creator => default_admin, :name => "Default Plan #{i}") unless Plan.find_by_name("Default Plan #{i}")
+end

@@ -82,7 +82,8 @@
     $scope.createPlan = ->
       PlansFactory.save({plan: $scope.plan, plan_items: $scope.planItems},
         (success_data) ->
-          $scope.plan_items = []
+          $scope.plan = {}
+          $scope.planItems = []
           $notification.success("Success", success_data['message'])
         ,(error_result) ->
           $notification.error("Error", error_result['data']['message']))

@@ -230,10 +230,10 @@ form.search-player {
   margin-top: 10px;
 }
 
-.default-rewards {
+.default-rewards, .default-plans {
   margin-bottom: 20px;
 }
-.default-rewards-table {
+.default-rewards-table, .default-plans-table {
   max-height: 150px;
   overflow-y: auto;
 }
@@ -351,4 +351,31 @@ select.row-replacer {
 
 span.arrows {
   margin: 0 40px 0 5px;
+}
+
+select.assignee {
+  width: 200px;
+  margin-right: 50px;
+}
+
+#assign-plan-title {
+  margin-left: 15px;
+}
+
+.assign-block .assignee-list {
+  height: 300px;
+  overflow-y: auto;
+}
+
+.assignees-with-plans .assignee {
+  margin: 10px 10px 20px 10px;
+}
+
+.assignees-with-plans .assignee .dropzone {
+  margin-bottom: 20px;
+}
+
+.custom-plans {
+  height: 200px;
+  overflow-y: auto;
 }

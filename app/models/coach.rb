@@ -1,16 +1,12 @@
 class Coach < ActiveRecord::Base
   include RoleConcern
+  include CreatorConcern
 
   validates :program_code, :uniqueness => true, :allow_blank => true
 
   has_many :teams
-  has_many :assessments
   has_many :motivations, :dependent => :destroy
   has_many :invitations, :dependent => :destroy
-  has_many :rewards, :as => :creator
-  has_many :reward_images, :as => :creator
-  has_many :plans
-
   has_and_belongs_to_many :players, -> { uniq }
 
   def find_or_create_motivation(motivation_params)

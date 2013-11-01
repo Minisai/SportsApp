@@ -7,4 +7,6 @@ describe Team do
 
   it { should belong_to(:coach) }
   it { should have_and_belong_to_many(:players) }
+  it { should have_many(:assignee_plans) }
+  it { should have_many(:plans) }
 end

@@ -2,7 +2,7 @@ class PricingPlan < ActiveRecord::Base
   include RoleTypeEnum
 
   validates :name, :role_type, :cost, :duration, :presence => true
-  validates :name, :presence => {:scope => :role_type}
+  validates :name, :uniqueness => {:scope => :role_type}
 
   has_many :payments
 

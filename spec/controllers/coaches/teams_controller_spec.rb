@@ -53,7 +53,7 @@ describe Coaches::TeamsController do
     context "valid team_id" do
       before { get :show, :id => coach_teams.last.id }
       it "should return json with team data" do
-        expect(parsed_body).to eq JSON.parse(coach_teams.last.to_json)
+        expect(parsed_body).to eq JSON.parse(TeamSerializer.new(coach_teams.last, :root => false).to_json)
       end
     end
 

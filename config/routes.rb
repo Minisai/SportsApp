@@ -22,6 +22,8 @@ SportsApp::Application.routes.draw do
     end
     resources :plans, :except => [:edit] do
       collection { get :assign }
+      resources :players, :only => [:create, :destroy], :controller => "plans/players"
+      resources :teams, :only => [:create, :destroy], :controller => "plans/teams"
     end
   end
 

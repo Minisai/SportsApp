@@ -7,7 +7,7 @@ class Coaches::TeamsController < ApplicationController
   end
 
   def show
-    render :json => Team.find_by_id(params[:id])
+    render :json => Team.find_by_id(params[:id]), :root => false
   end
 
   def create

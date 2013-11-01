@@ -1,10 +1,10 @@
 <h5>Players</h5>
-<div class='players-list' ng-init='players = <%= json_for(@players) %>'>
+<div class='players-list' ng-init='players = <%= json_for(@players, :each_serializer => PlayerWithPlansSerializer) %>'>
   <div class="assignees-with-plans" ng-repeat='player in players'>
     <div class="brd assignee">
       <h5> {{player.name}} </h5>
       <div class="row dropzone" data-drop="true" data-jqyoui-options ng-model="droppedPlan"
-           jqyoui-droppable="{onDrop: 'dropPlanHandler({{player}})'}">
+           jqyoui-droppable="{onDrop: 'dropPlanOnPlayerHandler({{player}})'}">
         <div class="col-md-2">
           Active Plan:
         </div>
@@ -12,6 +12,9 @@
           <div class='plans'>
             <div class='plan' ng-repeat='plan in player.plans'>
               {{plan.name}}
+              <%= link_to nil, :remote => true, 'ng-click' => 'removePlayerPlan(player, plan)' do %>
+                <span class='glyphicon glyphicon-remove'></span>
+              <% end %>
             </div>
           </div>
         </div>

@@ -8,4 +8,6 @@ describe Plan do
   it { should have_many(:plan_items) }
   it { should have_many(:assignee_plans) }
   it { should have_many(:assignees) }
+  it { should have_many(:teams) }
+  it { should have_many(:players) }
 end

@@ -2,7 +2,7 @@
   <h5>Sports Hub Plans</h5>
   <div class="default-plans-table" ng-init="defaultPlans = <%= json_for(@default_plans) %>">
     <table class="table">
-      <tr ng-repeat="defaultPlan in defaultPlans" ng-click='planSelection(defaultPlan)'
+      <tr ng-repeat="defaultPlan in defaultPlans" ng-click='planSelection(defaultPlan, true)'
           ng-class="{highlight:defaultPlan.id == selectedPlan.id}">
         <td>{{defaultPlan.name}}</td>
       </tr>

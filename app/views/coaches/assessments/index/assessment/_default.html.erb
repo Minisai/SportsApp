@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md-9">
+    <div class="row">
+      <%= label_tag 'Name: ', nil, :class => 'control-label col-lg-2' %>
+      <div class='controls col-lg-10'>
+        {{selectedDefaultAssessment.name}}
+      </div>
+    </div>
+    <div class="row">
+      <%= label_tag 'Description: ', nil, :class => 'control-label col-lg-2' %>
+      <div class='controls col-lg-10'>
+        {{selectedDefaultAssessment.description || 'none'}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='exercises-table'>
+  <table>
+    <tr class='brd' ng-repeat='exercise in selectedDefaultAssessment.exercises'>
+      <td>
+        {{exercise.name}}
+        <span class='repetitions'>
+          {{exercise.repetitions}}
+        </span>
+      </td>
+    </tr>
+  </table>
+</div>

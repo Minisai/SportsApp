@@ -13,7 +13,7 @@ class Coaches::PlansController < ApplicationController
   def new
     @drills = Drill.all
     @rewards = Reward.default_or_for_coach(@coach)
-    @assessments = @coach.assessments
+    @assessments = Assessment.default_or_for_coach(@coach)
   end
 
   def create
@@ -23,6 +23,15 @@ class Coaches::PlansController < ApplicationController
       render :json => {:message => "Plan was created successfully"}
     else
       render :json => {:message => plan.errors.full_messages.join}, :status => :bad_request
+    end
+  end
+
+  def destroy
+    @plan = @coach.plans.find(params[:id])
+    if @plan.destroy
+      render :json => @coach.plans
+    else
+      render :json => {:message => @plan.errors.full_messages.join}, :status => :bad_request
     end
   end
 

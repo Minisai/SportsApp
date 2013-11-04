@@ -4,7 +4,7 @@ describe Coaches::PlansController do
   let!(:coach) { create(:coach_user).role }
   let!(:drills) { create_list(:drill, 10) }
   let!(:rewards) { create_list(:reward, 20, :creator => create(:admin)) + create_list(:reward, 10, :creator => coach) }
-  let!(:assessments) { create_list(:assessment, 10, :creator => coach) }
+  let!(:assessments) { create_list(:assessment, 20, :creator => create(:admin)) + create_list(:assessment, 10, :creator => coach) }
 
   describe "GET :new" do
     before do

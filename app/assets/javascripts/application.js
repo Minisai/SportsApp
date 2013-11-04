@@ -15,6 +15,8 @@
 //= require jquery.ui.droppable
 //= require jquery_ujs
 //= require twitter/bootstrap/modal
+//= require twitter/bootstrap/transition
+//= require twitter/bootstrap/collapse
 //= require angular
 //= require angular-resource
 //= require_tree .

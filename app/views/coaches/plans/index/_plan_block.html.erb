@@ -13,15 +13,28 @@
   </div>
 </div>
 <div id="plan-structure">
-  <div class='plan-item' ng-repeat='plan_item in selectedPlan.plan_items'>
-    <div ng-show="plan_item.item_type == 'PlanSession'">
-      PlanSession
-    </div>
-    <div ng-show="plan_item.item_type == 'Reward'">
-      Reward {{plan_item.item.name}}
-    </div>
-    <div ng-show="plan_item.item_type == 'Assessment'">
-      Assessment {{plan_item.item.name}}
+  <div id="#plan-item-{{$index}}" class="panel-group" ng-repeat='plan_item in selectedPlan.plan_items'>
+    <div class="panel panel-default plan-item">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#plan-item-{{$index}}" href="#collapse-{{$index}}" class="collapsed">
+            {{plan_item.item.name}}
+          </a>
+        </h4>
+      </div>
+      <div id="collapse-{{$index}}" class="panel-collapse collapse">
+        <div class="panel-body">
+          <div ng-show="plan_item.item_type == 'PlanSession'">
+            <%= render 'coaches/plans/index/plan_item/plan_session' %>
+          </div>
+          <div ng-show="plan_item.item_type == 'Assessment'">
+            <%= render 'coaches/plans/index/plan_item/assessment' %>
+          </div>
+          <div ng-show="plan_item.item_type == 'Reward'">
+            <%= render 'coaches/plans/index/plan_item/reward' %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

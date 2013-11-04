@@ -16,6 +16,8 @@ child :plan_items, :object_root => false do
       child :exercises, :object_root => false do
         attributes :id, :name, :repetitions
       end
+    elsif item.is_a?(Reward)
+      attributes :image_url, :reward_image_id
     end
   end
 end

@@ -119,4 +119,31 @@ describe Coaches::PlansController do
       end
     end
   end
+
+  describe 'GET show' do
+    render_views
+    let(:parsed_body) { JSON.parse(response.body) }
+    let!(:plan) { create(:plan, :with_plan_items, :creator => coach) }
+
+    context "coach signed in" do
+      before { controller.stub(:current_user => coach.user) }
+
+      context "valid_id" do
+        before { get :show, :id => plan.id }
+
+        it { expect(response).to be_success }
+        it { expect(assigns(:plan)).to eq plan }
+
+        it "should get json with keys" do
+          expect(parsed_body['plan'].keys.sort).to eq %w(id name description plan_items).sort
+        end
+        it "should get json with keys" do
+          expect(parsed_body['plan'].keys.sort).to eq %w(id name description plan_items).sort
+        end
+        it "should get json with keys" do
+          expect(parsed_body['plan']['plan_items'].first.keys.sort).to eq %w(id item_id item_type position item).sort
+        end
+      end
+    end
+  end
 end

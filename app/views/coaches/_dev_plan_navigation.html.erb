@@ -1,8 +1,9 @@
 <nav class="navbar navbar-default subnav" role="navigation">
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
-      <li>
-        <%= link_to "All Plans" %>
+      <li class="<%= 'active' if params[:controller] == 'coaches/plans' &&
+              params[:action] == 'index' %>">
+        <%= link_to "All Plans", coaches_plans_path %>
       </li>
       <li class="<%= 'active' if params[:controller] == 'coaches/plans' &&
               params[:action] == 'new' %>">

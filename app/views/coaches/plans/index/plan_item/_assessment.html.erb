@@ -1,0 +1,33 @@
+<div class="reward">
+  <div class="row">
+    <div class="col-md-2">
+      <p><b>Name:</b></p>
+    </div>
+    <div class="col-md-10">
+      <p> {{plan_item.item.name}} </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <p><b>Description:</b></p>
+    </div>
+    <div class="col-md-10">
+      <p ng-show='plan_item.item.description'> {{plan_item.item.description}} </p>
+      <p ng-hide='plan_item.item.description'> No description </p>
+    </div>
+  </div>
+  <table class="table-striped day-schedule brd">
+    <thead>
+    <tr>
+      <th> Exercise </th>
+      <th> Reps </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat='exercise in plan_item.item.exercises'>
+      <td>{{exercise.name}}</td>
+      <td>{{exercise.repetitions}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

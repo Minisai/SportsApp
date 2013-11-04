@@ -379,3 +379,33 @@ select.assignee {
   height: 200px;
   overflow-y: auto;
 }
+
+#plan-description .description {
+  height: 100px;
+  overflow-y: auto;
+}
+
+#plan-structure {
+  height: 350px;
+  overflow-y: auto;
+}
+
+.days ul.list-inline li {
+  margin: 0px 15px 20px 0;
+  overflow-y: auto;
+  display: inline-table;
+}
+
+table.day-schedule tr th {
+  background-color: #d3d3d3;
+}
+
+table.day-schedule tr th:first-child, table.day-schedule tr td:first-child {
+  padding: 10px 0 10px 10px;
+  width: 250px;
+  border-right: 2px solid black;
+}
+table.day-schedule tr th:nth-child(2), table.day-schedule tr td:nth-child(2) {
+  padding: 10px 0 10px 10px;
+  width: 70px;
+}

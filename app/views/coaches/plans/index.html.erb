@@ -1,0 +1,13 @@
+<%= render 'coaches/dev_plan_navigation' %>
+
+<div class="row" ng-controller='AllPlansController'>
+  <div class="col-md-4 plans-list">
+    <h5>Select a plan below to view more details: </h5>
+    <%= render 'coaches/plans/index/plans_list' %>
+  </div>
+  <div class="col-md-8">
+    <div class="plan-block">
+      <%= render 'coaches/plans/index/plan_block' %>
+    </div>
+  </div>
+</div>

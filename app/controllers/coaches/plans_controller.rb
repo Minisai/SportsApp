@@ -12,7 +12,7 @@ class Coaches::PlansController < ApplicationController
 
   def new
     @drills = Drill.all
-    @rewards = @coach.rewards + Reward.default
+    @rewards = Reward.default_or_for_coach(@coach)
     @assessments = @coach.assessments
   end
 

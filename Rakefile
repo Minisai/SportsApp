@@ -1,5 +1,7 @@
 require File.expand_path('../config/application', __FILE__)
-require 'ci/reporter/rake/rspec'
+unless Rails.env.production?
+  require 'ci/reporter/rake/rspec'
+end
 
 SportsApp::Application.load_tasks
 

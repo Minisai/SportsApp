@@ -1,4 +1,5 @@
 class Plan < ActiveRecord::Base
+  include MayBeDefaultConcern
   validates :name, :presence => true, :uniqueness => true
 
   belongs_to :creator, :polymorphic => true
@@ -12,7 +13,4 @@ class Plan < ActiveRecord::Base
   has_many :rewards, :through => :plan_items, :source => :item, :source_type => 'Reward'
 
   accepts_nested_attributes_for :plan_items
-
-  scope :default, -> { where(:creator_type => 'Admin') }
-  scope :default_or_for_coach, -> (coach) {  where("creator_type = 'Admin' OR (creator_type = 'Coach' AND creator_id = ?)", coach.id) }
 end

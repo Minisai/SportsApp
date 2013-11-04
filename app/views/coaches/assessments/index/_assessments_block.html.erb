@@ -1,4 +1,17 @@
-<div class="brd">
+<div class="brd default-rewards">
+  <h5>Sports Hub Sponsored Assessment</h5>
+  <div class="default-rewards-table" ng-init="defaultAssessments = <%= json_for(@default_assessments) %>">
+    <table class="table">
+      <tr ng-click='defaultAssessmentSelection(defaultAssessment.id)' ng-repeat="defaultAssessment in defaultAssessments"
+          ng-class="{highlight:defaultAssessment.id == selectedDefaultAssessment.id}">
+        <td>{{defaultAssessment.name}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="brd custom-rewards">
+  <h5>Custom Assessments</h5>
   <div class="row create-assessment-btn">
     <%= link_to 'Create Assessment', new_coaches_assessment_path, :class => 'pull-right btn btn-success' %>
   </div>

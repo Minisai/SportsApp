@@ -1,7 +1,11 @@
 class Coaches::AssessmentsController < ApplicationController
   authorize_resource
   before_filter :load_coach
-  before_filter :load_assessment, :only => [:show, :update, :destroy]
+  before_filter :load_assessment, :only => [:update, :destroy]
+
+  def show
+    @assessment = Assessment.default_or_for_coach(@coach).find(params[:id])
+  end
 
   def new
     @drills = Drill.all
@@ -9,6 +13,7 @@ class Coaches::AssessmentsController < ApplicationController
 
   def index
     @assessments = @coach.assessments
+    @default_assessments = Assessment.default
   end
 
   def create

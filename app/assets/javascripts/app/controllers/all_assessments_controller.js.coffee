@@ -1,9 +1,16 @@
 @app.controller "AllAssessmentController", ["$scope", '$notification', "DrillsFactory", 'AssessmentsFactory',
   ($scope, $notification, DrillsFactory, AssessmentsFactory) ->
     $scope.assessments = []
+
+    $scope.defaultAssessmentSelection = (assessment_id) ->
+      AssessmentsFactory.get {id: assessment_id}, (data)->
+        $scope.selectedDefaultAssessment = data["assessment"]
+        $scope.selectedAssessment = null
+
     $scope.assessmentSelection = (assessment_id) ->
       AssessmentsFactory.get {id: assessment_id}, (data)->
-          $scope.selectedAssessment = data["assessment"]
+        $scope.selectedAssessment = data["assessment"]
+        $scope.selectedDefaultAssessment = null
 
     $scope.checkName = (data) ->
       if (data.length == 0)

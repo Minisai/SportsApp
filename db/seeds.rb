@@ -1,5 +1,3 @@
-require 'factory_girl_rails'
-
 default_coach = User.find_by_email("coach@mail.com").try(:role) || Coach.create do |coach|
   coach.program_code = "PROG123"
   coach.user_attributes = {

@@ -40,6 +40,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'meta_request'
   gem 'mailcatcher', :require => false
+  gem "rails-erd"
 end
 
 group :development, :test do

@@ -34,5 +34,4 @@
           $notification.success("Success", "Assessment was deleted successfully")
         ,(error_result) ->
           $notification.error("Error", error_result['data']['message']))
-
 ]

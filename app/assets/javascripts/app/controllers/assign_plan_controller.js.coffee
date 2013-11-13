@@ -1,5 +1,5 @@
-@app.controller "AssignPlanController", ["$scope", '$notification', 'PlansFactory', 'PlansTeamsFactory', 'PlansPlayersFactory'
-  ($scope, $notification, PlansFactory, PlansTeamsFactory, PlansPlayersFactory) ->
+@app.controller "AssignPlanController", ["$scope", 'PlansFactory', 'PlansTeamsFactory', 'PlansPlayersFactory'
+  ($scope, PlansFactory, PlansTeamsFactory, PlansPlayersFactory) ->
     $scope.assigneeTypes = ['Team', 'Player']
     $scope.droppedPlan = {}
 

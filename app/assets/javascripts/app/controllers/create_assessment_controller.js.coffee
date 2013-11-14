@@ -7,26 +7,26 @@
       DrillsFactory.get {id: drill_id}, (data) ->
         $scope.selectedDrill = data["drill"]
 
-    $scope.dropDrillHandler = (event, ui) ->
-      @exercises.push({
-        drill_id: $scope.draggedDrill['id'],
-        name: @draggedDrill['name'],
-        repetitions: 1
-      })
-
     $scope.dragDrillHandler = (event, ui, drill) ->
       $scope.draggedDrill = drill
 
+    $scope.dropDrillHandler = (event, ui) ->
+      $scope.exercises.push({
+        drill_id: $scope.draggedDrill['id'],
+        name: $scope.draggedDrill['name'],
+        repetitions: 1
+      })
+
     $scope.removeDrillClick = (index) ->
-      @exercises.splice(index, 1)
+      $scope.exercises.splice(index, 1)
 
     $scope.editRepetitions = (index, value) ->
-      @exercises[index]['repetitions'] = value
+      $scope.exercises[index]['repetitions'] = value
 
     $scope.createAssessment = ->
-      @assessment['exercises_attributes'] = @exercises
+      $scope.assessment['exercises_attributes'] = $scope.exercises
 
-      AssessmentsFactory.save({assessment: @assessment},
+      AssessmentsFactory.save({assessment: $scope.assessment},
         (success_data) ->
           $scope.assessment = {}
           $scope.exercises = []

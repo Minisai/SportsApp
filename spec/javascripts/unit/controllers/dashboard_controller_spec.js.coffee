@@ -28,7 +28,7 @@ describe "DashboardController", ->
 
   describe 'playerSelection', ->
     beforeEach ->
-      httpMock.whenGET("players/#{player.id}").respond(player: player)
+      httpMock.whenGET("/coaches/players/#{player.id}").respond(player: player)
       scope.playerSelection(player.id)
       httpMock.flush()
     it 'should assign player data to scope.player', ->

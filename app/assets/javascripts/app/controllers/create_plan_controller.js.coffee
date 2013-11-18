@@ -43,7 +43,8 @@
 
     # For days
     $scope.addDayClick = (planItem) ->
-      planItem.days_attributes.push({exercises_attributes: []})
+      if planItem.item_type == 'PlanSession'
+        planItem.days_attributes.push({exercises_attributes: []})
 
     $scope.daySelection = (day) ->
       addOrRemoveSelectedFlag(day)

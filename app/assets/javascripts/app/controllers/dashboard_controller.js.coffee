@@ -9,7 +9,7 @@
       BootstrapModalService.showModal($scope, 'send_message_modal')
 
     $scope.sendMessage = ->
-      $http.post("/coaches/players/#{@player.id}/send_message", {message: @message}
+      $http.post("/coaches/players/#{$scope.player.id}/send_message", {message: $scope.message}
       ).success((data)->
           $scope.send_message_modal.modal('hide')
           $notification.success("Success", data['message'])
@@ -21,7 +21,7 @@
       BootstrapModalService.showModal($scope, 'motivation_modal')
 
     $scope.sendMotivation = ->
-      $http.post("/coaches/players/#{@player.id}/motivate", {motivation: @motivation}
+      $http.post("/coaches/players/#{$scope.player.id}/motivate", {motivation: $scope.motivation}
       ).success((data) ->
         $scope.motivations = data['motivations']
         $scope.motivation_modal.modal('hide')

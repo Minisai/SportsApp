@@ -20,19 +20,19 @@
 
     $scope.rewardImageSelection = (index) ->
       $scope.selectedRewardImage = $scope.rewardImages[index]
-      if @selectedReward
-        @selectedReward.image_url = @selectedRewardImage.image_url
-        @selectedReward.reward_image_id = @selectedRewardImage.id
-      if @newReward
-        @newReward.image_url = @selectedRewardImage.image_url
-        @newReward.reward_image_id = @selectedRewardImage.id
+      if $scope.selectedReward
+        $scope.selectedReward.image_url = $scope.selectedRewardImage.image_url
+        $scope.selectedReward.reward_image_id = $scope.selectedRewardImage.id
+      if $scope.newReward
+        $scope.newReward.image_url = $scope.selectedRewardImage.image_url
+        $scope.newReward.reward_image_id = $scope.selectedRewardImage.id
 
     $scope.checkName = (data) ->
       if (data.length == 0)
         return "Name should be present"
 
     $scope.createReward = ->
-      CoachesRewardsFactory.save({reward: @newReward},
+      CoachesRewardsFactory.save({reward: $scope.newReward},
       (success_data) ->
         $scope.rewards = success_data['rewards']
         $scope.newReward = {}
@@ -41,7 +41,7 @@
         $notification.error("Error", error_result['data']['message']))
 
     $scope.updateReward = ->
-      CoachesRewardsFactory.update({id: @selectedReward.id, reward: @selectedReward},
+      CoachesRewardsFactory.update({id: $scope.selectedReward.id, reward: $scope.selectedReward},
       (success_data) ->
         $scope.rewards = success_data['rewards']
         $notification.success("Success", "Reward was updated successfully")
@@ -50,7 +50,7 @@
 
     $scope.removeReward = ->
       if (confirm('Are you sure you want to delete reward?'))
-        CoachesRewardsFactory.delete({id: @selectedReward.id},
+        CoachesRewardsFactory.delete({id: $scope.selectedReward.id},
         (success_data) ->
           $scope.rewards = success_data['rewards']
           $scope.selectedReward = null

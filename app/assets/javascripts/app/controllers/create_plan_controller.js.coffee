@@ -27,15 +27,13 @@
 
     $scope.planItemUpClick = (index) ->
       if index > 0
-        planItem = $scope.planItems.splice(index, 1)[0]
-        $scope.planItems.splice(index-1, 0, planItem)
-        calculateSessionNumbers() if planItem.item_type == 'PlanSession'
+        [$scope.planItems[index], $scope.planItems[index-1]] = [$scope.planItems[index-1], $scope.planItems[index]]
+        calculateSessionNumbers() if $scope.planItems[index].item_type == 'PlanSession'
 
     $scope.planItemDownClick = (index) ->
       if index < $scope.planItems.length
-        planItem = $scope.planItems.splice(index, 1)[0]
-        $scope.planItems.splice(index+1, 0, planItem)
-        calculateSessionNumbers() if planItem.item_type == 'PlanSession'
+        [$scope.planItems[index], $scope.planItems[index+1]] = [$scope.planItems[index+1], $scope.planItems[index]]
+        calculateSessionNumbers() if $scope.planItems[index].item_type == 'PlanSession'
 
     $scope.planItemRemoveClick = (index) ->
       deletedPlanItem = $scope.planItems.splice(index, 1)[0]
@@ -89,17 +87,3 @@
         ,(error_result) ->
           $notification.error("Error", error_result['data']['message']))
 ]
-
-@app.directive "tableSelect", ->
-  replace: false
-  templateUrl: "/angular/templates/table_select.html"
-  scope:
-    items: "="
-    selected: "="
-    itemType: "="
-    planItems: "="
-  link: (scope) ->
-    scope.selectItem = ->
-      scope.selectedPlanItem.item_type = scope.itemType
-      scope.planItems.push(scope.selectedPlanItem)
-      scope.selectedPlanItem = null

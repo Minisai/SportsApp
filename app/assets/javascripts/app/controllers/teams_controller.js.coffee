@@ -11,7 +11,7 @@
 
     $scope.teamSelection = (id) ->
       $scope.addNewTeamClicked = false
-      if typeof $scope.selected_team  == "undefined"
+      if typeof $scope.selected_team == "undefined"
         getTeamAndPlayers(id)
       else if $scope.selected_team.id != id
         getTeamAndPlayers(id)

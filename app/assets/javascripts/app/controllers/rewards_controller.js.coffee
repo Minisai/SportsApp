@@ -1,22 +1,22 @@
 @app.controller "RewardsController", ["$scope", '$http', '$notification', 'RewardsFactory', 'CoachesRewardsFactory', 'RewardImagesFactory'
   ($scope, $http, $notification, RewardsFactory, CoachesRewardsFactory, RewardImagesFactory) ->
-    $scope.defaultRewardSelection = (index) ->
-      $scope.selectedDefaultReward = $scope.defaultRewards[index]
+    nullifyAllVariables = ->
+      $scope.selectedDefaultReward = null
       $scope.selectedReward = null
       $scope.newReward = null
       $scope.selectedRewardImage = null
+
+    $scope.defaultRewardSelection = (index) ->
+      nullifyAllVariables()
+      $scope.selectedDefaultReward = $scope.defaultRewards[index]
 
     $scope.rewardSelection = (index) ->
+      nullifyAllVariables()
       $scope.selectedReward = angular.copy($scope.rewards[index])
-      $scope.selectedDefaultReward = null
-      $scope.newReward = null
-      $scope.selectedRewardImage = null
 
     $scope.createNewRewardClicked = ->
+      nullifyAllVariables()
       $scope.newReward = {}
-      $scope.selectedReward = null
-      $scope.selectedDefaultReward = null
-      $scope.selectedRewardImage = null
 
     $scope.rewardImageSelection = (index) ->
       $scope.selectedRewardImage = $scope.rewardImages[index]

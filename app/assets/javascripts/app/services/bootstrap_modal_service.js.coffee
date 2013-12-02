@@ -9,6 +9,6 @@
 
   @showModal = (scope, modalName)->
     $q.when(modalPromise(scope, modalName)).then (modalEl) ->
-      eval("scope.#{modalName} = modalEl")
+      scope[modalName] = modalEl
       modalEl.modal("show")
 ]
